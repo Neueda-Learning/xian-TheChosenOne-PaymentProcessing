@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.tco.safepay.mapper.PaymentHistoryMapper">
+
+    <resultMap id="PaymentHistoryResultMap" type="org.tco.safepay.model.entity.PaymentHistory">
+        <id column="id" property="id" javaType="java.util.UUID" jdbcType="VARCHAR" typeHandler="org.tco.safepay.config.typehandler.UuidTypeHandler"/>
+        <result column="payment_id" property="paymentId" javaType="java.util.UUID" jdbcType="VARCHAR" typeHandler="org.tco.safepay.config.typehandler.UuidTypeHandler"/>
+        <result column="from_status" property="fromStatus"/>
+        <result column="to_status" property="toStatus"/>
+        <result column="note" property="note"/>
+        <result column="error_code" property="errorCode"/>
+        <result column="created_at" property="createdAt"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="org.tco.safepay.model.entity.PaymentHistory">
+        INSERT INTO payment_history (
+            id,
+            payment_id,
+            from_status,
+            to_status,
+            note,
+            error_code,
+            created_at
+        ) VALUES (
+            #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
+            #{paymentId,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
+            #{fromStatus},
+            #{toStatus},
+            #{note},
+            #{errorCode},
+            #{createdAt}
+        )
+    </insert>
+
+    <select id="selectById" resultMap="PaymentHistoryResultMap">
+        SELECT id, payment_id, from_status, to_status, note, error_code, created_at
+        FROM payment_history
+        WHERE id = #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler}
+    </select>
+
+    <select id="selectByPaymentId" resultMap="PaymentHistoryResultMap">
+        SELECT id, payment_id, from_status, to_status, note, error_code, created_at
+        FROM payment_history
+        WHERE payment_id = #{paymentId,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler}
+        ORDER BY created_at ASC
+    </select>
+
+</mapper>
+
