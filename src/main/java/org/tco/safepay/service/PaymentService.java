@@ -91,44 +91,9 @@ public class PaymentService {
         writeHistory(payment.getId(), null, "CREATED", null, null);
         pauseForHistoryVisibility();
 
-        // Persist all validation failures as FAILED attempts.
-        if (validationFailure != null) {
-            updateStatus(payment, "FAILED",
-                    validationFailure.errorCode().name(),
-                    validationFailure.errorCode().getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
-                    validationFailure.note(), validationFailure.errorCode().name());
-            return payment;
-        }
-
-        // ── Step 4: account existence ─────────────────────────────────────────
-        Account sourceAccount = accountMapper.selectByAccountNo(request.getSourceAccount());
+        // ── Steps 4-5: all validations (field + account + balance) ───────────
+        Account sourceAccount = runAllValidations(payment, request, validationFailure);
         if (sourceAccount == null) {
-            updateStatus(payment, "FAILED",
-                    ErrorCode.INVALID_ACCOUNT.name(),
-                    ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
-                    "Source account not found", ErrorCode.INVALID_ACCOUNT.name());
-            return payment;
-        }
-        pauseForHistoryVisibility();
-        if (accountMapper.selectByAccountNo(request.getDestinationAccount()) == null) {
-            updateStatus(payment, "FAILED",
-                    ErrorCode.INVALID_ACCOUNT.name(),
-                    ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
-                    "Destination account not found", ErrorCode.INVALID_ACCOUNT.name());
-            return payment;
-        }
-        pauseForHistoryVisibility();
-
-        // ── Step 5: balance check ─────────────────────────────────────────────
-        if (sourceAccount.getBalance().compareTo(request.getAmount()) < 0) {
-            updateStatus(payment, "FAILED",
-                    ErrorCode.INSUFFICIENT_FUNDS.name(),
-                    ErrorCode.INSUFFICIENT_FUNDS.getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
-                    "Insufficient balance at pre-check", ErrorCode.INSUFFICIENT_FUNDS.name());
             return payment;
         }
         pauseForHistoryVisibility();
@@ -198,6 +163,59 @@ public class PaymentService {
     }
 
     // ── Private helpers ───────────────────────────────────────────────────────
+
+    /**
+     * 统一执行所有前置验证：字段格式、账户存在性、余额充足性。
+     * 任意一项失败时将 payment 更新为 FAILED 并写历史，返回 null。
+     * 全部通过时返回源账户对象（供后续余额扣减使用）。
+     */
+    private Account runAllValidations(Payment payment, PaymentRequest request,
+                                      ValidationFailure fieldValidation) {
+        // 1. 字段校验失败
+        if (fieldValidation != null) {
+            updateStatus(payment, "FAILED",
+                    fieldValidation.errorCode().name(),
+                    fieldValidation.errorCode().getDefaultMessage());
+            writeHistory(payment.getId(), "CREATED", "FAILED",
+                    fieldValidation.note(), fieldValidation.errorCode().name());
+            return null;
+        }
+
+        // 2. 源账户存在性
+        Account sourceAccount = accountMapper.selectByAccountNo(request.getSourceAccount());
+        if (sourceAccount == null) {
+            updateStatus(payment, "FAILED",
+                    ErrorCode.INVALID_ACCOUNT.name(),
+                    ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
+            writeHistory(payment.getId(), "CREATED", "FAILED",
+                    "Source account not found", ErrorCode.INVALID_ACCOUNT.name());
+            return null;
+        }
+        pauseForHistoryVisibility();
+
+        // 3. 目标账户存在性
+        if (accountMapper.selectByAccountNo(request.getDestinationAccount()) == null) {
+            updateStatus(payment, "FAILED",
+                    ErrorCode.INVALID_ACCOUNT.name(),
+                    ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
+            writeHistory(payment.getId(), "CREATED", "FAILED",
+                    "Destination account not found", ErrorCode.INVALID_ACCOUNT.name());
+            return null;
+        }
+        pauseForHistoryVisibility();
+
+        // 4. 余额充足性
+        if (sourceAccount.getBalance().compareTo(request.getAmount()) < 0) {
+            updateStatus(payment, "FAILED",
+                    ErrorCode.INSUFFICIENT_FUNDS.name(),
+                    ErrorCode.INSUFFICIENT_FUNDS.getDefaultMessage());
+            writeHistory(payment.getId(), "CREATED", "FAILED",
+                    "Insufficient balance at pre-check", ErrorCode.INSUFFICIENT_FUNDS.name());
+            return null;
+        }
+
+        return sourceAccount;
+    }
 
     private ValidationFailure validateRequest(PaymentRequest request) {
         if (request.getIdempotencyKey() == null

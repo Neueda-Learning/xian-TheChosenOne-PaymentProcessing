@@ -2819,3 +2819,298 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'o
 2026-07-28 06:42:12.069 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
 2026-07-28 06:42:12.073 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-07-28 06:42:12.082 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-07-28 08:59:03.782 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 11296 (C:\Users\Administrator\Documents\The-chosen-one\target\classes started by Administrator in C:\Users\Administrator\Documents\The-chosen-one)
+2026-07-28 08:59:03.786 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-28 08:59:03.788 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-28 08:59:05.079 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'accountMapper' and 'org.tco.safepay.mapper.AccountMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 08:59:05.080 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'balanceLedgerMapper' and 'org.tco.safepay.mapper.BalanceLedgerMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 08:59:05.080 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentHistoryMapper' and 'org.tco.safepay.mapper.PaymentHistoryMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 08:59:05.080 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentMapper' and 'org.tco.safepay.mapper.PaymentMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 08:59:05.081 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[org.tco.safepay.mapper]' package. Please check your configuration.
+2026-07-28 08:59:05.689 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-28 08:59:05.712 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-28 08:59:05.716 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-28 08:59:05.716 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-28 08:59:05.819 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1910 ms
+2026-07-28 08:59:06.488 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-28 08:59:06.518 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-07-28 08:59:06.970 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-28 08:59:06.997 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-07-28 08:59:07.006 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 4.431 seconds (process running for 5.29)
+2026-07-28 08:59:50.645 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-28 08:59:50.645 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-28 08:59:50.647 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-07-28 08:59:50.771 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-28 08:59:51.193 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@202a7215
+2026-07-28 08:59:51.196 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-28 08:59:51.231 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 08:59:51.268 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785220545989(String)
+2026-07-28 08:59:51.300 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 1
+2026-07-28 08:59:51.428 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
+2026-07-28 08:59:51.431 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
+2026-07-28 08:59:51.444 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 20
+2026-07-28 09:00:03.453 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:00:03.454 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785229197846(String)
+2026-07-28 09:00:03.455 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
+2026-07-28 09:00:03.457 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:00:03.460 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 80d350f6-be86-42cd-a64f-d454eb88ad75(String), order-1785229197846(String), ACC10001(String), ACC20002(String), 0(BigDecimal), USD(String), null, CREATED(String), null, null, 2026-07-28T09:00:03.456141200(LocalDateTime), 2026-07-28T09:00:03.456141200(LocalDateTime)
+2026-07-28 09:00:03.467 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
+2026-07-28 09:00:03.467 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:00:03.469 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: f832d6a2-7c9a-4d1d-9bc8-f4ec85974649(String), 80d350f6-be86-42cd-a64f-d454eb88ad75(String), null, CREATED(String), null, null, 2026-07-28T09:00:03.467912300(LocalDateTime)
+2026-07-28 09:00:03.472 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:00:04.582 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
+2026-07-28 09:00:04.584 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_AMOUNT(String), Amount is zero, negative, or invalid(String), 80d350f6-be86-42cd-a64f-d454eb88ad75(String)
+2026-07-28 09:00:04.587 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
+2026-07-28 09:00:04.587 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:00:04.587 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: ba35a3c1-a0d4-49d3-a346-38b92a985e3d(String), 80d350f6-be86-42cd-a64f-d454eb88ad75(String), CREATED(String), FAILED(String), Amount is zero or negative(String), INVALID_AMOUNT(String), 2026-07-28T09:00:04.587544(LocalDateTime)
+2026-07-28 09:00:04.590 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:00:04.610 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
+2026-07-28 09:00:04.611 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
+2026-07-28 09:00:04.620 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 21
+2026-07-28 09:01:02.388 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:01:02.388 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785229255819(String)
+2026-07-28 09:01:02.390 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
+2026-07-28 09:01:02.391 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:01:02.392 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 83393de1-6ca9-4a13-b58f-c8ce308cd830(String), order-1785229255819(String), ACC10001(String), ACC20002(String), 100000000(BigDecimal), USD(String), null, CREATED(String), null, null, 2026-07-28T09:01:02.391371800(LocalDateTime), 2026-07-28T09:01:02.391371800(LocalDateTime)
+2026-07-28 09:01:02.394 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
+2026-07-28 09:01:02.394 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:01:02.395 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 7247dbe6-47b8-46db-a789-dbe5f0da7959(String), 83393de1-6ca9-4a13-b58f-c8ce308cd830(String), null, CREATED(String), null, null, 2026-07-28T09:01:02.394830(LocalDateTime)
+2026-07-28 09:01:02.397 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:01:03.507 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
+2026-07-28 09:01:03.507 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_AMOUNT(String), Amount is zero, negative, or invalid(String), 83393de1-6ca9-4a13-b58f-c8ce308cd830(String)
+2026-07-28 09:01:03.511 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
+2026-07-28 09:01:03.511 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:01:03.512 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 771f8be7-84a1-4d20-9bd0-910c168702c4(String), 83393de1-6ca9-4a13-b58f-c8ce308cd830(String), CREATED(String), FAILED(String), Amount exceeds max limit(String), INVALID_AMOUNT(String), 2026-07-28T09:01:03.511994800(LocalDateTime)
+2026-07-28 09:01:03.516 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:01:03.529 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
+2026-07-28 09:01:03.530 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
+2026-07-28 09:01:03.539 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 22
+2026-07-28 09:01:32.109 [http-nio-8080-exec-7] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:01:32.110 [http-nio-8080-exec-7] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785229290874(String)
+2026-07-28 09:01:32.112 [http-nio-8080-exec-7] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
+2026-07-28 09:01:32.112 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:01:32.113 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: b18a600d-ea78-4de5-ae70-396e93e33574(String), order-1785229290874(String), ACC10001(String), ACC20002(String), 100000000(BigDecimal), USD(String), null, CREATED(String), null, null, 2026-07-28T09:01:32.112410100(LocalDateTime), 2026-07-28T09:01:32.112410100(LocalDateTime)
+2026-07-28 09:01:32.115 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
+2026-07-28 09:01:32.116 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:01:32.116 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 7cb26829-dfe0-4ec8-9155-a8fa2464411f(String), b18a600d-ea78-4de5-ae70-396e93e33574(String), null, CREATED(String), null, null, 2026-07-28T09:01:32.115201200(LocalDateTime)
+2026-07-28 09:01:32.118 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:01:33.219 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
+2026-07-28 09:01:33.219 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_AMOUNT(String), Amount is zero, negative, or invalid(String), b18a600d-ea78-4de5-ae70-396e93e33574(String)
+2026-07-28 09:01:33.221 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
+2026-07-28 09:01:33.222 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:01:33.222 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 4b669bc0-2dae-4b8b-8a32-7612943ed690(String), b18a600d-ea78-4de5-ae70-396e93e33574(String), CREATED(String), FAILED(String), Amount exceeds max limit(String), INVALID_AMOUNT(String), 2026-07-28T09:01:33.222909100(LocalDateTime)
+2026-07-28 09:01:33.224 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:01:33.236 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
+2026-07-28 09:01:33.237 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
+2026-07-28 09:01:33.245 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 23
+2026-07-28 09:01:51.887 [http-nio-8080-exec-9] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE status = ? ORDER BY created_at DESC
+2026-07-28 09:01:51.888 [http-nio-8080-exec-9] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==> Parameters: FAILED(String)
+2026-07-28 09:01:51.892 [http-nio-8080-exec-9] DEBUG o.t.s.m.PaymentMapper.selectByStatus - <==      Total: 16
+2026-07-28 09:03:46.145 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:03:46.146 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785229290874(String)
+2026-07-28 09:03:46.148 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 1
+2026-07-28 09:03:46.157 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE status = ? ORDER BY created_at DESC
+2026-07-28 09:03:46.158 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==> Parameters: FAILED(String)
+2026-07-28 09:03:46.163 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentMapper.selectByStatus - <==      Total: 16
+2026-07-28 09:04:17.715 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:04:17.716 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785229456101(String)
+2026-07-28 09:04:17.717 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
+2026-07-28 09:04:17.718 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:04:17.719 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 1f955195-0819-4fd0-9dec-39277833ce18(String), order-1785229456101(String), ACC10001(String), ACC99027(String), 100(BigDecimal), USD(String), null, CREATED(String), null, null, 2026-07-28T09:04:17.718394900(LocalDateTime), 2026-07-28T09:04:17.718394900(LocalDateTime)
+2026-07-28 09:04:17.719 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
+2026-07-28 09:04:17.721 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:04:17.722 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 8a257460-d5e0-4d19-baa9-4710469fed7d(String), 1f955195-0819-4fd0-9dec-39277833ce18(String), null, CREATED(String), null, null, 2026-07-28T09:04:17.721244800(LocalDateTime)
+2026-07-28 09:04:17.723 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:04:18.837 [http-nio-8080-exec-3] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
+2026-07-28 09:04:18.837 [http-nio-8080-exec-3] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC10001(String)
+2026-07-28 09:04:18.839 [http-nio-8080-exec-3] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
+2026-07-28 09:04:19.950 [http-nio-8080-exec-3] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
+2026-07-28 09:04:19.951 [http-nio-8080-exec-3] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC99027(String)
+2026-07-28 09:04:19.952 [http-nio-8080-exec-3] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 0
+2026-07-28 09:04:19.953 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
+2026-07-28 09:04:19.953 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_ACCOUNT(String), Account number is invalid or doesn't exist(String), 1f955195-0819-4fd0-9dec-39277833ce18(String)
+2026-07-28 09:04:19.955 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
+2026-07-28 09:04:19.956 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:04:19.957 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 0bb933af-f509-4bf7-8526-199681828c1f(String), 1f955195-0819-4fd0-9dec-39277833ce18(String), CREATED(String), FAILED(String), Destination account not found(String), INVALID_ACCOUNT(String), 2026-07-28T09:04:19.956478800(LocalDateTime)
+2026-07-28 09:04:19.960 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:04:19.973 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE status = ? ORDER BY created_at DESC
+2026-07-28 09:04:19.975 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==> Parameters: FAILED(String)
+2026-07-28 09:04:19.987 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentMapper.selectByStatus - <==      Total: 17
+2026-07-28 09:04:55.145 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:04:55.146 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785229456101(String)
+2026-07-28 09:04:55.147 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 1
+2026-07-28 09:04:55.156 [http-nio-8080-exec-6] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE status = ? ORDER BY created_at DESC
+2026-07-28 09:04:55.157 [http-nio-8080-exec-6] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==> Parameters: FAILED(String)
+2026-07-28 09:04:55.162 [http-nio-8080-exec-6] DEBUG o.t.s.m.PaymentMapper.selectByStatus - <==      Total: 17
+2026-07-28 09:05:00.583 [http-nio-8080-exec-7] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:05:00.584 [http-nio-8080-exec-7] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785229498417(String)
+2026-07-28 09:05:00.585 [http-nio-8080-exec-7] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
+2026-07-28 09:05:00.586 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:05:00.587 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: c5f6d2d5-7a2b-47d4-953b-9a46dcc87f94(String), order-1785229498417(String), ACC10001(String), ACC20002(String), 100000000(BigDecimal), USD(String), null, CREATED(String), null, null, 2026-07-28T09:05:00.586148400(LocalDateTime), 2026-07-28T09:05:00.586148400(LocalDateTime)
+2026-07-28 09:05:00.588 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
+2026-07-28 09:05:00.589 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:05:00.590 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 19134f20-a760-4cc1-9315-d3a11efcdc47(String), c5f6d2d5-7a2b-47d4-953b-9a46dcc87f94(String), null, CREATED(String), null, null, 2026-07-28T09:05:00.589592(LocalDateTime)
+2026-07-28 09:05:00.591 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:05:01.699 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
+2026-07-28 09:05:01.699 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_AMOUNT(String), Amount is zero, negative, or invalid(String), c5f6d2d5-7a2b-47d4-953b-9a46dcc87f94(String)
+2026-07-28 09:05:01.701 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
+2026-07-28 09:05:01.703 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:05:01.703 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 9f266a21-4961-414a-8928-97f94fb345fc(String), c5f6d2d5-7a2b-47d4-953b-9a46dcc87f94(String), CREATED(String), FAILED(String), Amount exceeds max limit(String), INVALID_AMOUNT(String), 2026-07-28T09:05:01.701727(LocalDateTime)
+2026-07-28 09:05:01.706 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:05:01.719 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE status = ? ORDER BY created_at DESC
+2026-07-28 09:05:01.721 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==> Parameters: FAILED(String)
+2026-07-28 09:05:01.725 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.selectByStatus - <==      Total: 18
+2026-07-28 09:10:07.083 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication v0.0.1-SNAPSHOT using Java 22.0.2 with PID 11956 (C:\Users\Administrator\Documents\The-chosen-one\target\safepay-0.0.1-SNAPSHOT.jar started by Administrator in C:\Users\Administrator\Documents\The-chosen-one)
+2026-07-28 09:10:07.103 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-28 09:10:07.108 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-28 09:10:09.564 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'accountMapper' and 'org.tco.safepay.mapper.AccountMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:10:09.565 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'balanceLedgerMapper' and 'org.tco.safepay.mapper.BalanceLedgerMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:10:09.567 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentHistoryMapper' and 'org.tco.safepay.mapper.PaymentHistoryMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:10:09.568 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentMapper' and 'org.tco.safepay.mapper.PaymentMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:10:09.570 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[org.tco.safepay.mapper]' package. Please check your configuration.
+2026-07-28 09:10:10.543 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-28 09:10:10.582 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-28 09:10:10.589 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-28 09:10:10.591 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-28 09:10:10.750 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 3445 ms
+2026-07-28 09:10:11.902 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-28 09:10:11.981 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-07-28 09:10:13.101 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-28 09:10:13.466 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-07-28 09:10:13.513 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 8.756 seconds (process running for 11.09)
+2026-07-28 09:10:38.001 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-28 09:10:38.005 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-28 09:10:38.012 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 5 ms
+2026-07-28 09:10:38.472 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-28 09:10:39.456 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@34120f61
+2026-07-28 09:10:39.466 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-28 09:10:39.521 [http-nio-8080-exec-1] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:10:39.605 [http-nio-8080-exec-1] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: test-insuf-1785229837795(String)
+2026-07-28 09:10:39.681 [http-nio-8080-exec-1] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
+2026-07-28 09:10:39.749 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:10:39.778 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 30a34ce9-c793-45ef-8da7-296b4c37d0f9(String), test-insuf-1785229837795(String), ACC30003(String), ACC20002(String), 999999(BigDecimal), USD(String), null, CREATED(String), null, null, 2026-07-28T09:10:39.746333900(LocalDateTime), 2026-07-28T09:10:39.746333900(LocalDateTime)
+2026-07-28 09:10:39.790 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
+2026-07-28 09:10:39.792 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:10:39.796 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 286c2ad8-6a57-4a26-b30c-1cb1fc70a99b(String), 30a34ce9-c793-45ef-8da7-296b4c37d0f9(String), null, CREATED(String), null, null, 2026-07-28T09:10:39.792715100(LocalDateTime)
+2026-07-28 09:10:39.802 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:10:40.905 [http-nio-8080-exec-1] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
+2026-07-28 09:10:40.907 [http-nio-8080-exec-1] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC30003(String)
+2026-07-28 09:10:40.915 [http-nio-8080-exec-1] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
+2026-07-28 09:10:42.016 [http-nio-8080-exec-1] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
+2026-07-28 09:10:42.018 [http-nio-8080-exec-1] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC20002(String)
+2026-07-28 09:10:42.021 [http-nio-8080-exec-1] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
+2026-07-28 09:10:43.123 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
+2026-07-28 09:10:43.125 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INSUFFICIENT_FUNDS(String), Source account has insufficient funds(String), 30a34ce9-c793-45ef-8da7-296b4c37d0f9(String)
+2026-07-28 09:10:43.128 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
+2026-07-28 09:10:43.129 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:10:43.130 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: cdf18484-fd70-42fe-a745-9e4e8e2dadc3(String), 30a34ce9-c793-45ef-8da7-296b4c37d0f9(String), CREATED(String), FAILED(String), Insufficient balance at pre-check(String), INSUFFICIENT_FUNDS(String), 2026-07-28T09:10:43.129120500(LocalDateTime)
+2026-07-28 09:10:43.133 [http-nio-8080-exec-1] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:10:45.461 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:10:45.462 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: test-noacc-1785229845404(String)
+2026-07-28 09:10:45.464 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
+2026-07-28 09:10:45.465 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:10:45.467 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: ec7be92f-6b56-4bd5-9cae-73bf2a978fff(String), test-noacc-1785229845404(String), NOTEXIST_XYZ(String), ACC20002(String), 10(BigDecimal), USD(String), null, CREATED(String), null, null, 2026-07-28T09:10:45.465391800(LocalDateTime), 2026-07-28T09:10:45.465391800(LocalDateTime)
+2026-07-28 09:10:45.471 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
+2026-07-28 09:10:45.472 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:10:45.474 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: c820caf9-f5be-461a-b1a9-4f9e1cfff015(String), ec7be92f-6b56-4bd5-9cae-73bf2a978fff(String), null, CREATED(String), null, null, 2026-07-28T09:10:45.472553(LocalDateTime)
+2026-07-28 09:10:45.477 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:10:46.578 [http-nio-8080-exec-2] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
+2026-07-28 09:10:46.579 [http-nio-8080-exec-2] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: NOTEXIST_XYZ(String)
+2026-07-28 09:10:46.581 [http-nio-8080-exec-2] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 0
+2026-07-28 09:10:46.582 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
+2026-07-28 09:10:46.584 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_ACCOUNT(String), Account number is invalid or doesn't exist(String), ec7be92f-6b56-4bd5-9cae-73bf2a978fff(String)
+2026-07-28 09:10:46.586 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
+2026-07-28 09:10:46.587 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:10:46.588 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 9144607f-f959-488a-84d0-494c86872c7b(String), ec7be92f-6b56-4bd5-9cae-73bf2a978fff(String), CREATED(String), FAILED(String), Source account not found(String), INVALID_ACCOUNT(String), 2026-07-28T09:10:46.587370400(LocalDateTime)
+2026-07-28 09:10:46.591 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:10:48.777 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:10:48.778 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: test-amt-1785229848711(String)
+2026-07-28 09:10:48.782 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
+2026-07-28 09:10:48.783 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:10:48.785 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: d036725a-cee1-4e52-9b3e-90d77c9205e4(String), test-amt-1785229848711(String), ACC10001(String), ACC20002(String), 0(BigDecimal), USD(String), null, CREATED(String), null, null, 2026-07-28T09:10:48.783414500(LocalDateTime), 2026-07-28T09:10:48.783414500(LocalDateTime)
+2026-07-28 09:10:48.789 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
+2026-07-28 09:10:48.789 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:10:48.790 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 8b786308-0db9-47bd-a0d8-c9bf5b0c2720(String), d036725a-cee1-4e52-9b3e-90d77c9205e4(String), null, CREATED(String), null, null, 2026-07-28T09:10:48.789535200(LocalDateTime)
+2026-07-28 09:10:48.793 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:10:49.893 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
+2026-07-28 09:10:49.895 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_AMOUNT(String), Amount is zero, negative, or invalid(String), d036725a-cee1-4e52-9b3e-90d77c9205e4(String)
+2026-07-28 09:10:49.898 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
+2026-07-28 09:10:49.899 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:10:49.899 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 5aa71485-5f2a-4f15-be41-54bd8ffe90ef(String), d036725a-cee1-4e52-9b3e-90d77c9205e4(String), CREATED(String), FAILED(String), Amount is zero or negative(String), INVALID_AMOUNT(String), 2026-07-28T09:10:49.898465500(LocalDateTime)
+2026-07-28 09:10:49.902 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:11:27.372 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 12820 (C:\Users\Administrator\Documents\The-chosen-one\target\classes started by Administrator in C:\Users\Administrator\Documents\The-chosen-one)
+2026-07-28 09:11:27.376 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-28 09:11:27.378 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-28 09:11:28.822 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'accountMapper' and 'org.tco.safepay.mapper.AccountMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:11:28.823 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'balanceLedgerMapper' and 'org.tco.safepay.mapper.BalanceLedgerMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:11:28.824 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentHistoryMapper' and 'org.tco.safepay.mapper.PaymentHistoryMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:11:28.824 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentMapper' and 'org.tco.safepay.mapper.PaymentMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:11:28.825 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[org.tco.safepay.mapper]' package. Please check your configuration.
+2026-07-28 09:11:29.566 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-28 09:11:29.591 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-28 09:11:29.596 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-28 09:11:29.597 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-28 09:11:29.688 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2203 ms
+2026-07-28 09:11:30.463 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-28 09:11:30.497 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-07-28 09:11:31.032 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-28 09:11:31.044 [main] WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-07-28 09:11:31.070 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-28 09:11:31.095 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-07-28 09:12:05.584 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 4448 (C:\Users\Administrator\Documents\The-chosen-one\target\classes started by Administrator in C:\Users\Administrator\Documents\The-chosen-one)
+2026-07-28 09:12:05.588 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-28 09:12:05.590 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-28 09:12:07.159 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'accountMapper' and 'org.tco.safepay.mapper.AccountMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:12:07.159 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'balanceLedgerMapper' and 'org.tco.safepay.mapper.BalanceLedgerMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:12:07.160 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentHistoryMapper' and 'org.tco.safepay.mapper.PaymentHistoryMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:12:07.160 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentMapper' and 'org.tco.safepay.mapper.PaymentMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 09:12:07.162 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[org.tco.safepay.mapper]' package. Please check your configuration.
+2026-07-28 09:12:07.816 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-28 09:12:07.835 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-28 09:12:07.839 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-28 09:12:07.839 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-28 09:12:07.937 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2242 ms
+2026-07-28 09:12:08.628 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-28 09:12:08.661 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-07-28 09:12:09.161 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-28 09:12:09.187 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-07-28 09:12:09.196 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 4.881 seconds (process running for 5.713)
+2026-07-28 09:12:17.197 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-28 09:12:17.197 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-28 09:12:17.201 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 4 ms
+2026-07-28 09:12:17.372 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-28 09:12:17.896 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6c61c858
+2026-07-28 09:12:17.899 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-28 09:12:17.933 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-28 09:12:17.977 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785229935144(String)
+2026-07-28 09:12:18.016 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
+2026-07-28 09:12:18.026 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:12:18.035 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: e58e924f-410e-41c6-b216-9fbe2d92a5b4(String), order-1785229935144(String), ACC10001(String), ACC20002(String), 100000000(BigDecimal), USD(String), null, CREATED(String), null, null, 2026-07-28T09:12:18.023212800(LocalDateTime), 2026-07-28T09:12:18.023212800(LocalDateTime)
+2026-07-28 09:12:18.042 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
+2026-07-28 09:12:18.043 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:12:18.045 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 1fa6acbc-b9b6-42a1-8378-2616e3961169(String), e58e924f-410e-41c6-b216-9fbe2d92a5b4(String), null, CREATED(String), null, null, 2026-07-28T09:12:18.042997300(LocalDateTime)
+2026-07-28 09:12:18.047 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:12:19.158 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
+2026-07-28 09:12:19.159 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_AMOUNT(String), Amount is zero, negative, or invalid(String), e58e924f-410e-41c6-b216-9fbe2d92a5b4(String)
+2026-07-28 09:12:19.162 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
+2026-07-28 09:12:19.163 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-28 09:12:19.163 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 74f4c196-679e-4224-8a9e-fe6521ae8308(String), e58e924f-410e-41c6-b216-9fbe2d92a5b4(String), CREATED(String), FAILED(String), Amount exceeds max limit(String), INVALID_AMOUNT(String), 2026-07-28T09:12:19.162826100(LocalDateTime)
+2026-07-28 09:12:19.165 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-28 09:12:19.287 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE status = ? ORDER BY created_at DESC
+2026-07-28 09:12:19.289 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==> Parameters: FAILED(String)
+2026-07-28 09:12:19.301 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectByStatus - <==      Total: 22
