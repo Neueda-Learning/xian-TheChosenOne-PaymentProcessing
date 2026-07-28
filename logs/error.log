@@ -1124,3 +1124,17 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'o
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333)
 	... 62 common frames omitted
+2026-07-28 09:11:31.095 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
