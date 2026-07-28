@@ -1,8 +1,10 @@
 package org.tco.safepay;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+@MapperScan("org.tco.safepay.mapper")
 @SpringBootApplication
 public class SafepayApplication {
 

@@ -3,6 +3,7 @@ package org.tco.safepay.controller;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
+import org.tco.safepay.common.ErrorCode;
 import org.tco.safepay.common.Result;
 import org.tco.safepay.model.dto.PaymentRequest;
 import org.tco.safepay.model.entity.Payment;
@@ -30,7 +31,17 @@ public class PaymentController {
     @Operation(summary = "Create a new payment and process it synchronously")
     @PostMapping
     public Result<Payment> createPayment(@RequestBody PaymentRequest request) {
-        return Result.success(paymentService.createPayment(request));
+        Payment payment = paymentService.createPayment(request);
+        if ("FAILED".equals(payment.getStatus()) && payment.getErrorCode() != null) {
+            try {
+                ErrorCode errorCode = ErrorCode.valueOf(payment.getErrorCode());
+                return Result.error(errorCode.getHttpStatus(), errorCode.getDefaultMessage());
+            } catch (IllegalArgumentException ignored) {
+                return Result.error(ErrorCode.PROCESSING_ERROR.getHttpStatus(),
+                        ErrorCode.PROCESSING_ERROR.getDefaultMessage());
+            }
+        }
+        return Result.success(payment);
     }
 
     @Operation(summary = "Get payment by ID")
