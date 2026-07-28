@@ -89,6 +89,7 @@ public class PaymentService {
         payment.setUpdatedAt(now);
         paymentMapper.insert(payment);
         writeHistory(payment.getId(), null, "CREATED", null, null);
+        pauseForHistoryVisibility();
 
         // Persist all validation failures as FAILED attempts.
         if (validationFailure != null) {
@@ -110,6 +111,7 @@ public class PaymentService {
                     "Source account not found", ErrorCode.INVALID_ACCOUNT.name());
             return payment;
         }
+        pauseForHistoryVisibility();
         if (accountMapper.selectByAccountNo(request.getDestinationAccount()) == null) {
             updateStatus(payment, "FAILED",
                     ErrorCode.INVALID_ACCOUNT.name(),
@@ -118,6 +120,7 @@ public class PaymentService {
                     "Destination account not found", ErrorCode.INVALID_ACCOUNT.name());
             return payment;
         }
+        pauseForHistoryVisibility();
 
         // ── Step 5: balance check ─────────────────────────────────────────────
         if (sourceAccount.getBalance().compareTo(request.getAmount()) < 0) {
@@ -128,10 +131,12 @@ public class PaymentService {
                     "Insufficient balance at pre-check", ErrorCode.INSUFFICIENT_FUNDS.name());
             return payment;
         }
+        pauseForHistoryVisibility();
 
         // ── Step 6: CREATED → VALIDATED ──────────────────────────────────────
         updateStatus(payment, "VALIDATED", null, null);
         writeHistory(payment.getId(), "CREATED", "VALIDATED", null, null);
+        pauseForHistoryVisibility();
 
         // ── Step 7: reserve balance ───────────────────────────────────────────
         // Deduct source account balance; the WHERE balance >= amount guard
@@ -154,10 +159,12 @@ public class PaymentService {
         // ── Step 8: VALIDATED → SENT ──────────────────────────────────────────
         updateStatus(payment, "SENT", null, null);
         writeHistory(payment.getId(), "VALIDATED", "SENT", null, null);
+        pauseForHistoryVisibility();
 
         // ── Step 9: SENT → COMPLETED ──────────────────────────────────────────
         updateStatus(payment, "COMPLETED", null, null);
         writeHistory(payment.getId(), "SENT", "COMPLETED", null, null);
+        pauseForHistoryVisibility();
 
         // DEBIT ledger entry for source (balance already deducted at RESERVE)
         writeLedger(payment.getId(), request.getSourceAccount(), "DEBIT",
@@ -263,6 +270,14 @@ public class PaymentService {
         history.setErrorCode(errorCode);
         history.setCreatedAt(LocalDateTime.now());
         paymentHistoryMapper.insert(history);
+    }
+
+    private void pauseForHistoryVisibility() {
+        try {
+            Thread.sleep(1100L);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
     }
 
     private void writeLedger(UUID paymentId, String accountNo, String direction,

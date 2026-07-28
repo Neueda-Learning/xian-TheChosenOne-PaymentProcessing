@@ -44,7 +44,7 @@
         SELECT id, payment_id, from_status, to_status, note, error_code, created_at
         FROM payment_history
         WHERE payment_id = #{paymentId,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler}
-        ORDER BY created_at ASC
+        ORDER BY created_at ASC, id ASC
     </select>
 
 </mapper>
