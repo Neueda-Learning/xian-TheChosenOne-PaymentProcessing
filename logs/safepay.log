@@ -2815,3 +2815,7 @@ Caused by: java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'o
 2026-07-28 06:37:03.665 [http-nio-8080-exec-7] DEBUG o.t.s.m.P.selectByPaymentId - ==>  Preparing: SELECT id, payment_id, from_status, to_status, note, error_code, created_at FROM payment_history WHERE payment_id = ? ORDER BY created_at ASC, id ASC
 2026-07-28 06:37:03.665 [http-nio-8080-exec-7] DEBUG o.t.s.m.P.selectByPaymentId - ==> Parameters: 627fa88f-e0e4-466b-8fdd-ea67d0e259c2(String)
 2026-07-28 06:37:03.668 [http-nio-8080-exec-7] DEBUG o.t.s.m.P.selectByPaymentId - <==      Total: 4
+2026-07-28 06:42:12.064 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-28 06:42:12.069 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-07-28 06:42:12.073 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-07-28 06:42:12.082 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
