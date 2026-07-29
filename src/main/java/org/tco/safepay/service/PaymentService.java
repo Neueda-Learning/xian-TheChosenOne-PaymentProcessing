@@ -52,7 +52,7 @@ public class PaymentService {
 
     public String normalizeCurrency(String currency) {
         if (currency == null || currency.isBlank()) {
-            return "CNY";
+            return "UNK";
         }
         String upper = currency.toUpperCase(Locale.ROOT);
         return upper.length() <= 3 ? upper : upper.substring(0, 3);
