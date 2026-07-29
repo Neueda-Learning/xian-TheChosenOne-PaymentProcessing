@@ -1568,3 +1568,38 @@ Caused by: java.lang.IllegalArgumentException: Invalid UUID string: order-178529
 2026-07-29 03:41:28.914 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.selectById - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE id = ?
 2026-07-29 03:41:28.914 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.selectById - ==> Parameters: 7faef01d-b2e9-43f1-8059-08bf1aae4341(String)
 20
+2026-07-29 11:30:49.232 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 3280 (C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-29 11:30:49.249 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-29 11:30:49.251 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-29 11:30:50.426 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-29 11:30:51.519 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'accountMapper' and 'org.tco.safepay.mapper.AccountMapper' mapperInterface. Bean already defined with the same name!
+2026-07-29 11:30:51.519 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'balanceLedgerMapper' and 'org.tco.safepay.mapper.BalanceLedgerMapper' mapperInterface. Bean already defined with the same name!
+2026-07-29 11:30:51.519 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentHistoryMapper' and 'org.tco.safepay.mapper.PaymentHistoryMapper' mapperInterface. Bean already defined with the same name!
+2026-07-29 11:30:51.519 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentMapper' and 'org.tco.safepay.mapper.PaymentMapper' mapperInterface. Bean already defined with the same name!
+2026-07-29 11:30:51.520 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[org.tco.safepay.mapper]' package. Please check your configuration.
+2026-07-29 11:30:52.503 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-29 11:30:52.525 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-29 11:30:52.530 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-29 11:30:52.531 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-29 11:30:52.644 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 3234 ms
+2026-07-29 11:30:53.781 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-29 11:30:54.536 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-29 11:30:54.570 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-07-29 11:30:54.583 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 7.622 seconds (process running for 9.023)
+2026-07-29 11:32:13.581 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-29 11:32:13.591 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-07-29 11:32:23.150 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 4080 (C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-29 11:32:23.154 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-29 11:32:23.156 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-29 11:32:24.094 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-29 11:32:25.734 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-29 11:32:25.761 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-29 11:32:25.764 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-29 11:32:25.766 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-29 11:32:25.887 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2549 ms
+2026-07-29 11:32:26.730 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-29 11:32:27.358 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-29 11:32:27.390 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-07-29 11:32:27.401 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 5.554 seconds (process running for 6.405)
+2026-07-29 11:32:34.635 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-29 11:32:34.645 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete

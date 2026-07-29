@@ -11,7 +11,6 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import javax.sql.DataSource;
 
 @Configuration
-@MapperScan("org.tco.safepay.mapper")
 public class MyBatisConfig {
 
     @Bean
