@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafePay Console</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <h1>SafePay Frontend Console</h1>
+    <p>Simple UI for payments, history, and account balance.</p>
+  </header>
+
+  <main class="grid">
+    <section class="card">
+      <h2>Create Payment</h2>
+      <form id="payment-form">
+        <label>Idempotency Key</label>
+        <div class="row">
+          <input id="idempotencyKey" type="text" maxlength="64" required>
+          <button type="button" id="gen-key">Generate</button>
+        </div>
+
+        <label>Source Account</label>
+        <input id="sourceAccount" type="text" placeholder="ACC10001" required>
+
+        <label>Destination Account</label>
+        <input id="destinationAccount" type="text" placeholder="ACC20002" required>
+
+        <label>Amount</label>
+        <input id="amount" type="number" min="0" step="0.01" required>
+
+        <label>Currency</label>
+        <select id="currency" required>
+          <option>USD</option>
+          <option>EUR</option>
+          <option>GBP</option>
+          <option>CNY</option>
+          <option>JPY</option>
+          <option>AUD</option>
+          <option>CAD</option>
+          <option>CHF</option>
+          <option>HKD</option>
+          <option>SGD</option>
+        </select>
+
+        <label>Reference (optional)</label>
+        <input id="reference" type="text" maxlength="255">
+
+        <button type="submit">Submit Payment</button>
+      </form>
+      <pre id="create-result" class="result"></pre>
+    </section>
+
+    <section class="card">
+      <h2>Get Payment By ID</h2>
+      <form id="payment-by-id-form">
+        <label>Payment ID (UUID)</label>
+        <div class="row">
+          <input id="paymentIdInput" type="text" required>
+          <button type="submit">Query</button>
+        </div>
+      </form>
+      <pre id="payment-by-id-result" class="result"></pre>
+    </section>
+
+    <section class="card">
+      <h2>List Payments</h2>
+      <form id="payment-list-form">
+        <label>Status Filter (optional)</label>
+        <div class="row">
+          <select id="statusFilter">
+            <option value="">ALL</option>
+            <option value="CREATED">CREATED</option>
+            <option value="VALIDATED">VALIDATED</option>
+            <option value="SENT">SENT</option>
+            <option value="COMPLETED">COMPLETED</option>
+            <option value="FAILED">FAILED</option>
+          </select>
+          <button type="submit">Refresh</button>
+        </div>
+      </form>
+      <div class="table-wrap">
+        <table id="payment-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Idempotency Key</th>
+              <th>Source</th>
+              <th>Destination</th>
+              <th>Amount</th>
+              <th>Currency</th>
+              <th>Status</th>
+              <th>Error Code</th>
+              <th>Created At</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="hint">Tip: click a payment row to load its ID and query history.</p>
+    </section>
+
+    <section class="card">
+      <h2>Payment History</h2>
+      <form id="payment-history-form">
+        <label>Payment ID (UUID)</label>
+        <div class="row">
+          <input id="historyPaymentId" type="text" required>
+          <button type="submit">Load History</button>
+        </div>
+      </form>
+      <div class="table-wrap">
+        <table id="history-table">
+          <thead>
+            <tr>
+              <th>From</th>
+              <th>To</th>
+              <th>Error Code</th>
+              <th>Note</th>
+              <th>Created At</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Account Balance</h2>
+      <form id="balance-form">
+        <label>Account No</label>
+        <div class="row">
+          <input id="accountNo" type="text" placeholder="ACC10001" required>
+          <button type="submit">Check</button>
+        </div>
+      </form>
+      <pre id="balance-result" class="result"></pre>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
+
