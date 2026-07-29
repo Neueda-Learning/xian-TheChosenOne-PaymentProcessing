@@ -35,26 +35,11 @@ public class PaymentService {
         this.balanceLedgerMapper = balanceLedgerMapper;
     }
 
-    /**
-     * Create a payment and drive it synchronously through the full lifecycle.
-     * Returns the payment in its final state (COMPLETED or FAILED).
-     *
-     * Steps:
-     *   1. Validate request fields
-     *   2. Idempotency check  → return existing if key already seen
-     *   3. Persist Payment (CREATED) + write history
-     *   4. Account existence check
-     *   5. Balance check  (balance >= amount)
-     *   6. CREATED → VALIDATED + write history
-     *   7. Reserve balance (RESERVE ledger + deduct account balance)
-     *   8. VALIDATED → SENT + write history
-     *   9. SENT → COMPLETED + DEBIT / CREDIT ledger entries
-     *      or SENT → FAILED + RELEASE ledger entry
-     */
+    
     @Transactional
     public Payment createPayment(PaymentRequest request) {
 
-        ValidationFailure validationFailure = validateRequest(request);
+        
 
         // ── Step 2: idempotency check ─────────────────────────────────────────
         String rawIdempotencyKey = request.getIdempotencyKey();
@@ -84,21 +69,13 @@ public class PaymentService {
         writeHistory(payment.getId(), null, "CREATED", null, null);
         pauseForHistoryVisibility();
 
-        // ── Steps 4-5: all validations (field + account + balance) ───────────
-        Account sourceAccount = runAllValidations(payment, request, validationFailure);
-        if (sourceAccount == null) {
-            return payment;
-        }
-        pauseForHistoryVisibility();
+        
 
-        // ── Step 6: CREATED → VALIDATED ──────────────────────────────────────
         updateStatus(payment, "VALIDATED", null, null);
         writeHistory(payment.getId(), "CREATED", "VALIDATED", null, null);
         pauseForHistoryVisibility();
 
-        // ── Step 7: reserve balance ───────────────────────────────────────────
-        // Deduct source account balance; the WHERE balance >= amount guard
-        // protects against concurrent over-spend.
+        
         BigDecimal sourceBefore = sourceAccount.getBalance();
         BigDecimal sourceAfterReserve = sourceBefore.subtract(request.getAmount());
         int affected = accountMapper.deductBalance(request.getSourceAccount(), request.getAmount());
@@ -114,21 +91,21 @@ public class PaymentService {
         writeLedger(payment.getId(), request.getSourceAccount(), "RESERVE",
                 request.getAmount(), sourceBefore, sourceAfterReserve);
 
-        // ── Step 8: VALIDATED → SENT ──────────────────────────────────────────
+        
         updateStatus(payment, "SENT", null, null);
         writeHistory(payment.getId(), "VALIDATED", "SENT", null, null);
         pauseForHistoryVisibility();
 
-        // ── Step 9: SENT → COMPLETED ──────────────────────────────────────────
+
         updateStatus(payment, "COMPLETED", null, null);
         writeHistory(payment.getId(), "SENT", "COMPLETED", null, null);
         pauseForHistoryVisibility();
 
-        // DEBIT ledger entry for source (balance already deducted at RESERVE)
+       
         writeLedger(payment.getId(), request.getSourceAccount(), "DEBIT",
                 request.getAmount(), sourceAfterReserve, sourceAfterReserve);
 
-        // CREDIT ledger entry for destination + increase destination balance
+       
         Account destFresh = accountMapper.selectByAccountNo(request.getDestinationAccount());
         if (destFresh == null) {
             updateStatus(payment, "FAILED",
@@ -155,91 +132,6 @@ public class PaymentService {
         return payment;
     }
 
-    // ── Private helpers ───────────────────────────────────────────────────────
-
-    /**
-     * 统一执行所有前置验证：字段格式、账户存在性、余额充足性。
-     * 任意一项失败时将 payment 更新为 FAILED 并写历史，返回 null。
-     * 全部通过时返回源账户对象（供后续余额扣减使用）。
-     */
-    private Account runAllValidations(Payment payment, PaymentRequest request,
-                                      ValidationFailure fieldValidation) {
-        // 1. 字段校验失败
-        if (fieldValidation != null) {
-            updateStatus(payment, "FAILED",
-                    fieldValidation.errorCode().name(),
-                    fieldValidation.errorCode().getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
-                    fieldValidation.note(), fieldValidation.errorCode().name());
-            return null;
-        }
-
-        // 2. 源账户存在性
-        Account sourceAccount = accountMapper.selectByAccountNo(request.getSourceAccount());
-        if (sourceAccount == null) {
-            updateStatus(payment, "FAILED",
-                    ErrorCode.INVALID_ACCOUNT.name(),
-                    ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
-                    "Source account not found", ErrorCode.INVALID_ACCOUNT.name());
-            return null;
-        }
-        pauseForHistoryVisibility();
-
-        // 3. 目标账户存在性
-        if (accountMapper.selectByAccountNo(request.getDestinationAccount()) == null) {
-            updateStatus(payment, "FAILED",
-                    ErrorCode.INVALID_ACCOUNT.name(),
-                    ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
-                    "Destination account not found", ErrorCode.INVALID_ACCOUNT.name());
-            return null;
-        }
-        pauseForHistoryVisibility();
-
-        // 4. 余额充足性
-        if (sourceAccount.getBalance().compareTo(request.getAmount()) < 0) {
-            updateStatus(payment, "FAILED",
-                    ErrorCode.INSUFFICIENT_FUNDS.name(),
-                    ErrorCode.INSUFFICIENT_FUNDS.getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
-                    "Insufficient balance at pre-check", ErrorCode.INSUFFICIENT_FUNDS.name());
-            return null;
-        }
-
-        return sourceAccount;
-    }
-
-    private ValidationFailure validateRequest(PaymentRequest request) {
-        if (request.getIdempotencyKey() == null
-                || request.getIdempotencyKey().isBlank()
-                || request.getIdempotencyKey().length() > 64) {
-            return new ValidationFailure(ErrorCode.VALIDATION_FAILED, "Invalid idempotency key");
-        }
-        if (request.getSourceAccount() == null || request.getSourceAccount().isBlank()) {
-            return new ValidationFailure(ErrorCode.INVALID_ACCOUNT, "Source account is blank");
-        }
-        if (request.getDestinationAccount() == null || request.getDestinationAccount().isBlank()) {
-            return new ValidationFailure(ErrorCode.INVALID_ACCOUNT, "Destination account is blank");
-        }
-        if (request.getSourceAccount().equals(request.getDestinationAccount())) {
-            return new ValidationFailure(ErrorCode.INVALID_ACCOUNT, "Source and destination are same");
-        }
-        if (request.getAmount() == null || request.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
-            return new ValidationFailure(ErrorCode.INVALID_AMOUNT, "Amount is zero or negative");
-        }
-        if (request.getAmount().compareTo(MAX_AMOUNT) > 0) {
-            return new ValidationFailure(ErrorCode.INVALID_AMOUNT, "Amount exceeds max limit");
-        }
-        if (request.getAmount().stripTrailingZeros().scale() > 2) {
-            return new ValidationFailure(ErrorCode.INVALID_AMOUNT, "Amount has more than 2 decimals");
-        }
-        if (request.getCurrency() == null
-                || !SUPPORTED_CURRENCIES.contains(request.getCurrency().toUpperCase(Locale.ROOT))) {
-            return new ValidationFailure(ErrorCode.INVALID_CURRENCY, "Unsupported currency");
-        }
-        return null;
-    }
 
     public String normalizeCurrency(String currency) {
         if (currency == null || currency.isBlank()) {
@@ -249,6 +141,47 @@ public class PaymentService {
         return upper.length() <= 3 ? upper : upper.substring(0, 3);
     }
 
-    public record ValidationFailure(ErrorCode errorCode, String note) {
+    
+
+    private void updateStatus(Payment payment, String status, String errorCode, String errorMessage) {
+        paymentMapper.updateStatus(payment.getId(), status, errorCode, errorMessage);
+        payment.setStatus(status);
+        payment.setErrorCode(errorCode);
+        payment.setErrorMessage(errorMessage);
+    }
+
+    private void writeHistory(UUID paymentId, String fromStatus, String toStatus,
+                               String note, String errorCode) {
+        PaymentHistory history = new PaymentHistory();
+        history.setId(UUID.randomUUID());
+        history.setPaymentId(paymentId);
+        history.setFromStatus(fromStatus);
+        history.setToStatus(toStatus);
+        history.setNote(note);
+        history.setErrorCode(errorCode);
+        history.setCreatedAt(LocalDateTime.now());
+        paymentHistoryMapper.insert(history);
+    }
+
+    private void pauseForHistoryVisibility() {
+        try {
+            Thread.sleep(1100L);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    private void writeLedger(UUID paymentId, String accountNo, String direction,
+                              BigDecimal amount, BigDecimal before, BigDecimal after) {
+        BalanceLedger ledger = new BalanceLedger();
+        ledger.setId(UUID.randomUUID());
+        ledger.setAccountNo(accountNo);
+        ledger.setPaymentId(paymentId);
+        ledger.setDirection(direction);
+        ledger.setAmount(amount);
+        ledger.setBalanceBefore(before);
+        ledger.setBalanceAfter(after);
+        ledger.setCreatedAt(LocalDateTime.now());
+        balanceLedgerMapper.insert(ledger);
     }
 }
