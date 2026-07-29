@@ -8,5 +8,9 @@ import java.util.UUID;
 
 public interface PaymentHistoryMapper {
 
+    int insert(PaymentHistory paymentHistory);
+
+    PaymentHistory selectById(@Param("id") UUID id);
+
     List<PaymentHistory> selectByPaymentId(@Param("paymentId") UUID paymentId);
 }
