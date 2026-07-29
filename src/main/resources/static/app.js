@@ -3,7 +3,7 @@ function pretty(obj) {
 }
 
 function setResult(el, payload, ok) {
-  el.textContent = pretty(payload);
+  el.textContent = typeof payload === "string" ? payload : pretty(payload);
   el.classList.remove("ok", "err");
   el.classList.add(ok ? "ok" : "err");
 }
@@ -20,6 +20,137 @@ function money(amount) {
   }
   const num = Number(amount);
   return Number.isNaN(num) ? String(amount) : num.toFixed(2);
+}
+
+function textOrDash(value) {
+  return value === null || value === undefined || value === "" ? "-" : String(value);
+}
+
+function formatTime(value) {
+  if (!value) {
+    return "-";
+  }
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) {
+    return String(value);
+  }
+  return date.toLocaleString("en-GB", { hour12: false });
+}
+
+function statusText(status) {
+  const map = {
+    CREATED: "Created",
+    VALIDATED: "Validated",
+    SENT: "Sent",
+    COMPLETED: "Completed",
+    FAILED: "Failed"
+  };
+  return map[status] || textOrDash(status);
+}
+
+function firstDefined(obj, keys) {
+  if (!obj) {
+    return "";
+  }
+  for (let i = 0; i < keys.length; i += 1) {
+    const key = keys[i];
+    if (obj[key] !== null && obj[key] !== undefined && obj[key] !== "") {
+      return obj[key];
+    }
+  }
+  return "";
+}
+
+function formatPaymentDetail(payment, title) {
+  return [
+    title,
+    "----------------",
+    "Payment ID: " + textOrDash(payment.id),
+    "Idempotency Key: " + textOrDash(payment.idempotencyKey),
+    "From Account: " + textOrDash(payment.sourceAccount),
+    "To Account: " + textOrDash(payment.destinationAccount),
+    "Amount: " + textOrDash(money(payment.amount)) + " " + textOrDash(payment.currency),
+    "Status: " + statusText(payment.status),
+    "Error Code: " + textOrDash(payment.errorCode),
+    "Reference: " + textOrDash(payment.reference),
+    "Created At: " + formatTime(payment.createdAt)
+  ].join("\n");
+}
+
+function formatApiMessage(resp, successTitle) {
+  if (resp && resp.code === 200 && resp.data) {
+    return formatPaymentDetail(resp.data, successTitle);
+  }
+  if (resp && typeof resp === "object") {
+    return [
+      "Request Failed",
+      "----------------",
+      "Message: " + textOrDash(resp.msg || resp.message),
+      "Code: " + textOrDash(resp.code),
+      "Error Code: " + textOrDash(resp.errorCode)
+    ].join("\n");
+  }
+  return "Request Failed: " + String(resp);
+}
+
+function formatBalanceMessage(resp) {
+  if (!resp || resp.code !== 200) {
+    return formatApiMessage(resp, "Success");
+  }
+  const data = resp.data || {};
+  const accountNo = firstDefined(data, ["accountNo", "account", "accountId"]);
+  const amount = firstDefined(data, ["availableBalance", "balance", "amount"]);
+  const currency = firstDefined(data, ["currency"]);
+  const updatedAt = firstDefined(data, ["updatedAt", "lastUpdatedAt", "createTime", "createdAt"]);
+
+  return [
+    "Account Balance",
+    "----------------",
+    "Account No: " + textOrDash(accountNo),
+    "Balance: " + textOrDash(money(amount)) + (currency ? " " + currency : ""),
+    "Updated At: " + formatTime(updatedAt)
+  ].join("\n");
+}
+
+function bindNavigation() {
+  const pages = ["create-payment", "payment-by-id", "payment-list", "payment-history", "account-balance"];
+  const navItems = Array.from(document.querySelectorAll(".nav-item"));
+  const pageSections = Array.from(document.querySelectorAll(".page"));
+
+  function normalizePage(hashValue) {
+    const value = hashValue.replace(/^#/, "");
+    return pages.indexOf(value) >= 0 ? value : "create-payment";
+  }
+
+  function showPage(page) {
+    navItems.forEach((item) => {
+      const active = item.dataset.page === page;
+      item.classList.toggle("active", active);
+      item.setAttribute("aria-current", active ? "page" : "false");
+    });
+
+    pageSections.forEach((section) => {
+      section.classList.toggle("active", section.dataset.page === page);
+    });
+  }
+
+  function syncFromHash() {
+    showPage(normalizePage(window.location.hash));
+  }
+
+  navItems.forEach((item) => {
+    item.addEventListener("click", () => {
+      const page = item.dataset.page || "create-payment";
+      if (window.location.hash !== "#" + page) {
+        window.location.hash = page;
+        return;
+      }
+      showPage(page);
+    });
+  });
+
+  window.addEventListener("hashchange", syncFromHash);
+  syncFromHash();
 }
 
 function bindCreatePayment() {
@@ -48,10 +179,10 @@ function bindCreatePayment() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-      setResult(result, data, data.code === 200);
+      setResult(result, formatApiMessage(data, "Payment Created"), data.code === 200);
       await loadPayments();
     } catch (err) {
-      setResult(result, { error: String(err) }, false);
+      setResult(result, "Request Failed: " + String(err), false);
     }
   });
 }
@@ -69,9 +200,9 @@ function renderPayments(list) {
       + "<td>" + (p.destinationAccount || "") + "</td>"
       + "<td>" + money(p.amount) + "</td>"
       + "<td>" + (p.currency || "") + "</td>"
-      + "<td>" + (p.status || "") + "</td>"
-      + "<td>" + (p.errorCode || "") + "</td>"
-      + "<td>" + (p.createdAt || "") + "</td>";
+      + "<td>" + statusText(p.status) + "</td>"
+      + "<td>" + textOrDash(p.errorCode) + "</td>"
+      + "<td>" + formatTime(p.createdAt) + "</td>";
 
     tr.addEventListener("click", () => {
       document.getElementById("paymentIdInput").value = p.id || "";
@@ -104,15 +235,15 @@ function bindPaymentById() {
     e.preventDefault();
     const id = document.getElementById("paymentIdInput").value.trim();
     if (!id) {
-      setResult(result, { code: 400, msg: "Payment ID is required" }, false);
+      setResult(result, "Please enter Payment ID.", false);
       return;
     }
 
     try {
       const data = await api("/api/payments/" + encodeURIComponent(id));
-      setResult(result, data, data.code === 200);
+      setResult(result, formatApiMessage(data, "Payment Details"), data.code === 200);
     } catch (err) {
-      setResult(result, { error: String(err) }, false);
+      setResult(result, "Request Failed: " + String(err), false);
     }
   });
 }
@@ -123,11 +254,11 @@ function renderHistory(list) {
   list.forEach((h) => {
     const tr = document.createElement("tr");
     tr.innerHTML = ""
-      + "<td>" + (h.fromStatus || "-") + "</td>"
-      + "<td>" + (h.toStatus || "") + "</td>"
-      + "<td>" + (h.errorCode || "") + "</td>"
-      + "<td>" + (h.note || "") + "</td>"
-      + "<td>" + (h.createdAt || "") + "</td>";
+      + "<td>" + statusText(h.fromStatus || "-") + "</td>"
+      + "<td>" + statusText(h.toStatus) + "</td>"
+      + "<td>" + textOrDash(h.errorCode) + "</td>"
+      + "<td>" + textOrDash(h.note) + "</td>"
+      + "<td>" + formatTime(h.createdAt) + "</td>";
     tbody.appendChild(tr);
   });
 }
@@ -159,20 +290,21 @@ function bindBalance() {
     e.preventDefault();
     const accountNo = document.getElementById("accountNo").value.trim();
     if (!accountNo) {
-      setResult(result, { code: 400, msg: "AccountNo is required" }, false);
+      setResult(result, "Please enter Account No.", false);
       return;
     }
 
     try {
       const data = await api("/api/accounts/" + encodeURIComponent(accountNo) + "/balance");
-      setResult(result, data, data.code === 200);
+      setResult(result, formatBalanceMessage(data), data.code === 200);
     } catch (err) {
-      setResult(result, { error: String(err) }, false);
+      setResult(result, "Request Failed: " + String(err), false);
     }
   });
 }
 
 async function init() {
+  bindNavigation();
   bindCreatePayment();
   bindPaymentById();
   bindPaymentList();
@@ -185,4 +317,3 @@ async function init() {
 init().catch((err) => {
   console.error(err);
 });
-
