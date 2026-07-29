@@ -22,7 +22,6 @@ public class Result<T> {
         return resp;
     }
 
-
     public int getCode() {
         return code;
     }

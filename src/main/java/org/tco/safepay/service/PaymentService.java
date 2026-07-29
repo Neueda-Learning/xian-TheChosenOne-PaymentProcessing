@@ -20,34 +20,116 @@ public class PaymentService {
         if (request == null) {
             return new ValidationFailure(ErrorCode.VALIDATION_FAILED, "Request body is null");
         }
-        if (request.getIdempotencyKey() == null
-                || request.getIdempotencyKey().isBlank()
-                || request.getIdempotencyKey().length() > 64) {
-            return new ValidationFailure(ErrorCode.VALIDATION_FAILED, "Invalid idempotency key");
+    private final PaymentMapper paymentMapper;
+    private final PaymentHistoryMapper paymentHistoryMapper;
+    private final AccountMapper accountMapper;
+    private final BalanceLedgerMapper balanceLedgerMapper;
+
+    public PaymentService(PaymentMapper paymentMapper,
+                          PaymentHistoryMapper paymentHistoryMapper,
+                          AccountMapper accountMapper,
+                          BalanceLedgerMapper balanceLedgerMapper) {
+        this.paymentMapper = paymentMapper;
+        this.paymentHistoryMapper = paymentHistoryMapper;
+        this.accountMapper = accountMapper;
+        this.balanceLedgerMapper = balanceLedgerMapper;
+    }
+
+    
+    @Transactional
+    public Payment createPayment(PaymentRequest request) {
+
+        
+
+        // ── Step 2: idempotency check ─────────────────────────────────────────
+        String rawIdempotencyKey = request.getIdempotencyKey();
+        if (rawIdempotencyKey != null
+                && !rawIdempotencyKey.isBlank()
+                && rawIdempotencyKey.length() <= 64) {
+            Payment existing = paymentMapper.selectByIdempotencyKey(rawIdempotencyKey);
+            if (existing != null) {
+                return existing;
+            }
         }
-        if (request.getSourceAccount() == null || request.getSourceAccount().isBlank()) {
-            return new ValidationFailure(ErrorCode.INVALID_ACCOUNT, "Source account is blank");
+
+        // ── Step 3: persist Payment (CREATED) ────────────────────────────────
+        LocalDateTime now = LocalDateTime.now();
+        Payment payment = new Payment();
+        payment.setId(UUID.randomUUID());
+        payment.setIdempotencyKey(normalizeIdempotencyKey(rawIdempotencyKey));
+        payment.setSourceAccount(normalizeRequiredText(request.getSourceAccount(), "INVALID_SOURCE"));
+        payment.setDestinationAccount(normalizeRequiredText(request.getDestinationAccount(), "INVALID_DEST"));
+        payment.setAmount(request.getAmount() == null ? BigDecimal.ZERO : request.getAmount());
+        payment.setCurrency(normalizeCurrency(request.getCurrency()));
+        payment.setReference(request.getReference());
+        payment.setStatus("CREATED");
+        payment.setCreatedAt(now);
+        payment.setUpdatedAt(now);
+        paymentMapper.insert(payment);
+        writeHistory(payment.getId(), null, "CREATED", null, null);
+        pauseForHistoryVisibility();
+
+        
+
+        updateStatus(payment, "VALIDATED", null, null);
+        writeHistory(payment.getId(), "CREATED", "VALIDATED", null, null);
+        pauseForHistoryVisibility();
+
+        
+        BigDecimal sourceBefore = sourceAccount.getBalance();
+        BigDecimal sourceAfterReserve = sourceBefore.subtract(request.getAmount());
+        int affected = accountMapper.deductBalance(request.getSourceAccount(), request.getAmount());
+        if (affected == 0) {
+            // Concurrent insufficient funds – mark FAILED and commit
+            updateStatus(payment, "FAILED",
+                    ErrorCode.INSUFFICIENT_FUNDS.name(),
+                    ErrorCode.INSUFFICIENT_FUNDS.getDefaultMessage());
+            writeHistory(payment.getId(), "VALIDATED", "FAILED",
+                    "Balance deduction failed (concurrent)", ErrorCode.INSUFFICIENT_FUNDS.name());
+            return payment;
         }
-        if (request.getDestinationAccount() == null || request.getDestinationAccount().isBlank()) {
-            return new ValidationFailure(ErrorCode.INVALID_ACCOUNT, "Destination account is blank");
+        writeLedger(payment.getId(), request.getSourceAccount(), "RESERVE",
+                request.getAmount(), sourceBefore, sourceAfterReserve);
+
+        
+        updateStatus(payment, "SENT", null, null);
+        writeHistory(payment.getId(), "VALIDATED", "SENT", null, null);
+        pauseForHistoryVisibility();
+
+
+        updateStatus(payment, "COMPLETED", null, null);
+        writeHistory(payment.getId(), "SENT", "COMPLETED", null, null);
+        pauseForHistoryVisibility();
+
+       
+        writeLedger(payment.getId(), request.getSourceAccount(), "DEBIT",
+                request.getAmount(), sourceAfterReserve, sourceAfterReserve);
+
+       
+        Account destFresh = accountMapper.selectByAccountNo(request.getDestinationAccount());
+        if (destFresh == null) {
+            updateStatus(payment, "FAILED",
+                    ErrorCode.INVALID_ACCOUNT.name(),
+                    ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
+            writeHistory(payment.getId(), "COMPLETED", "FAILED",
+                    "Destination account missing before credit", ErrorCode.INVALID_ACCOUNT.name());
+            return payment;
         }
-        if (request.getSourceAccount().equals(request.getDestinationAccount())) {
-            return new ValidationFailure(ErrorCode.INVALID_ACCOUNT, "Source and destination are same");
+        BigDecimal destBefore = destFresh.getBalance();
+        BigDecimal destAfter = destBefore.add(request.getAmount());
+        int creditAffected = accountMapper.increaseBalance(request.getDestinationAccount(), request.getAmount());
+        if (creditAffected == 0) {
+            updateStatus(payment, "FAILED",
+                    ErrorCode.INVALID_ACCOUNT.name(),
+                    ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
+            writeHistory(payment.getId(), "COMPLETED", "FAILED",
+                    "Credit update affected 0 rows", ErrorCode.INVALID_ACCOUNT.name());
+            return payment;
         }
-        if (request.getAmount() == null || request.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
-            return new ValidationFailure(ErrorCode.INVALID_AMOUNT, "Amount is zero or negative");
-        }
-        if (request.getAmount().compareTo(MAX_AMOUNT) > 0) {
-            return new ValidationFailure(ErrorCode.INVALID_AMOUNT, "Amount exceeds max limit");
-        }
-        if (request.getAmount().stripTrailingZeros().scale() > 2) {
-            return new ValidationFailure(ErrorCode.INVALID_AMOUNT, "Amount has more than 2 decimals");
-        }
-        if (request.getCurrency() == null
-                || !SUPPORTED_CURRENCIES.contains(request.getCurrency().toUpperCase(Locale.ROOT))) {
-            return new ValidationFailure(ErrorCode.INVALID_CURRENCY, "Unsupported currency");
-        }
-        return null;
+        writeLedger(payment.getId(), request.getDestinationAccount(), "CREDIT",
+                request.getAmount(), destBefore, destAfter);
+
+        return payment;
     }
     //unk
     public String normalizeCurrency(String currency) {
@@ -59,6 +141,46 @@ public class PaymentService {
     }
 
     
-    public record ValidationFailure(ErrorCode errorCode, String note) {
+
+    private void updateStatus(Payment payment, String status, String errorCode, String errorMessage) {
+        paymentMapper.updateStatus(payment.getId(), status, errorCode, errorMessage);
+        payment.setStatus(status);
+        payment.setErrorCode(errorCode);
+        payment.setErrorMessage(errorMessage);
+    }
+
+    private void writeHistory(UUID paymentId, String fromStatus, String toStatus,
+                               String note, String errorCode) {
+        PaymentHistory history = new PaymentHistory();
+        history.setId(UUID.randomUUID());
+        history.setPaymentId(paymentId);
+        history.setFromStatus(fromStatus);
+        history.setToStatus(toStatus);
+        history.setNote(note);
+        history.setErrorCode(errorCode);
+        history.setCreatedAt(LocalDateTime.now());
+        paymentHistoryMapper.insert(history);
+    }
+
+    private void pauseForHistoryVisibility() {
+        try {
+            Thread.sleep(1100L);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    private void writeLedger(UUID paymentId, String accountNo, String direction,
+                              BigDecimal amount, BigDecimal before, BigDecimal after) {
+        BalanceLedger ledger = new BalanceLedger();
+        ledger.setId(UUID.randomUUID());
+        ledger.setAccountNo(accountNo);
+        ledger.setPaymentId(paymentId);
+        ledger.setDirection(direction);
+        ledger.setAmount(amount);
+        ledger.setBalanceBefore(before);
+        ledger.setBalanceAfter(after);
+        ledger.setCreatedAt(LocalDateTime.now());
+        balanceLedgerMapper.insert(ledger);
     }
 }
