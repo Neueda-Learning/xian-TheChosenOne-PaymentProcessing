@@ -19,57 +19,11 @@
         <result column="updated_at" property="updatedAt"/>
     </resultMap>
 
-    <insert id="insert" parameterType="org.tco.safepay.model.entity.Payment">
-        INSERT INTO payments (
-            id,
-            idempotency_key,
-            source_account,
-            destination_account,
-            amount,
-            currency,
-            reference,
-            status,
-            error_code,
-            error_message,
-            created_at,
-            updated_at
-        ) VALUES (
-            #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
-            #{idempotencyKey},
-            #{sourceAccount},
-            #{destinationAccount},
-            #{amount},
-            #{currency},
-            #{reference},
-            #{status},
-            #{errorCode},
-            #{errorMessage},
-            #{createdAt},
-            #{updatedAt}
-        )
-    </insert>
-
-    <update id="updateStatus">
-        UPDATE payments
-        SET status = #{status},
-            error_code = #{errorCode},
-            error_message = #{errorMessage},
-            updated_at = NOW()
-        WHERE id = #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler}
-    </update>
-
     <select id="selectById" resultMap="PaymentResultMap">
         SELECT id, idempotency_key, source_account, destination_account, amount, currency,
                reference, status, error_code, error_message, created_at, updated_at
         FROM payments
         WHERE id = #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler}
-    </select>
-
-    <select id="selectByIdempotencyKey" resultMap="PaymentResultMap">
-        SELECT id, idempotency_key, source_account, destination_account, amount, currency,
-               reference, status, error_code, error_message, created_at, updated_at
-        FROM payments
-        WHERE idempotency_key = #{idempotencyKey}
     </select>
 
     <select id="selectByStatus" resultMap="PaymentResultMap">
@@ -88,4 +42,3 @@
     </select>
 
 </mapper>
-

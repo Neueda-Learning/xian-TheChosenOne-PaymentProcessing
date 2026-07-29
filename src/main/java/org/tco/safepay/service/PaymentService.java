@@ -1,23 +1,12 @@
 package org.tco.safepay.service;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.tco.safepay.common.ErrorCode;
-import org.tco.safepay.mapper.AccountMapper;
-import org.tco.safepay.mapper.BalanceLedgerMapper;
-import org.tco.safepay.mapper.PaymentHistoryMapper;
-import org.tco.safepay.mapper.PaymentMapper;
 import org.tco.safepay.model.dto.PaymentRequest;
-import org.tco.safepay.model.entity.Account;
-import org.tco.safepay.model.entity.BalanceLedger;
-import org.tco.safepay.model.entity.Payment;
-import org.tco.safepay.model.entity.PaymentHistory;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Set;
-import java.util.UUID;
 
 @Service
 public class PaymentService {
@@ -27,6 +16,10 @@ public class PaymentService {
     );
     private static final BigDecimal MAX_AMOUNT = new BigDecimal("1000000");
 
+    public ValidationFailure validateRequest(PaymentRequest request) {
+        if (request == null) {
+            return new ValidationFailure(ErrorCode.VALIDATION_FAILED, "Request body is null");
+        }
     private final PaymentMapper paymentMapper;
     private final PaymentHistoryMapper paymentHistoryMapper;
     private final AccountMapper accountMapper;
@@ -140,18 +133,7 @@ public class PaymentService {
     }
 
 
-    private String normalizeIdempotencyKey(String idempotencyKey) {
-        if (idempotencyKey != null && !idempotencyKey.isBlank() && idempotencyKey.length() <= 64) {
-            return idempotencyKey;
-        }
-        return "INVALID-" + UUID.randomUUID().toString().replace("-", "");
-    }
-
-    private String normalizeRequiredText(String value, String fallback) {
-        return (value == null || value.isBlank()) ? fallback : value;
-    }
-
-    private String normalizeCurrency(String currency) {
+    public String normalizeCurrency(String currency) {
         if (currency == null || currency.isBlank()) {
             return "UNK";
         }
