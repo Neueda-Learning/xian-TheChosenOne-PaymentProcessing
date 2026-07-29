@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.tco.safepay.mapper.PaymentMapper">
+
+    <resultMap id="PaymentResultMap" type="org.tco.safepay.model.entity.Payment">
+        <id column="id" property="id" javaType="java.util.UUID" jdbcType="VARCHAR" typeHandler="org.tco.safepay.config.typehandler.UuidTypeHandler"/>
+        <result column="idempotency_key" property="idempotencyKey"/>
+        <result column="source_account" property="sourceAccount"/>
+        <result column="destination_account" property="destinationAccount"/>
+        <result column="amount" property="amount"/>
+        <result column="currency" property="currency"/>
+        <result column="reference" property="reference"/>
+        <result column="status" property="status"/>
+        <result column="error_code" property="errorCode"/>
+        <result column="error_message" property="errorMessage"/>
+        <result column="created_at" property="createdAt"/>
+        <result column="updated_at" property="updatedAt"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="org.tco.safepay.model.entity.Payment">
+        INSERT INTO payments (
+            id,
+            idempotency_key,
+            source_account,
+            destination_account,
+            amount,
+            currency,
+            reference,
+            status,
+            error_code,
+            error_message,
+            created_at,
+            updated_at
+        ) VALUES (
+            #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
+            #{idempotencyKey},
+            #{sourceAccount},
+            #{destinationAccount},
+            #{amount},
+            #{currency},
+            #{reference},
+            #{status},
+            #{errorCode},
+            #{errorMessage},
+            #{createdAt},
+            #{updatedAt}
+        )
+    </insert>
+
+    <update id="updateStatus">
+        UPDATE payments
+        SET status = #{status},
+            error_code = #{errorCode},
+            error_message = #{errorMessage},
+            updated_at = NOW()
+        WHERE id = #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler}
+    </update>
+
+    <select id="selectById" resultMap="PaymentResultMap">
+        SELECT id, idempotency_key, source_account, destination_account, amount, currency,
+               reference, status, error_code, error_message, created_at, updated_at
+        FROM payments
+        WHERE id = #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler}
+    </select>
+
+    <select id="selectByIdempotencyKey" resultMap="PaymentResultMap">
+        SELECT id, idempotency_key, source_account, destination_account, amount, currency,
+               reference, status, error_code, error_message, created_at, updated_at
+        FROM payments
+        WHERE idempotency_key = #{idempotencyKey}
+    </select>
+
+    <select id="selectByStatus" resultMap="PaymentResultMap">
+        SELECT id, idempotency_key, source_account, destination_account, amount, currency,
+               reference, status, error_code, error_message, created_at, updated_at
+        FROM payments
+        WHERE status = #{status}
+        ORDER BY created_at DESC
+    </select>
+
+    <select id="selectAll" resultMap="PaymentResultMap">
+        SELECT id, idempotency_key, source_account, destination_account, amount, currency,
+               reference, status, error_code, error_message, created_at, updated_at
+        FROM payments
+        ORDER BY created_at DESC
+    </select>
+
+</mapper>
+
