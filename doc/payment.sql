@@ -65,6 +65,8 @@ CREATE TABLE balance_ledger (
         FOREIGN KEY (payment_id) REFERENCES payments(id)
         ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+insert into accounts (account_no, balance) values ('ACC10001', 10000.00);
+insert into accounts (account_no, balance) values ('ACC20002', 500.00);
 
 
 
