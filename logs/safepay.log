@@ -3114,671 +3114,468 @@ Identify and stop the process that's listening on port 8080 or configure this ap
 2026-07-28 09:12:19.287 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE status = ? ORDER BY created_at DESC
 2026-07-28 09:12:19.289 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectByStatus - ==> Parameters: FAILED(String)
 2026-07-28 09:12:19.301 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectByStatus - <==      Total: 22
-2026-07-29 03:33:32.828 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 8728 (C:\Users\Administrator\Desktop\1\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\Desktop\1\xian-TheChosenOne-PaymentProcessing)
-2026-07-29 03:33:32.832 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
-2026-07-29 03:33:32.833 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
-2026-07-29 03:33:33.497 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
-2026-07-29 03:33:34.162 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'accountMapper' and 'org.tco.safepay.mapper.AccountMapper' mapperInterface. Bean already defined with the same name!
-2026-07-29 03:33:34.163 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'balanceLedgerMapper' and 'org.tco.safepay.mapper.BalanceLedgerMapper' mapperInterface. Bean already defined with the same name!
-2026-07-29 03:33:34.163 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentHistoryMapper' and 'org.tco.safepay.mapper.PaymentHistoryMapper' mapperInterface. Bean already defined with the same name!
-2026-07-29 03:33:34.163 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentMapper' and 'org.tco.safepay.mapper.PaymentMapper' mapperInterface. Bean already defined with the same name!
-2026-07-29 03:33:34.164 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[org.tco.safepay.mapper]' package. Please check your configuration.
-2026-07-29 03:33:34.832 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-07-29 03:33:34.855 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-07-29 03:33:34.858 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-07-29 03:33:34.859 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-07-29 03:33:34.945 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2034 ms
-2026-07-29 03:33:35.943 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-2026-07-29 03:33:36.547 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2026-07-29 03:33:36.577 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-07-29 03:33:36.587 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 4.797 seconds (process running for 6.373)
-2026-07-29 03:34:12.420 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-29 03:34:12.421 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-07-29 03:34:12.424 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
-2026-07-29 03:34:12.471 [http-nio-8080-exec-1] ERROR o.t.s.e.GlobalExceptionHandler - Unhandled exception
-org.springframework.web.servlet.resource.NoResourceFoundException: No static resource api/contacts/search for request '/api/contacts/search'.
-	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
-	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-2026-07-29 03:34:12.692 [http-nio-8080-exec-2] ERROR o.t.s.e.GlobalExceptionHandler - Unhandled exception
-org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
-	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
-	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-2026-07-29 03:34:26.783 [http-nio-8080-exec-4] ERROR o.t.s.e.GlobalExceptionHandler - Unhandled exception
-org.springframework.web.servlet.resource.NoResourceFoundException: No static resource favicon.ico for request '/favicon.ico'.
-	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:527)
-	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:50)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-2026-07-29 03:34:26.786 [http-nio-8080-exec-3] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-07-29 03:34:27.953 [http-nio-8080-exec-3] ERROR o.t.s.e.GlobalExceptionHandler - Database access exception
-org.mybatis.spring.MyBatisSystemException: 
-### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-### The error may exist in file [C:\Users\Administrator\Desktop\1\xian-TheChosenOne-PaymentProcessing\target\classes\mapper\PaymentMapper.xml]
-### The error may involve org.tco.safepay.mapper.PaymentMapper.selectAll
-### The error occurred while executing a query
-### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:99)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347)
-	at jdk.proxy2/jdk.proxy2.$Proxy78.selectList(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:194)
-	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy79.selectAll(Unknown Source)
-	at org.tco.safepay.service.PaymentQueryService.getPayments(PaymentQueryService.java:48)
-	at org.tco.safepay.controller.PaymentController.getPayments(PaymentController.java:57)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-Caused by: org.apache.ibatis.exceptions.PersistenceException: 
-### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-### The error may exist in file [C:\Users\Administrator\Desktop\1\xian-TheChosenOne-PaymentProcessing\target\classes\mapper\PaymentMapper.xml]
-### The error may involve org.tco.safepay.mapper.PaymentMapper.selectAll
-### The error occurred while executing a query
-### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:156)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333)
-	... 52 common frames omitted
-Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84)
-	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:77)
-	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:64)
-	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348)
-	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89)
-	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64)
-	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:137)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
-	... 57 common frames omitted
-Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
+2026-07-28 14:44:06.611 [main] INFO  o.t.safepay.SafepayApplicationTests - Starting SafepayApplicationTests using Java 17.0.14 with PID 3320 (started by Administrator in C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one)
+2026-07-28 14:44:06.613 [main] DEBUG o.t.safepay.SafepayApplicationTests - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-28 14:44:06.616 [main] INFO  o.t.safepay.SafepayApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2026-07-28 14:44:09.874 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'accountMapper' and 'org.tco.safepay.mapper.AccountMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 14:44:09.875 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'balanceLedgerMapper' and 'org.tco.safepay.mapper.BalanceLedgerMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 14:44:09.879 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentHistoryMapper' and 'org.tco.safepay.mapper.PaymentHistoryMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 14:44:09.880 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentMapper' and 'org.tco.safepay.mapper.PaymentMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 14:44:09.884 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[org.tco.safepay.mapper]' package. Please check your configuration.
+2026-07-28 14:44:12.938 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-28 14:44:13.066 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-07-28 14:44:15.066 [main] INFO  o.t.safepay.SafepayApplicationTests - Started SafepayApplicationTests in 10.364 seconds (process running for 14.495)
+2026-07-28 14:57:28.700 [main] INFO  o.t.safepay.SafepayApplicationTests - Starting SafepayApplicationTests using Java 17.0.14 with PID 8184 (started by Administrator in C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one)
+2026-07-28 14:57:28.702 [main] DEBUG o.t.safepay.SafepayApplicationTests - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-28 14:57:28.706 [main] INFO  o.t.safepay.SafepayApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2026-07-28 14:57:31.727 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'accountMapper' and 'org.tco.safepay.mapper.AccountMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 14:57:31.729 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentHistoryMapper' and 'org.tco.safepay.mapper.PaymentHistoryMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 14:57:31.730 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentMapper' and 'org.tco.safepay.mapper.PaymentMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 14:57:31.730 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[org.tco.safepay.mapper]' package. Please check your configuration.
+2026-07-28 14:57:33.364 [main] WARN  o.s.w.c.s.GenericWebApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'accountController' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\controller\AccountController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'paymentQueryService' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\service\PaymentQueryService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'paymentMapper' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\mapper\PaymentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/tco/safepay/config/MyBatisConfig.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+2026-07-28 14:57:33.454 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
 
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:55)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:840)
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:416)
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144)
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:373)
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:210)
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488)
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576)
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97)
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
-	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
-	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
-	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
-	... 66 common frames omitted
-Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140)
-	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:156)
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:79)
-	at com.mysql.cj.NativeSession.connect(NativeSession.java:142)
-	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:964)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
-	... 79 common frames omitted
-Caused by: java.net.ConnectException: Connection refused: getsockopt
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:752)
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
-	... 82 common frames omitted
-2026-07-29 03:34:32.160 [http-nio-8080-exec-5] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-07-29 03:34:33.193 [http-nio-8080-exec-5] ERROR o.t.s.e.GlobalExceptionHandler - Database access exception
-org.mybatis.spring.MyBatisSystemException: 
-### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-### The error may exist in file [C:\Users\Administrator\Desktop\1\xian-TheChosenOne-PaymentProcessing\target\classes\mapper\PaymentMapper.xml]
-### The error may involve org.tco.safepay.mapper.PaymentMapper.selectAll
-### The error occurred while executing a query
-### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-	at org.mybatis.spring.MyBatisExceptionTranslator.translateExceptionIfPossible(MyBatisExceptionTranslator.java:99)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:347)
-	at jdk.proxy2/jdk.proxy2.$Proxy78.selectList(Unknown Source)
-	at org.mybatis.spring.SqlSessionTemplate.selectList(SqlSessionTemplate.java:194)
-	at org.apache.ibatis.binding.MapperMethod.executeForMany(MapperMethod.java:147)
-	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:80)
-	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:141)
-	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:86)
-	at jdk.proxy2/jdk.proxy2.$Proxy79.selectAll(Unknown Source)
-	at org.tco.safepay.service.PaymentQueryService.getPayments(PaymentQueryService.java:48)
-	at org.tco.safepay.controller.PaymentController.getPayments(PaymentController.java:57)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:252)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:184)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-Caused by: org.apache.ibatis.exceptions.PersistenceException: 
-### Error querying database.  Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-### The error may exist in file [C:\Users\Administrator\Desktop\1\xian-TheChosenOne-PaymentProcessing\target\classes\mapper\PaymentMapper.xml]
-### The error may involve org.tco.safepay.mapper.PaymentMapper.selectAll
-### The error occurred while executing a query
-### Cause: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-	at org.apache.ibatis.exceptions.ExceptionFactory.wrapException(ExceptionFactory.java:30)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:156)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:147)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:142)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:333)
-	... 52 common frames omitted
-Caused by: org.springframework.jdbc.CannotGetJdbcConnectionException: Failed to obtain JDBC Connection
-	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:84)
-	at org.mybatis.spring.transaction.SpringManagedTransaction.openConnection(SpringManagedTransaction.java:77)
-	at org.mybatis.spring.transaction.SpringManagedTransaction.getConnection(SpringManagedTransaction.java:64)
-	at org.apache.ibatis.executor.BaseExecutor.getConnection(BaseExecutor.java:348)
-	at org.apache.ibatis.executor.SimpleExecutor.prepareStatement(SimpleExecutor.java:89)
-	at org.apache.ibatis.executor.SimpleExecutor.doQuery(SimpleExecutor.java:64)
-	at org.apache.ibatis.executor.BaseExecutor.queryFromDatabase(BaseExecutor.java:336)
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:158)
-	at org.apache.ibatis.executor.BaseExecutor.query(BaseExecutor.java:137)
-	at org.apache.ibatis.session.defaults.DefaultSqlSession.selectList(DefaultSqlSession.java:154)
-	... 57 common frames omitted
-Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at com.mysql.cj.jdbc.exceptions.SQLError.createCommunicationsException(SQLError.java:165)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:55)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:840)
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:416)
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:237)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
-	at com.zaxxer.hikari.util.DriverDataSource.getConnection(DriverDataSource.java:144)
-	at com.zaxxer.hikari.pool.PoolBase.newConnection(PoolBase.java:373)
-	at com.zaxxer.hikari.pool.PoolBase.newPoolEntry(PoolBase.java:210)
-	at com.zaxxer.hikari.pool.HikariPool.createPoolEntry(HikariPool.java:488)
-	at com.zaxxer.hikari.pool.HikariPool.checkFailFast(HikariPool.java:576)
-	at com.zaxxer.hikari.pool.HikariPool.<init>(HikariPool.java:97)
-	at com.zaxxer.hikari.HikariDataSource.getConnection(HikariDataSource.java:111)
-	at org.springframework.jdbc.datasource.DataSourceUtils.fetchConnection(DataSourceUtils.java:160)
-	at org.springframework.jdbc.datasource.DataSourceUtils.doGetConnection(DataSourceUtils.java:118)
-	at org.springframework.jdbc.datasource.DataSourceUtils.getConnection(DataSourceUtils.java:81)
-	... 66 common frames omitted
-Caused by: com.mysql.cj.exceptions.CJCommunicationsException: Communications link failure
-
-The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:52)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:95)
-	at com.mysql.cj.exceptions.ExceptionFactory.createException(ExceptionFactory.java:140)
-	at com.mysql.cj.exceptions.ExceptionFactory.createCommunicationsException(ExceptionFactory.java:156)
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:79)
-	at com.mysql.cj.NativeSession.connect(NativeSession.java:142)
-	at com.mysql.cj.jdbc.ConnectionImpl.connectOneTryOnly(ConnectionImpl.java:964)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:828)
-	... 79 common frames omitted
-Caused by: java.net.ConnectException: Connection refused: getsockopt
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:682)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:542)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:592)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:752)
-	at com.mysql.cj.protocol.StandardSocketFactory.connect(StandardSocketFactory.java:144)
-	at com.mysql.cj.protocol.a.NativeSocketConnection.connect(NativeSocketConnection.java:53)
-	... 82 common frames omitted
-2026-07-29 03:35:22.339 [http-nio-8080-exec-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-07-29 03:35:22.892 [http-nio-8080-exec-7] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@101402e
-2026-07-29 03:35:22.893 [http-nio-8080-exec-7] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-07-29 03:35:22.904 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-29 03:35:22.949 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-29 03:35:23.013 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 10
-2026-07-29 03:35:34.274 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-29 03:35:34.276 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785296126486(String)
-2026-07-29 03:35:34.283 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
-2026-07-29 03:35:34.285 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:35:34.289 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: cff35896-66c5-4aca-ba51-c499b0addfdd(String), order-1785296126486(String), ACC10001(String), ACC20002(String), 0(BigDecimal), USD(String), invoice1(String), CREATED(String), null, null, 2026-07-29T03:35:34.283769300(LocalDateTime), 2026-07-29T03:35:34.283769300(LocalDateTime)
-2026-07-29 03:35:34.298 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
-2026-07-29 03:35:34.299 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:35:34.300 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: eae8e1ff-2309-4211-a395-15519dfb68f9(String), cff35896-66c5-4aca-ba51-c499b0addfdd(String), null, CREATED(String), null, null, 2026-07-29T03:35:34.298838700(LocalDateTime)
-2026-07-29 03:35:34.302 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-29 03:35:35.413 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
-2026-07-29 03:35:35.413 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_AMOUNT(String), Amount is zero, negative, or invalid(String), cff35896-66c5-4aca-ba51-c499b0addfdd(String)
-2026-07-29 03:35:35.420 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
-2026-07-29 03:35:35.421 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:35:35.422 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 4a9ed9bc-201e-4cb6-b894-d86f774a4cbf(String), cff35896-66c5-4aca-ba51-c499b0addfdd(String), CREATED(String), FAILED(String), Amount is zero or negative(String), INVALID_AMOUNT(String), 2026-07-29T03:35:35.421634900(LocalDateTime)
-2026-07-29 03:35:35.423 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-29 03:35:35.439 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-29 03:35:35.439 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-29 03:35:35.446 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 11
-2026-07-29 03:35:44.158 [http-nio-8080-exec-10] ERROR o.t.s.e.GlobalExceptionHandler - Unhandled exception
-org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'java.util.UUID'; Invalid UUID string: order-1785296126486
-	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:295)
-	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:134)
-	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
-	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:174)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-Caused by: java.lang.IllegalArgumentException: Invalid UUID string: order-1785296126486
-	at java.base/java.util.UUID.fromString1(UUID.java:286)
-	at java.base/java.util.UUID.fromString(UUID.java:264)
-	at org.springframework.beans.propertyeditors.UUIDEditor.setAsText(UUIDEditor.java:37)
-	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:434)
-	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:407)
-	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:158)
-	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:75)
-	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:51)
-	at org.springframework.validation.DataBinder.convertIfNecessary(DataBinder.java:844)
-	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:287)
-	... 43 common frames omitted
-2026-07-29 03:36:06.333 [http-nio-8080-exec-1] ERROR o.t.s.e.GlobalExceptionHandler - Unhandled exception
-org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'id': Failed to convert value of type 'java.lang.String' to required type 'java.util.UUID'; Invalid UUID string: order-1785296126486
-	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:295)
-	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.resolveArgument(AbstractNamedValueMethodArgumentResolver.java:134)
-	at org.springframework.web.method.support.HandlerMethodArgumentResolverComposite.resolveArgument(HandlerMethodArgumentResolverComposite.java:122)
-	at org.springframework.web.method.support.InvocableHandlerMethod.getMethodArgumentValues(InvocableHandlerMethod.java:224)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:174)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:117)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:934)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:853)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:86)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:963)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:866)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1000)
-	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:892)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:622)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:874)
-	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:710)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:128)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:199)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:107)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:77)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:492)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:1272)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1801)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:946)
-	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:480)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:57)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-Caused by: java.lang.IllegalArgumentException: Invalid UUID string: order-1785296126486
-	at java.base/java.util.UUID.fromString1(UUID.java:286)
-	at java.base/java.util.UUID.fromString(UUID.java:264)
-	at org.springframework.beans.propertyeditors.UUIDEditor.setAsText(UUIDEditor.java:37)
-	at org.springframework.beans.TypeConverterDelegate.doConvertTextValue(TypeConverterDelegate.java:434)
-	at org.springframework.beans.TypeConverterDelegate.doConvertValue(TypeConverterDelegate.java:407)
-	at org.springframework.beans.TypeConverterDelegate.convertIfNecessary(TypeConverterDelegate.java:158)
-	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:75)
-	at org.springframework.beans.TypeConverterSupport.convertIfNecessary(TypeConverterSupport.java:51)
-	at org.springframework.validation.DataBinder.convertIfNecessary(DataBinder.java:844)
-	at org.springframework.web.method.annotation.AbstractNamedValueMethodArgumentResolver.convertIfNecessary(AbstractNamedValueMethodArgumentResolver.java:287)
-	... 43 common frames omitted
-2026-07-29 03:38:33.500 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.selectById - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE id = ?
-2026-07-29 03:38:33.500 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.selectById - ==> Parameters: cff35896-66c5-4aca-ba51-c499b0addfdd(String)
-2026-07-29 03:38:33.502 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.selectById - <==      Total: 1
-2026-07-29 03:38:35.224 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectById - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE id = ?
-2026-07-29 03:38:35.224 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectById - ==> Parameters: cff35896-66c5-4aca-ba51-c499b0addfdd(String)
-2026-07-29 03:38:35.226 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectById - <==      Total: 1
-2026-07-29 03:38:35.227 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByPaymentId - ==>  Preparing: SELECT id, payment_id, from_status, to_status, note, error_code, created_at FROM payment_history WHERE payment_id = ? ORDER BY created_at ASC, id ASC
-2026-07-29 03:38:35.227 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByPaymentId - ==> Parameters: cff35896-66c5-4aca-ba51-c499b0addfdd(String)
-2026-07-29 03:38:35.230 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByPaymentId - <==      Total: 2
-2026-07-29 03:38:55.127 [http-nio-8080-exec-5] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-29 03:38:55.128 [http-nio-8080-exec-5] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785296333606(String)
-2026-07-29 03:38:55.129 [http-nio-8080-exec-5] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
-2026-07-29 03:38:55.129 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:38:55.129 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: b62b55d6-c237-4572-a4d0-08cf5b58d897(String), order-1785296333606(String), ACC10001(String), ACC20002(String), 1000000(BigDecimal), USD(String), invoice1(String), CREATED(String), null, null, 2026-07-29T03:38:55.129928500(LocalDateTime), 2026-07-29T03:38:55.129928500(LocalDateTime)
-2026-07-29 03:38:55.132 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
-2026-07-29 03:38:55.132 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:38:55.133 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: a0ec4e25-89af-43e3-94bc-6b5cb2df0b04(String), b62b55d6-c237-4572-a4d0-08cf5b58d897(String), null, CREATED(String), null, null, 2026-07-29T03:38:55.132322400(LocalDateTime)
-2026-07-29 03:38:55.134 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-29 03:38:56.245 [http-nio-8080-exec-5] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
-2026-07-29 03:38:56.245 [http-nio-8080-exec-5] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC10001(String)
-2026-07-29 03:38:56.248 [http-nio-8080-exec-5] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
-2026-07-29 03:38:57.364 [http-nio-8080-exec-5] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
-2026-07-29 03:38:57.364 [http-nio-8080-exec-5] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC20002(String)
-2026-07-29 03:38:57.366 [http-nio-8080-exec-5] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
-2026-07-29 03:38:58.473 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
-2026-07-29 03:38:58.473 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INSUFFICIENT_FUNDS(String), Source account has insufficient funds(String), b62b55d6-c237-4572-a4d0-08cf5b58d897(String)
-2026-07-29 03:38:58.475 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
-2026-07-29 03:38:58.476 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:38:58.476 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: d1b993d6-c0c3-4694-8c56-9f312f35a585(String), b62b55d6-c237-4572-a4d0-08cf5b58d897(String), CREATED(String), FAILED(String), Insufficient balance at pre-check(String), INSUFFICIENT_FUNDS(String), 2026-07-29T03:38:58.476725600(LocalDateTime)
-2026-07-29 03:38:58.478 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-29 03:38:58.491 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-29 03:38:58.491 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-29 03:38:58.497 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 12
-2026-07-29 03:40:45.921 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-29 03:40:45.921 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785296444347(String)
-2026-07-29 03:40:45.922 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
-2026-07-29 03:40:45.923 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:40:45.924 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 256443a3-9948-4f5e-a796-09e32fe08602(String), order-1785296444347(String), ACC10076(String), ACC20002(String), 1000000(BigDecimal), USD(String), invoice1(String), CREATED(String), null, null, 2026-07-29T03:40:45.923453(LocalDateTime), 2026-07-29T03:40:45.923453(LocalDateTime)
-2026-07-29 03:40:45.926 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
-2026-07-29 03:40:45.926 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:40:45.927 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: c77c706e-ef7d-4dd1-8950-20ef4507e0d5(String), 256443a3-9948-4f5e-a796-09e32fe08602(String), null, CREATED(String), null, null, 2026-07-29T03:40:45.926231(LocalDateTime)
-2026-07-29 03:40:45.928 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-29 03:40:47.034 [http-nio-8080-exec-8] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
-2026-07-29 03:40:47.034 [http-nio-8080-exec-8] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC10076(String)
-2026-07-29 03:40:47.036 [http-nio-8080-exec-8] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 0
-2026-07-29 03:40:47.036 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
-2026-07-29 03:40:47.037 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_ACCOUNT(String), Account number is invalid or doesn't exist(String), 256443a3-9948-4f5e-a796-09e32fe08602(String)
-2026-07-29 03:40:47.038 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
-2026-07-29 03:40:47.038 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:40:47.040 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 874b4806-347b-4ff7-a00e-aac99685607f(String), 256443a3-9948-4f5e-a796-09e32fe08602(String), CREATED(String), FAILED(String), Source account not found(String), INVALID_ACCOUNT(String), 2026-07-29T03:40:47.038700(LocalDateTime)
-2026-07-29 03:40:47.040 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-29 03:40:47.053 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-29 03:40:47.053 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-29 03:40:47.059 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 13
-2026-07-29 03:41:03.102 [http-nio-8080-exec-10] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-29 03:41:03.102 [http-nio-8080-exec-10] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785296460600(String)
-2026-07-29 03:41:03.104 [http-nio-8080-exec-10] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
-2026-07-29 03:41:03.104 [http-nio-8080-exec-10] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:41:03.105 [http-nio-8080-exec-10] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 7faef01d-b2e9-43f1-8059-08bf1aae4341(String), order-1785296460600(String), ACC10001(String), ACC20002(String), 100(BigDecimal), USD(String), invoice1(String), CREATED(String), null, null, 2026-07-29T03:41:03.104904900(LocalDateTime), 2026-07-29T03:41:03.104904900(LocalDateTime)
-2026-07-29 03:41:03.107 [http-nio-8080-exec-10] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
-2026-07-29 03:41:03.107 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:41:03.107 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 2a58b312-b3f8-4106-9bdd-dc494b75c8e7(String), 7faef01d-b2e9-43f1-8059-08bf1aae4341(String), null, CREATED(String), null, null, 2026-07-29T03:41:03.107443600(LocalDateTime)
-2026-07-29 03:41:03.108 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-29 03:41:04.222 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
-2026-07-29 03:41:04.222 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC10001(String)
-2026-07-29 03:41:04.224 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
-2026-07-29 03:41:05.338 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
-2026-07-29 03:41:05.338 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC20002(String)
-2026-07-29 03:41:05.340 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
-2026-07-29 03:41:07.554 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
-2026-07-29 03:41:07.556 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: VALIDATED(String), null, null, 7faef01d-b2e9-43f1-8059-08bf1aae4341(String)
-2026-07-29 03:41:07.557 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
-2026-07-29 03:41:07.557 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:41:07.559 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 320752ad-1544-4e4e-b0bb-e3c0e17801dd(String), 7faef01d-b2e9-43f1-8059-08bf1aae4341(String), CREATED(String), VALIDATED(String), null, null, 2026-07-29T03:41:07.557783(LocalDateTime)
-2026-07-29 03:41:07.560 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-29 03:41:08.675 [http-nio-8080-exec-10] DEBUG o.t.s.m.AccountMapper.deductBalance - ==>  Preparing: UPDATE accounts SET balance = balance - ?, updated_at = NOW() WHERE account_no = ? AND balance >= ?
-2026-07-29 03:41:08.675 [http-nio-8080-exec-10] DEBUG o.t.s.m.AccountMapper.deductBalance - ==> Parameters: 100(BigDecimal), ACC10001(String), 100(BigDecimal)
-2026-07-29 03:41:08.677 [http-nio-8080-exec-10] DEBUG o.t.s.m.AccountMapper.deductBalance - <==    Updates: 1
-2026-07-29 03:41:08.677 [http-nio-8080-exec-10] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==>  Preparing: INSERT INTO balance_ledger ( id, account_no, payment_id, direction, amount, balance_before, balance_after, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:41:08.677 [http-nio-8080-exec-10] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==> Parameters: d481bf1e-3dbf-4039-b06d-db00f7cc0fac(String), ACC10001(String), 7faef01d-b2e9-43f1-8059-08bf1aae4341(String), RESERVE(String), 100(BigDecimal), 9656.80(BigDecimal), 9556.80(BigDecimal), 2026-07-29T03:41:08.677078700(LocalDateTime)
-2026-07-29 03:41:08.679 [http-nio-8080-exec-10] DEBUG o.t.s.m.BalanceLedgerMapper.insert - <==    Updates: 1
-2026-07-29 03:41:08.679 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
-2026-07-29 03:41:08.679 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: SENT(String), null, null, 7faef01d-b2e9-43f1-8059-08bf1aae4341(String)
-2026-07-29 03:41:08.681 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
-2026-07-29 03:41:08.682 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:41:08.682 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: f74cdb3a-2387-4e8a-ad05-44f706b8fb09(String), 7faef01d-b2e9-43f1-8059-08bf1aae4341(String), VALIDATED(String), SENT(String), null, null, 2026-07-29T03:41:08.681875(LocalDateTime)
-2026-07-29 03:41:08.683 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-29 03:41:09.785 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
-2026-07-29 03:41:09.785 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: COMPLETED(String), null, null, 7faef01d-b2e9-43f1-8059-08bf1aae4341(String)
-2026-07-29 03:41:09.787 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
-2026-07-29 03:41:09.788 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:41:09.788 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: b6835f4f-0aaa-4efd-85b0-b125f9de1e68(String), 7faef01d-b2e9-43f1-8059-08bf1aae4341(String), SENT(String), COMPLETED(String), null, null, 2026-07-29T03:41:09.787267300(LocalDateTime)
-2026-07-29 03:41:09.789 [http-nio-8080-exec-10] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-29 03:41:10.904 [http-nio-8080-exec-10] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==>  Preparing: INSERT INTO balance_ledger ( id, account_no, payment_id, direction, amount, balance_before, balance_after, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:41:10.905 [http-nio-8080-exec-10] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==> Parameters: 5fafa249-f663-4134-a28d-74d12bec0f80(String), ACC10001(String), 7faef01d-b2e9-43f1-8059-08bf1aae4341(String), DEBIT(String), 100(BigDecimal), 9556.80(BigDecimal), 9556.80(BigDecimal), 2026-07-29T03:41:10.904639800(LocalDateTime)
-2026-07-29 03:41:10.907 [http-nio-8080-exec-10] DEBUG o.t.s.m.BalanceLedgerMapper.insert - <==    Updates: 1
-2026-07-29 03:41:10.907 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
-2026-07-29 03:41:10.907 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC20002(String)
-2026-07-29 03:41:10.908 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
-2026-07-29 03:41:10.908 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.increaseBalance - ==>  Preparing: UPDATE accounts SET balance = balance + ?, updated_at = NOW() WHERE account_no = ?
-2026-07-29 03:41:10.908 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.increaseBalance - ==> Parameters: 100(BigDecimal), ACC20002(String)
-2026-07-29 03:41:10.910 [http-nio-8080-exec-10] DEBUG o.t.s.m.A.increaseBalance - <==    Updates: 1
-2026-07-29 03:41:10.910 [http-nio-8080-exec-10] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==>  Preparing: INSERT INTO balance_ledger ( id, account_no, payment_id, direction, amount, balance_before, balance_after, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-29 03:41:10.911 [http-nio-8080-exec-10] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==> Parameters: 183a913b-f0af-49e6-bef3-ea2e95000da8(String), ACC20002(String), 7faef01d-b2e9-43f1-8059-08bf1aae4341(String), CREDIT(String), 100(BigDecimal), 5343.20(BigDecimal), 5443.20(BigDecimal), 2026-07-29T03:41:10.910688500(LocalDateTime)
-2026-07-29 03:41:10.912 [http-nio-8080-exec-10] DEBUG o.t.s.m.BalanceLedgerMapper.insert - <==    Updates: 1
-2026-07-29 03:41:10.924 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-29 03:41:10.924 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-29 03:41:10.930 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 14
-2026-07-29 03:41:17.388 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-29 03:41:17.389 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-29 03:41:17.392 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 14
-2026-07-29 03:41:28.914 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.selectById - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE id = ?
-2026-07-29 03:41:28.914 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.selectById - ==> Parameters: 7faef01d-b2e9-43f1-8059-08bf1aae4341(String)
-2026-07-29 03:41:28.916 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.selectById - <==      Total: 1
-2026-07-29 03:41:30.148 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectById - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE id = ?
-2026-07-29 03:41:30.148 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectById - ==> Parameters: 7faef01d-b2e9-43f1-8059-08bf1aae4341(String)
-2026-07-29 03:41:30.150 [http-nio-8080-exec-3] DEBUG o.t.s.m.PaymentMapper.selectById - <==      Total: 1
-2026-07-29 03:41:30.150 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByPaymentId - ==>  Preparing: SELECT id, payment_id, from_status, to_status, note, error_code, created_at FROM payment_history WHERE payment_id = ? ORDER BY created_at ASC, id ASC
-2026-07-29 03:41:30.151 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByPaymentId - ==> Parameters: 7faef01d-b2e9-43f1-8059-08bf1aae4341(String)
-2026-07-29 03:41:30.152 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByPaymentId - <==      Total: 4
-2026-07-29 03:50:12.652 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-07-29 03:50:12.658 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-07-29 03:50:12.665 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-07-29 03:50:12.673 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-28 14:57:33.575 [main] ERROR o.s.boot.SpringApplication - Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'accountController' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\controller\AccountController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'paymentQueryService' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\service\PaymentQueryService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'paymentMapper' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\mapper\PaymentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/tco/safepay/config/MyBatisConfig.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1225)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1121)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:994)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$2(SpringBootContextLoader.java:155)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1465)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:600)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:155)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:114)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:247)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.lambda$loadContext$0(DefaultCacheAwareContextLoaderDelegate.java:167)
+	at org.springframework.test.context.cache.DefaultContextCache.put(DefaultContextCache.java:214)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:160)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:128)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:200)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:139)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:242)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$1(ClassBasedTestDescriptor.java:423)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:428)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$0(ClassBasedTestDescriptor.java:422)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:422)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$0(ClassBasedTestDescriptor.java:334)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:333)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$1(ClassBasedTestDescriptor.java:322)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$0(ClassBasedTestDescriptor.java:321)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:27)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:126)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:70)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$0(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:110)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:246)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:218)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:179)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:157)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:125)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58)
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:57)
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:56)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125)
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68)
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'paymentQueryService' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\service\PaymentQueryService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'paymentMapper' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\mapper\PaymentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/tco/safepay/config/MyBatisConfig.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 114 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'paymentMapper' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\mapper\PaymentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/tco/safepay/config/MyBatisConfig.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1435)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 128 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/tco/safepay/config/MyBatisConfig.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1360)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:229)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1526)
+	... 140 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:183)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:72)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:152)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 153 common frames omitted
+Caused by: java.io.IOException: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:695)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:572)
+	at org.mybatis.spring.SqlSessionFactoryBean.getObject(SqlSessionFactoryBean.java:712)
+	at org.tco.safepay.config.MyBatisConfig.sqlSessionFactory(MyBatisConfig.java:32)
+	at org.tco.safepay.config.MyBatisConfig$$SpringCGLIB$$0.CGLIB$sqlSessionFactory$1(<generated>)
+	at org.tco.safepay.config.MyBatisConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:398)
+	at org.tco.safepay.config.MyBatisConfig$$SpringCGLIB$$0.sqlSessionFactory(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:155)
+	... 156 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'org.tco.safepay.model.entity.BalanceLedger'.  Cause: java.lang.ClassNotFoundException: Cannot find class: org.tco.safepay.model.entity.BalanceLedger
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:125)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:98)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:693)
+	... 169 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'org.tco.safepay.model.entity.BalanceLedger'.  Cause: java.lang.ClassNotFoundException: Cannot find class: org.tco.safepay.model.entity.BalanceLedger
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:103)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:222)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:214)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:206)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:121)
+	... 171 common frames omitted
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'org.tco.safepay.model.entity.BalanceLedger'.  Cause: java.lang.ClassNotFoundException: Cannot find class: org.tco.safepay.model.entity.BalanceLedger
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:128)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:132)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:101)
+	... 175 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Cannot find class: org.tco.safepay.model.entity.BalanceLedger
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:226)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:103)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:322)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:124)
+	... 177 common frames omitted
+2026-07-28 14:57:33.624 [main] WARN  o.s.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.web.ServletTestExecutionListener] to prepare test instance [org.tco.safepay.SafepayApplicationTests@7b211077]
+java.lang.IllegalStateException: Failed to load ApplicationContext for [WebMergedContextConfiguration@64f32e9e testClass = org.tco.safepay.SafepayApplicationTests, locations = [], classes = [org.tco.safepay.SafepayApplication], contextInitializerClasses = [], activeProfiles = [], propertySourceDescriptors = [], propertySourceProperties = ["org.springframework.boot.test.context.SpringBootTestContextBootstrapper=true"], contextCustomizers = [org.springframework.boot.test.context.PropertyMappingContextCustomizer@0, org.springframework.boot.test.context.filter.ExcludeFilterContextCustomizer@2dbe250d, org.springframework.boot.test.json.DuplicateJsonObjectContextCustomizerFactory$DuplicateJsonObjectContextCustomizer@557a1e2d, org.springframework.boot.test.autoconfigure.OnFailureConditionReportContextCustomizerFactory$OnFailureConditionReportContextCustomizer@366ef90e, org.springframework.test.context.support.DynamicPropertiesContextCustomizer@0, org.springframework.boot.webmvc.test.autoconfigure.WebDriverContextCustomizer@4c51bb7, org.springframework.boot.web.server.context.SpringBootTestRandomPortContextCustomizer@5b080f3a, org.springframework.boot.test.context.SpringBootTestAnnotation@9ede5be], resourceBasePath = "src/main/webapp", contextLoader = org.springframework.boot.test.context.SpringBootContextLoader, parent = null]
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.lambda$loadContext$0(DefaultCacheAwareContextLoaderDelegate.java:195)
+	at org.springframework.test.context.cache.DefaultContextCache.put(DefaultContextCache.java:214)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:160)
+	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:128)
+	at org.springframework.test.context.web.ServletTestExecutionListener.setUpRequestContextIfNecessary(ServletTestExecutionListener.java:200)
+	at org.springframework.test.context.web.ServletTestExecutionListener.prepareTestInstance(ServletTestExecutionListener.java:139)
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:260)
+	at org.springframework.test.context.junit.jupiter.SpringExtension.postProcessTestInstance(SpringExtension.java:242)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$1(ClassBasedTestDescriptor.java:423)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.executeAndMaskThrowable(ClassBasedTestDescriptor.java:428)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$invokeTestInstancePostProcessors$0(ClassBasedTestDescriptor.java:422)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.accept(ForEachOps.java:183)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.stream.ReferencePipeline$2$1.accept(ReferencePipeline.java:179)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.ArrayList$ArrayListSpliterator.forEachRemaining(ArrayList.java:1625)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ForEachOps$ForEachOp.evaluateSequential(ForEachOps.java:150)
+	at java.base/java.util.stream.ForEachOps$ForEachOp$OfRef.evaluateSequential(ForEachOps.java:173)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.forEach(ReferencePipeline.java:596)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.invokeTestInstancePostProcessors(ClassBasedTestDescriptor.java:422)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$instantiateAndPostProcessTestInstance$0(ClassBasedTestDescriptor.java:334)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.instantiateAndPostProcessTestInstance(ClassBasedTestDescriptor.java:333)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$1(ClassBasedTestDescriptor.java:322)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.junit.jupiter.engine.descriptor.ClassBasedTestDescriptor.lambda$testInstancesProvider$0(ClassBasedTestDescriptor.java:321)
+	at org.junit.jupiter.engine.execution.TestInstancesProvider.getTestInstances(TestInstancesProvider.java:27)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.lambda$prepare$0(TestMethodTestDescriptor.java:127)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:126)
+	at org.junit.jupiter.engine.descriptor.TestMethodTestDescriptor.prepare(TestMethodTestDescriptor.java:70)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$prepare$0(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.prepare(NodeTestTask.java:144)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:110)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.invokeAll(SameThreadHierarchicalTestExecutorService.java:42)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$2(NodeTestTask.java:180)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$1(NodeTestTask.java:166)
+	at org.junit.platform.engine.support.hierarchical.Node.around(Node.java:138)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.lambda$executeRecursively$0(NodeTestTask.java:164)
+	at org.junit.platform.engine.support.hierarchical.ThrowableCollector.execute(ThrowableCollector.java:74)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.executeRecursively(NodeTestTask.java:163)
+	at org.junit.platform.engine.support.hierarchical.NodeTestTask.execute(NodeTestTask.java:116)
+	at org.junit.platform.engine.support.hierarchical.SameThreadHierarchicalTestExecutorService.submit(SameThreadHierarchicalTestExecutorService.java:36)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.execute(HierarchicalTestExecutor.java:52)
+	at org.junit.platform.engine.support.hierarchical.HierarchicalTestEngine.execute(HierarchicalTestEngine.java:58)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.executeEngine(EngineExecutionOrchestrator.java:246)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.failOrExecuteEngine(EngineExecutionOrchestrator.java:218)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:179)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:108)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.lambda$execute$0(EngineExecutionOrchestrator.java:66)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.withInterceptedStreams(EngineExecutionOrchestrator.java:157)
+	at org.junit.platform.launcher.core.EngineExecutionOrchestrator.execute(EngineExecutionOrchestrator.java:65)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:125)
+	at org.junit.platform.launcher.core.DefaultLauncher.execute(DefaultLauncher.java:114)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58)
+	at org.junit.platform.launcher.core.InterceptingLauncher.lambda$execute$2(InterceptingLauncher.java:57)
+	at org.junit.platform.launcher.core.ClasspathAlignmentCheckingLauncherInterceptor.intercept(ClasspathAlignmentCheckingLauncherInterceptor.java:25)
+	at org.junit.platform.launcher.core.InterceptingLauncher.execute(InterceptingLauncher.java:56)
+	at org.junit.platform.launcher.core.DelegatingLauncher.execute(DelegatingLauncher.java:58)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:125)
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.executeWithCancellationToken(LauncherAdapter.java:68)
+	at org.apache.maven.surefire.junitplatform.LauncherAdapter.execute(LauncherAdapter.java:54)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.execute(JUnitPlatformProvider.java:203)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invokeAllTests(JUnitPlatformProvider.java:168)
+	at org.apache.maven.surefire.junitplatform.JUnitPlatformProvider.invoke(JUnitPlatformProvider.java:136)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:385)
+	at org.apache.maven.surefire.booter.ForkedBooter.execute(ForkedBooter.java:162)
+	at org.apache.maven.surefire.booter.ForkedBooter.run(ForkedBooter.java:507)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:495)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'accountController' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\controller\AccountController.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'paymentQueryService' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\service\PaymentQueryService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'paymentMapper' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\mapper\PaymentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/tco/safepay/config/MyBatisConfig.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:196)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.instantiateSingleton(DefaultListableBeanFactory.java:1225)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingleton(DefaultListableBeanFactory.java:1191)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:1121)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:994)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:621)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:756)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:445)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:321)
+	at org.springframework.boot.test.context.SpringBootContextLoader.lambda$loadContext$2(SpringBootContextLoader.java:155)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:58)
+	at org.springframework.util.function.ThrowingSupplier.get(ThrowingSupplier.java:46)
+	at org.springframework.boot.SpringApplication.withHook(SpringApplication.java:1465)
+	at org.springframework.boot.test.context.SpringBootContextLoader$ContextLoaderHook.run(SpringBootContextLoader.java:600)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:155)
+	at org.springframework.boot.test.context.SpringBootContextLoader.loadContext(SpringBootContextLoader.java:114)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContextInternal(DefaultCacheAwareContextLoaderDelegate.java:247)
+	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.lambda$loadContext$0(DefaultCacheAwareContextLoaderDelegate.java:167)
+	... 88 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'paymentQueryService' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\service\PaymentQueryService.class]: Unsatisfied dependency expressed through constructor parameter 0: Error creating bean with name 'paymentMapper' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\mapper\PaymentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/tco/safepay/config/MyBatisConfig.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:804)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:240)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1380)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1219)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 114 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'paymentMapper' defined in file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\org\tco\safepay\mapper\PaymentMapper.class]: Unsatisfied dependency expressed through bean property 'sqlSessionFactory': Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/tco/safepay/config/MyBatisConfig.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1541)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1435)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:602)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveBean(DefaultListableBeanFactory.java:1232)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1711)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:912)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 128 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [org/tco/safepay/config/MyBatisConfig.class]: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:657)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:645)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1360)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1192)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:565)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:525)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:371)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:331)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:201)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:229)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1769)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1658)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireByType(AbstractAutowireCapableBeanFactory.java:1526)
+	... 140 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method 'sqlSessionFactory' threw exception with message: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:183)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiateWithFactoryMethod(SimpleInstantiationStrategy.java:72)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:152)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 153 common frames omitted
+Caused by: java.io.IOException: Failed to parse mapping resource: 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:695)
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:572)
+	at org.mybatis.spring.SqlSessionFactoryBean.getObject(SqlSessionFactoryBean.java:712)
+	at org.tco.safepay.config.MyBatisConfig.sqlSessionFactory(MyBatisConfig.java:32)
+	at org.tco.safepay.config.MyBatisConfig$$SpringCGLIB$$0.CGLIB$sqlSessionFactory$1(<generated>)
+	at org.tco.safepay.config.MyBatisConfig$$SpringCGLIB$$FastClass$$1.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:258)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:398)
+	at org.tco.safepay.config.MyBatisConfig$$SpringCGLIB$$0.sqlSessionFactory(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.lambda$instantiate$0(SimpleInstantiationStrategy.java:155)
+	... 156 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error parsing Mapper XML. The XML location is 'file [C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one\target\classes\mapper\BalanceLedgerMapper.xml]'. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'org.tco.safepay.model.entity.BalanceLedger'.  Cause: java.lang.ClassNotFoundException: Cannot find class: org.tco.safepay.model.entity.BalanceLedger
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:125)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:98)
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:693)
+	... 169 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'org.tco.safepay.model.entity.BalanceLedger'.  Cause: java.lang.ClassNotFoundException: Cannot find class: org.tco.safepay.model.entity.BalanceLedger
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:103)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:222)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElement(XMLMapperBuilder.java:214)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.resultMapElements(XMLMapperBuilder.java:206)
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:121)
+	... 171 common frames omitted
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'org.tco.safepay.model.entity.BalanceLedger'.  Cause: java.lang.ClassNotFoundException: Cannot find class: org.tco.safepay.model.entity.BalanceLedger
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:128)
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:132)
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:101)
+	... 175 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Cannot find class: org.tco.safepay.model.entity.BalanceLedger
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:226)
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:103)
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:322)
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:124)
+	... 177 common frames omitted
+2026-07-28 14:59:12.113 [main] INFO  o.t.safepay.SafepayApplicationTests - Starting SafepayApplicationTests using Java 17.0.14 with PID 5336 (started by Administrator in C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one)
+2026-07-28 14:59:12.118 [main] DEBUG o.t.safepay.SafepayApplicationTests - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-28 14:59:12.119 [main] INFO  o.t.safepay.SafepayApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2026-07-28 14:59:14.904 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'accountMapper' and 'org.tco.safepay.mapper.AccountMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 14:59:14.905 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentHistoryMapper' and 'org.tco.safepay.mapper.PaymentHistoryMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 14:59:14.907 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentMapper' and 'org.tco.safepay.mapper.PaymentMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 14:59:14.908 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[org.tco.safepay.mapper]' package. Please check your configuration.
+2026-07-28 14:59:17.200 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-28 14:59:17.307 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-07-28 14:59:19.052 [main] INFO  o.t.safepay.SafepayApplicationTests - Started SafepayApplicationTests in 8.379 seconds (process running for 12.127)
+2026-07-28 15:01:22.636 [main] INFO  o.t.safepay.SafepayApplicationTests - Starting SafepayApplicationTests using Java 17.0.14 with PID 6248 (started by Administrator in C:\Users\Administrator\Desktop\TheChosenOne\The-chosen-one)
+2026-07-28 15:01:22.641 [main] DEBUG o.t.safepay.SafepayApplicationTests - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-28 15:01:22.658 [main] INFO  o.t.safepay.SafepayApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2026-07-28 15:01:26.240 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'accountMapper' and 'org.tco.safepay.mapper.AccountMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 15:01:26.241 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentHistoryMapper' and 'org.tco.safepay.mapper.PaymentHistoryMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 15:01:26.242 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - Skipping MapperFactoryBean with name 'paymentMapper' and 'org.tco.safepay.mapper.PaymentMapper' mapperInterface. Bean already defined with the same name!
+2026-07-28 15:01:26.243 [main] WARN  o.m.s.mapper.ClassPathMapperScanner - No MyBatis mapper was found in '[org.tco.safepay.mapper]' package. Please check your configuration.
+2026-07-28 15:01:28.845 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-28 15:01:28.946 [main] INFO  o.s.v.b.OptionalValidatorFactoryBean - Failed to set up a Bean Validation provider: jakarta.validation.NoProviderFoundException: Unable to create a Configuration, because no Jakarta Validation provider could be found. Add a provider like Hibernate Validator (RI) to your classpath.
+2026-07-28 15:01:30.678 [main] INFO  o.t.safepay.SafepayApplicationTests - Started SafepayApplicationTests in 9.454 seconds (process running for 13.102)
