@@ -12,8 +12,19 @@
     <p>Simple UI for payments, history, and account balance.</p>
   </header>
 
-  <main class="grid">
-    <section class="card">
+  <main class="app-layout">
+    <aside class="sidebar card">
+      <nav class="nav-list" aria-label="Main sections">
+        <button type="button" class="nav-item active" data-page="create-payment">Create Payment</button>
+        <button type="button" class="nav-item" data-page="payment-by-id">Get Payment By ID</button>
+        <button type="button" class="nav-item" data-page="payment-list">List Payments</button>
+        <button type="button" class="nav-item" data-page="payment-history">Payment History</button>
+        <button type="button" class="nav-item" data-page="account-balance">Account Balance</button>
+      </nav>
+    </aside>
+
+    <section class="content">
+    <section class="card page active" id="page-create-payment" data-page="create-payment">
       <h2>Create Payment</h2>
       <form id="payment-form">
         <label>Idempotency Key</label>
@@ -53,7 +64,7 @@
       <pre id="create-result" class="result"></pre>
     </section>
 
-    <section class="card">
+    <section class="card page" id="page-payment-by-id" data-page="payment-by-id">
       <h2>Get Payment By ID</h2>
       <form id="payment-by-id-form">
         <label>Payment ID (UUID)</label>
@@ -65,7 +76,7 @@
       <pre id="payment-by-id-result" class="result"></pre>
     </section>
 
-    <section class="card">
+    <section class="card page" id="page-payment-list" data-page="payment-list">
       <h2>List Payments</h2>
       <form id="payment-list-form">
         <label>Status Filter (optional)</label>
@@ -102,7 +113,7 @@
       <p class="hint">Tip: click a payment row to load its ID and query history.</p>
     </section>
 
-    <section class="card">
+    <section class="card page" id="page-payment-history" data-page="payment-history">
       <h2>Payment History</h2>
       <form id="payment-history-form">
         <label>Payment ID (UUID)</label>
@@ -127,7 +138,7 @@
       </div>
     </section>
 
-    <section class="card">
+    <section class="card page" id="page-account-balance" data-page="account-balance">
       <h2>Account Balance</h2>
       <form id="balance-form">
         <label>Account No</label>
@@ -138,9 +149,9 @@
       </form>
       <pre id="balance-result" class="result"></pre>
     </section>
+    </section>
   </main>
 
   <script src="/app.js"></script>
 </body>
 </html>
-
