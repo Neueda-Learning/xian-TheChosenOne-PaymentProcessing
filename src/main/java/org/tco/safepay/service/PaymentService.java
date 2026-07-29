@@ -49,7 +49,7 @@ public class PaymentService {
         }
         return null;
     }
-
+    //unk
     public String normalizeCurrency(String currency) {
         if (currency == null || currency.isBlank()) {
             return "UNK";
@@ -58,6 +58,7 @@ public class PaymentService {
         return upper.length() <= 3 ? upper : upper.substring(0, 3);
     }
 
+    
     public record ValidationFailure(ErrorCode errorCode, String note) {
     }
 }
