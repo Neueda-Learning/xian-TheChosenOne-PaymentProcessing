@@ -8,6 +8,7 @@ import org.tco.safepay.model.entity.Account;
 import org.tco.safepay.service.PaymentQueryService;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Tag(name = "Account", description = "Account balance APIs")
 @RestController
@@ -18,6 +19,12 @@ public class AccountController {
 
     public AccountController(PaymentQueryService paymentQueryService) {
         this.paymentQueryService = paymentQueryService;
+    }
+
+    @Operation(summary = "List all accounts")
+    @GetMapping
+    public Result<List<Account>> getAccounts() {
+        return Result.success(paymentQueryService.getAllAccounts());
     }
 
     @Operation(summary = "Get account detail by account number")

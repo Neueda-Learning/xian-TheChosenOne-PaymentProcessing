@@ -33,15 +33,15 @@
         </button>
         <button type="button" class="nav-button" data-view-target="orders">
           <span class="nav-icon">≣</span>
-          <span>Orders</span>
+          <span>Payments</span>
         </button>
       </nav>
 
       <div class="sidebar-card">
         <span class="sidebar-label">Today at a Glance</span>
-        <strong id="sidebar-total-orders">0 orders</strong>
-        <p id="sidebar-status-text">No orders available yet</p>
-        <button type="button" class="ghost-button sidebar-action" data-view-target="orders">View all orders</button>
+        <strong id="sidebar-total-orders">0 payments</strong>
+        <p id="sidebar-status-text">No payments available yet</p>
+        <button type="button" class="ghost-button sidebar-action" data-view-target="orders">View all payments</button>
       </div>
     </aside>
 
@@ -53,7 +53,6 @@
           <p id="current-view-desc">Monitor payment activity and jump quickly to key workflows.</p>
         </div>
         <div class="topbar-actions">
-          <button type="button" class="secondary-button" data-view-target="orders">Order Hub</button>
           <button type="button" class="primary-button topbar-primary" data-view-target="create">Make Payment</button>
         </div>
       </header>
@@ -69,7 +68,7 @@
 
             <div class="hero-stats">
               <article class="stat-card">
-                <span>Total Orders</span>
+                <span>Total Payments</span>
                 <strong id="stat-total">0</strong>
               </article>
               <article class="stat-card">
@@ -81,7 +80,7 @@
                 <strong id="stat-completed">0</strong>
               </article>
               <article class="stat-card stat-card-danger">
-                <span>Needs Attention</span>
+                <span>Failed</span>
                 <strong id="stat-failed">0</strong>
               </article>
             </div>
@@ -108,8 +107,8 @@
                 </button>
                 <button type="button" class="quick-entry" data-view-target="orders">
                   <span class="quick-icon">≣</span>
-                  <strong>Orders</strong>
-                  <small>Review all payment orders</small>
+                  <strong>Payments</strong>
+                  <small>Review all payment records</small>
                 </button>
               </div>
             </section>
@@ -117,10 +116,10 @@
             <section class="card overview-section recent-orders-card">
               <div class="section-heading">
                 <div>
-                  <h2>Recent Orders</h2>
-                  <p>Shows your latest processed orders for quick drill-down.</p>
+                  <h2>Recent Payments</h2>
+                  <p>Shows your latest processed payments for quick drill-down.</p>
                 </div>
-                <button type="button" class="ghost-button" data-view-target="orders">Open order list</button>
+                <button type="button" class="ghost-button" data-view-target="orders">Open payment list</button>
               </div>
               <div id="overview-recent" class="recent-order-list"></div>
             </section>
@@ -217,8 +216,8 @@
           <section class="card standalone-card orders-workspace">
             <div class="section-heading">
               <div>
-                <h2>Order List</h2>
-                <p>Browse complete order records in a desktop-friendly table.</p>
+                  <h2>Payment List</h2>
+                  <p>Browse complete payment records in a desktop-friendly table.</p>
               </div>
               <form id="payment-list-form" class="toolbar-form">
                 <select id="userFilter" required>
@@ -235,8 +234,8 @@
                 <select id="orderSort">
                   <option value="createdAtDesc">Sort by Time (Newest)</option>
                   <option value="createdAtAsc">Sort by Time (Oldest)</option>
-                  <option value="idAsc">Sort by Order ID (A-Z)</option>
-                  <option value="idDesc">Sort by Order ID (Z-A)</option>
+                  <option value="idAsc">Sort by Payment ID (A-Z)</option>
+                  <option value="idDesc">Sort by Payment ID (Z-A)</option>
                   <option value="keyAsc">Sort by Key (A-Z)</option>
                   <option value="keyDesc">Sort by Key (Z-A)</option>
                 </select>
@@ -248,7 +247,7 @@
               <table id="payment-table">
                 <thead>
                 <tr>
-                  <th>Order No.</th>
+                  <th>Payment No.</th>
                   <th>Route</th>
                   <th>Reference</th>
                   <th>Amount</th>
@@ -267,8 +266,8 @@
           <section class="card standalone-card detail-workspace">
             <div class="section-heading">
               <div>
-                <h2>Order Details</h2>
-                <p>This page opens only when an order row is selected from the Order List.</p>
+                  <h2>Payment Details</h2>
+                  <p>This page opens only when a payment row is selected from the Payment List.</p>
               </div>
             </div>
             <div id="order-detail" class="detail-shell is-empty"></div>

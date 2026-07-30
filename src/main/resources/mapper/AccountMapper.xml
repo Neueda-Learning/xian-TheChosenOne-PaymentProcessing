@@ -28,6 +28,12 @@
         WHERE account_no = #{accountNo}
     </select>
 
+    <select id="selectAll" resultMap="AccountResultMap">
+        SELECT account_no, balance, updated_at
+        FROM accounts
+        ORDER BY account_no ASC
+    </select>
+
     <update id="updateBalance">
         UPDATE accounts
         SET balance = #{balance},

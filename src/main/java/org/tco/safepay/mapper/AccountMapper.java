@@ -4,10 +4,13 @@ import org.apache.ibatis.annotations.Param;
 import org.tco.safepay.model.entity.Account;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 public interface AccountMapper {
 
     int insert(Account account);
+
+    List<Account> selectAll();
 
     Account selectByAccountNo(@Param("accountNo") String accountNo);
 

@@ -84,6 +84,13 @@ public class PaymentQueryService {
     }
 
     /**
+     * List all accounts for UI selectors.
+     */
+    public List<Account> getAllAccounts() {
+        return accountMapper.selectAll();
+    }
+
+    /**
      * Get account detail by account number. Throws INVALID_ACCOUNT if not found.
      */
     public Account getAccountByAccountNo(String accountNo) {

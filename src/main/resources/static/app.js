@@ -2,7 +2,7 @@ const statusMeta = {
   CREATED: {
     label: "Created",
     tone: "info",
-    description: "The order has been submitted and is queued for validation."
+    description: "The payment has been submitted and is queued for validation."
   },
   VALIDATED: {
     label: "Validated",
@@ -12,7 +12,7 @@ const statusMeta = {
   SENT: {
     label: "Processing",
     tone: "progress",
-    description: "The order is being processed. Please check back shortly."
+    description: "The payment is being processed. Please check back shortly."
   },
   COMPLETED: {
     label: "Completed",
@@ -20,21 +20,21 @@ const statusMeta = {
     description: "Payment completed successfully and funds were posted."
   },
   FAILED: {
-    label: "Needs Attention",
+    label: "Failed",
     tone: "danger",
     description: "The payment failed. Review details and retry if needed."
   }
 };
 
 const errorTextMap = {
-  VALIDATION_FAILED: "Order data is incomplete or invalid. Please review and submit again.",
+  VALIDATION_FAILED: "Payment data is incomplete or invalid. Please review and submit again.",
   INVALID_AMOUNT: "Invalid amount. Use a value greater than 0 with up to two decimals.",
   INVALID_ACCOUNT: "Source or destination account was not found. Please verify both accounts.",
   INVALID_CURRENCY: "This currency is not supported. Please choose a valid currency.",
   INSUFFICIENT_FUNDS: "Insufficient balance in the source account.",
-  INVALID_STATUS_TRANSITION: "Order status update failed. Please retry in a moment.",
+  INVALID_STATUS_TRANSITION: "Payment status update failed. Please retry in a moment.",
   DUPLICATE_PAYMENT: "A payment with the same idempotency key already exists.",
-  PAYMENT_NOT_FOUND: "Order not found. Please select a valid order from the list.",
+  PAYMENT_NOT_FOUND: "Payment not found. Please select a valid payment from the list.",
   PROCESSING_ERROR: "A processing error occurred. Please try again later.",
   NETWORK_ERROR: "Network issue detected. Please refresh and try again."
 };
@@ -53,18 +53,18 @@ const viewMeta = {
   },
   create: {
     title: "Make Payment",
-    description: "Enter payment details and submit a new order in seconds."
+    description: "Enter payment details and submit a new payment in seconds."
   },
   balance: {
     title: "Check Balance",
     description: "Verify account funds before sending a payment."
   },
   orders: {
-    title: "Order List",
-    description: "Review payment status and open any order for full details."
+    title: "Payment List",
+    description: "Review payment status and open any payment for full details."
   },
   detail: {
-    title: "Order Details",
+    title: "Payment Details",
     description: "Inspect summary, failure reasons, timeline, and technical IDs."
   }
 };
@@ -107,7 +107,7 @@ function renderOverviewRecent(list) {
   }
 
   if (!list.length) {
-    container.innerHTML = '<div class="empty-state"><strong>No recent orders</strong><p>Recent payments will appear here once transactions are created.</p></div>';
+    container.innerHTML = '<div class="empty-state"><strong>No recent payments</strong><p>Recent payments will appear here once transactions are created.</p></div>';
     return;
   }
 
@@ -145,19 +145,19 @@ function renderOverviewHealth(list) {
 
   const tips = [
     {
-      title: "Order Health",
+      title: "Payment Health",
       tone: failed ? "danger" : "success",
-      text: failed ? "Failed orders detected. Open Order Details to review specific causes." : "No failed orders right now. Payment flow is healthy."
+      text: failed ? "Failed payments detected. Open Payment Details to review specific causes." : "No failed payments right now. Payment flow is healthy."
     },
     {
-      title: "Orders in Progress",
+      title: "Payments in Progress",
       tone: processing ? "progress" : "info",
-      text: processing ? processing + " orders are still processing. Keep monitoring from the Order List." : "No orders are currently processing. You can make payments."
+      text: processing ? processing + " payments are still processing. Keep monitoring from the Payment List." : "No payments are currently processing. You can make payments."
     },
     {
       title: "Completion",
       tone: completed ? "success" : "warning",
-      text: completed ? completed + " orders completed successfully." : "No successful orders yet. You can submit a test payment first."
+      text: completed ? completed + " payments completed successfully." : "No successful payments yet. You can submit a test payment first."
     }
   ];
 
@@ -180,19 +180,19 @@ function updateSidebarSummary(list) {
     return;
   }
 
-  totalEl.textContent = String(list.length) + " orders";
+  totalEl.textContent = String(list.length) + " payments";
 
   const failed = list.filter((item) => item.status === "FAILED").length;
   const processing = list.filter((item) => item.status !== "FAILED" && item.status !== "COMPLETED").length;
 
   if (!list.length) {
-    statusEl.textContent = "No orders available yet";
+    statusEl.textContent = "No payments available yet";
   } else if (failed) {
-    statusEl.textContent = failed + " order(s) need attention. Open details to investigate.";
+    statusEl.textContent = failed + " payment(s) failed. Open details to investigate.";
   } else if (processing) {
-    statusEl.textContent = processing + " order(s) are in progress.";
+    statusEl.textContent = processing + " payment(s) are in progress.";
   } else {
-    statusEl.textContent = "All orders look stable. Ready for new payments.";
+    statusEl.textContent = "All payments look stable. Ready for new payments.";
   }
 }
 
@@ -322,7 +322,7 @@ function getStatusMeta(status) {
   return statusMeta[String(status || "").toUpperCase()] || {
     label: status || "Unknown",
     tone: "info",
-    description: "Order status is recorded. Open details for more context."
+    description: "Payment status is recorded. Open details for more context."
   };
 }
 
@@ -363,7 +363,7 @@ function sortPayments(list, sortMode) {
   return sorted;
 }
 
-function renderUserFilter(list) {
+function renderUserFilter(accountIds) {
   const select = document.getElementById("userFilter");
   if (!select) {
     return;
@@ -371,8 +371,8 @@ function renderUserFilter(list) {
 
   const previous = select.value;
   const accounts = Array.from(new Set(
-    (Array.isArray(list) ? list : [])
-      .map((item) => item && item.sourceAccount ? String(item.sourceAccount).trim() : "")
+    (Array.isArray(accountIds) ? accountIds : [])
+      .map((value) => String(value || "").trim())
       .filter((value) => value)
   )).sort((a, b) => compareText(a, b));
 
@@ -387,6 +387,29 @@ function renderUserFilter(list) {
   }
 }
 
+function extractAccountIdsFromPayments(list) {
+  return Array.from(new Set(
+    (Array.isArray(list) ? list : [])
+      .map((item) => item && item.sourceAccount ? String(item.sourceAccount).trim() : "")
+      .filter((value) => value)
+  )).sort((a, b) => compareText(a, b));
+}
+
+async function loadAccountIdsFromDb(fallbackPayments) {
+  try {
+    const response = await api("/api/accounts");
+    if (response.code === 200 && Array.isArray(response.data)) {
+      return response.data
+        .map((account) => account && account.accountNo ? String(account.accountNo).trim() : "")
+        .filter((value) => value)
+        .sort((a, b) => compareText(a, b));
+    }
+  } catch (err) {
+    console.warn("Failed to load accounts from database. Fallback to payment records.", err);
+  }
+  return extractAccountIdsFromPayments(fallbackPayments);
+}
+
 function isUserSelectedForDetails() {
   const select = document.getElementById("userFilter");
   return !!(select && select.value);
@@ -398,7 +421,7 @@ function translateErrorCode(code, fallbackMessage) {
   }
 
   if (!fallbackMessage) {
-    return "This request has been recorded. Check Order Details for diagnosis and next steps.";
+    return "This request has been recorded. Check Payment Details for diagnosis and next steps.";
   }
 
   const message = String(fallbackMessage);
@@ -436,7 +459,7 @@ function translateHistoryNote(note, errorCode) {
     return "Destination account not found. Please verify the destination account number.";
   }
   if (lower.includes("insufficient balance")) {
-    return "Insufficient source balance. The order was stopped.";
+    return "Insufficient source balance. The payment was stopped.";
   }
   if (lower.includes("balance deduction failed")) {
     return "Balance changed during debit. The payment was not completed.";
@@ -516,8 +539,8 @@ function renderEmptyDetail() {
   detail.className = "detail-shell is-empty";
   detail.innerHTML = ''
     + '<div class="empty-state">'
-    + '  <strong>Select a user, then click an order row</strong>'
-    + '  <p>Order Details is available only from Order List row clicks after a user account is selected.</p>'
+    + '  <strong>Select a user, then click a payment row</strong>'
+    + '  <p>Payment Details is available only from Payment List row clicks after a user account is selected.</p>'
     + '</div>';
 }
 
@@ -526,7 +549,7 @@ function renderLoadingDetail() {
   detail.className = "detail-shell";
   detail.innerHTML = ''
     + '<div class="empty-state">'
-    + '  <strong>Loading order details</strong>'
+    + '  <strong>Loading payment details</strong>'
     + '  <p>Please wait while we gather timeline and summary information.</p>'
     + '</div>';
 }
@@ -536,7 +559,7 @@ function renderDetailError(message) {
   detail.className = "detail-shell";
   detail.innerHTML = ''
     + '<div class="empty-state">'
-    + '  <strong>Unable to display order details</strong>'
+    + '  <strong>Unable to display payment details</strong>'
     + '  <p>' + escapeHtml(message) + '</p>'
     + '</div>';
 }
@@ -573,7 +596,7 @@ function renderPayments(list) {
   const tbody = document.querySelector("#payment-table tbody");
 
   if (!list.length) {
-    tbody.innerHTML = '<tr class="empty-row"><td colspan="7">No orders found</td></tr>';
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="7">No payments found</td></tr>';
     return;
   }
 
@@ -608,7 +631,7 @@ function renderPayments(list) {
     tr.addEventListener("click", () => {
       if (!isUserSelectedForDetails()) {
         setActiveView("orders");
-        renderDetailError("Please select a user account in Order List before opening details.");
+        renderDetailError("Please select a user account in Payment List before opening details.");
         return;
       }
       loadPaymentDetail(payment.id, { openView: true });
@@ -619,7 +642,7 @@ function renderPayments(list) {
       event.stopPropagation();
       if (!isUserSelectedForDetails()) {
         setActiveView("orders");
-        renderDetailError("Please select a user account in Order List before opening details.");
+        renderDetailError("Please select a user account in Payment List before opening details.");
         return;
       }
       loadPaymentDetail(payment.id, { openView: true });
@@ -634,7 +657,7 @@ function renderTimeline(history) {
     return ''
       + '<div class="empty-state">'
       + '  <strong>No timeline records yet</strong>'
-      + '  <p>No additional status transitions are available for this order yet.</p>'
+      + '  <p>No additional status transitions are available for this payment yet.</p>'
       + '</div>';
   }
 
@@ -692,11 +715,11 @@ function renderDetail(payment, history, sourceAccountFromDb) {
     + '  <div class="detail-item"><span>Idempotency Key</span><strong>' + escapeHtml(payment.idempotencyKey || "Not provided") + '</strong></div>'
     + '  <div class="detail-item"><span>Error Code</span><strong>' + escapeHtml(payment.errorCode || "None") + '</strong></div>'
     + '</div>'
-    + '<div class="detail-note"><strong>Reference</strong><p>' + escapeHtml(payment.reference || "No reference was provided for this order.") + '</p></div>'
+    + '<div class="detail-note"><strong>Reference</strong><p>' + escapeHtml(payment.reference || "No reference was provided for this payment.") + '</p></div>'
     + errorBlock
     + '<div class="history-block"><h4>Processing Timeline</h4>' + renderTimeline(history) + '</div>'
     + '<details class="technical-panel">'
-    + '  <summary>View technical order ID</summary>'
+    + '  <summary>View technical payment ID</summary>'
     + '  <p>' + escapeHtml(payment.id || "—") + '</p>'
     + '</details>';
 }
@@ -709,7 +732,7 @@ async function loadPaymentDetail(paymentId, options = {}) {
   }
 
   if (!isUserSelectedForDetails()) {
-    renderDetailError("Please select a user account in Order List before opening details.");
+    renderDetailError("Please select a user account in Payment List before opening details.");
     return;
   }
 
@@ -749,7 +772,7 @@ async function loadPaymentDetail(paymentId, options = {}) {
     }
   } catch (err) {
     console.error(err);
-    renderDetailError("Failed to load order details. Please try again shortly.");
+    renderDetailError("Failed to load payment details. Please try again shortly.");
   }
 }
 
@@ -766,7 +789,8 @@ async function loadPayments(preferredSelectionId) {
   }
 
   paymentRawCache = Array.isArray(data.data) ? data.data : [];
-  renderUserFilter(paymentRawCache);
+  const accountIds = await loadAccountIdsFromDb(paymentRawCache);
+  renderUserFilter(accountIds);
   currentUserFilter = userFilterSelect && userFilterSelect.value ? userFilterSelect.value : "";
 
   const filteredByUser = currentUserFilter
@@ -828,7 +852,7 @@ function bindCreatePayment() {
             : getStatusMeta(payment.status).description,
           badgeHtml: renderStatusBadge(payment.status),
           items: [
-            { label: "Order No.", value: buildOrderNumber(payment) },
+            { label: "Payment No.", value: buildOrderNumber(payment) },
             { label: "Amount", value: formatAmount(payment.amount, payment.currency) },
             { label: "Source Account", value: payment.sourceAccount || "—" },
             { label: "Destination Account", value: payment.destinationAccount || "—" }
@@ -877,7 +901,7 @@ function bindPaymentList() {
       await loadPayments();
     } catch (err) {
       console.error(err);
-      renderDetailError("Failed to refresh the order list. Please try again.");
+      renderDetailError("Failed to refresh the payment list. Please try again.");
     }
   });
 
@@ -901,7 +925,7 @@ function bindPaymentList() {
         await loadPayments();
       } catch (err) {
         console.error(err);
-        renderDetailError("Failed to refresh the order list. Please try again.");
+        renderDetailError("Failed to refresh the payment list. Please try again.");
       }
     });
   }
