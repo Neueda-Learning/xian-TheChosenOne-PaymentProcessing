@@ -2,156 +2,283 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SafePay Console</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>SafePay Payment Platform</title>
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-  <header>
-    <h1>SafePay Frontend Console</h1>
-    <p>Simple UI for payments, history, and account balance.</p>
-  </header>
+<div class="page-shell">
+  <div class="app-layout">
+    <aside class="workspace-sidebar">
+      <div class="brand-block">
+        <div class="brand-logo">S</div>
+        <div class="brand-copy">
+          <strong>SafePay</strong>
+          <span>Payment Console</span>
+        </div>
+      </div>
 
-  <main class="app-layout">
-    <aside class="sidebar card">
-      <nav class="nav-list" aria-label="Main sections">
-        <button type="button" class="nav-item active" data-page="create-payment">Create Payment</button>
-        <button type="button" class="nav-item" data-page="payment-by-id">Get Payment By ID</button>
-        <button type="button" class="nav-item" data-page="payment-list">List Payments</button>
-        <button type="button" class="nav-item" data-page="payment-history">Payment History</button>
-        <button type="button" class="nav-item" data-page="account-balance">Account Balance</button>
+      <nav class="workspace-nav" aria-label="Page Navigation">
+        <button type="button" class="nav-button is-active" data-view-target="overview">
+          <span class="nav-icon">⌂</span>
+          <span>Overview</span>
+        </button>
+        <button type="button" class="nav-button" data-view-target="create">
+          <span class="nav-icon">￥</span>
+          <span>Create Payment</span>
+        </button>
+        <button type="button" class="nav-button" data-view-target="balance">
+          <span class="nav-icon">¤</span>
+          <span>Check Balance</span>
+        </button>
+        <button type="button" class="nav-button" data-view-target="orders">
+          <span class="nav-icon">≣</span>
+          <span>Orders</span>
+        </button>
       </nav>
+
+      <div class="sidebar-card">
+        <span class="sidebar-label">Today at a Glance</span>
+        <strong id="sidebar-total-orders">0 orders</strong>
+        <p id="sidebar-status-text">No orders available yet</p>
+        <button type="button" class="ghost-button sidebar-action" data-view-target="orders">View all orders</button>
+      </div>
     </aside>
 
-    <section class="content">
-    <section class="card page active" id="page-create-payment" data-page="create-payment">
-      <h2>Create Payment</h2>
-      <form id="payment-form">
-        <label>Idempotency Key</label>
-        <div class="row">
-          <input id="idempotencyKey" type="text" maxlength="64" required>
-          <button type="button" id="gen-key">Generate</button>
+    <div class="workspace-main">
+      <header class="topbar">
+        <div class="topbar-copy">
+          <span id="breadcrumb">SafePay / Overview</span>
+          <h1 id="current-view-title">Overview</h1>
+          <p id="current-view-desc">Monitor payment activity and jump quickly to key workflows.</p>
         </div>
-
-        <label>Source Account</label>
-        <input id="sourceAccount" type="text" placeholder="ACC10001" required>
-
-        <label>Destination Account</label>
-        <input id="destinationAccount" type="text" placeholder="ACC20002" required>
-
-        <label>Amount</label>
-        <input id="amount" type="number" min="1" step="0.01" required>
-
-        <label>Currency</label>
-        <select id="currency" required>
-          <option>USD</option>
-          <option>EUR</option>
-          <option>GBP</option>
-          <option>CNY</option>
-          <option>JPY</option>
-          <option>AUD</option>
-          <option>CAD</option>
-          <option>CHF</option>
-          <option>HKD</option>
-          <option>SGD</option>
-        </select>
-
-        <label>Reference (optional)</label>
-        <input id="reference" type="text" maxlength="255">
-
-        <button type="submit">Submit Payment</button>
-      </form>
-      <pre id="create-result" class="result"></pre>
-    </section>
-
-    <section class="card page" id="page-payment-by-id" data-page="payment-by-id">
-      <h2>Get Payment By ID</h2>
-      <form id="payment-by-id-form">
-        <label>Payment ID (UUID)</label>
-        <div class="row">
-          <input id="paymentIdInput" type="text" required>
-          <button type="submit">Query</button>
+        <div class="topbar-actions">
+          <button type="button" class="secondary-button" data-view-target="orders">Order Hub</button>
+          <button type="button" class="primary-button topbar-primary" data-view-target="create">Create Payment</button>
         </div>
-      </form>
-      <pre id="payment-by-id-result" class="result"></pre>
-    </section>
+      </header>
 
-    <section class="card page" id="page-payment-list" data-page="payment-list">
-      <h2>List Payments</h2>
-      <form id="payment-list-form">
-        <label>Status Filter (optional)</label>
-        <div class="row">
-          <select id="statusFilter">
-            <option value="">ALL</option>
-            <option value="CREATED">CREATED</option>
-            <option value="VALIDATED">VALIDATED</option>
-            <option value="SENT">SENT</option>
-            <option value="COMPLETED">COMPLETED</option>
-            <option value="FAILED">FAILED</option>
-          </select>
-          <button type="submit">Refresh</button>
-        </div>
-      </form>
-      <div class="table-wrap">
-        <table id="payment-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Idempotency Key</th>
-              <th>Source</th>
-              <th>Destination</th>
-              <th>Amount</th>
-              <th>Currency</th>
-              <th>Status</th>
-              <th>Error Code</th>
-              <th>Created At</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-      <p class="hint">Tip: click a payment row to load its ID and query history.</p>
-    </section>
+      <main class="workspace-shell">
+        <section id="view-overview" class="view-panel is-active">
+          <section class="hero">
+            <div class="hero-copy">
+              <span class="eyebrow">SafePay · Payment Platform</span>
+              <h1>Payment Platform</h1>
+              <p>Designed by TheChosenOne</p>
+            </div>
 
-    <section class="card page" id="page-payment-history" data-page="payment-history">
-      <h2>Payment History</h2>
-      <form id="payment-history-form">
-        <label>Payment ID (UUID)</label>
-        <div class="row">
-          <input id="historyPaymentId" type="text" required>
-          <button type="submit">Load History</button>
-        </div>
-      </form>
-      <div class="table-wrap">
-        <table id="history-table">
-          <thead>
-            <tr>
-              <th>From</th>
-              <th>To</th>
-              <th>Error Code</th>
-              <th>Note</th>
-              <th>Created At</th>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
-      </div>
-    </section>
+            <div class="hero-stats">
+              <article class="stat-card">
+                <span>Total Orders</span>
+                <strong id="stat-total">0</strong>
+              </article>
+              <article class="stat-card">
+                <span>In Progress</span>
+                <strong id="stat-processing">0</strong>
+              </article>
+              <article class="stat-card">
+                <span>Completed</span>
+                <strong id="stat-completed">0</strong>
+              </article>
+              <article class="stat-card stat-card-danger">
+                <span>Needs Attention</span>
+                <strong id="stat-failed">0</strong>
+              </article>
+            </div>
+          </section>
 
-    <section class="card page" id="page-account-balance" data-page="account-balance">
-      <h2>Account Balance</h2>
-      <form id="balance-form">
-        <label>Account No</label>
-        <div class="row">
-          <input id="accountNo" type="text" placeholder="ACC10001" required>
-          <button type="submit">Check</button>
-        </div>
-      </form>
-      <pre id="balance-result" class="result"></pre>
-    </section>
-    </section>
-  </main>
+          <div class="overview-board">
+            <section class="card overview-section quick-access-card">
+              <div class="section-heading">
+                <div>
+                  <h2>Quick Actions</h2>
+                  <p>Access frequent payment tasks directly from the home dashboard.</p>
+                </div>
+              </div>
+              <div class="quick-grid">
+                <button type="button" class="quick-entry" data-view-target="create">
+                  <span class="quick-icon">￥</span>
+                  <strong>Create Payment</strong>
+                  <small>Submit a new payment order</small>
+                </button>
+                <button type="button" class="quick-entry" data-view-target="balance">
+                  <span class="quick-icon">¤</span>
+                  <strong>Check Balance</strong>
+                  <small>Confirm funds before sending</small>
+                </button>
+                <button type="button" class="quick-entry" data-view-target="orders">
+                  <span class="quick-icon">≣</span>
+                  <strong>Orders</strong>
+                  <small>Review all payment orders</small>
+                </button>
+              </div>
+            </section>
 
-  <script src="/app.js"></script>
+            <section class="card overview-section recent-orders-card">
+              <div class="section-heading">
+                <div>
+                  <h2>Recent Orders</h2>
+                  <p>Shows your latest processed orders for quick drill-down.</p>
+                </div>
+                <button type="button" class="ghost-button" data-view-target="orders">Open order list</button>
+              </div>
+              <div id="overview-recent" class="recent-order-list"></div>
+            </section>
+          </div>
+        </section>
+
+        <section id="view-create" class="view-panel">
+          <section class="card standalone-card create-workspace">
+            <div class="section-heading">
+              <div>
+                <h2>Create Payment</h2>
+                <p>Fill in payment details and submit instantly.</p>
+              </div>
+              <span class="section-badge">Primary Workflow</span>
+            </div>
+            <form id="payment-form">
+              <div class="field-grid">
+                <div class="field-group field-wide">
+                  <label for="idempotencyKey">Idempotency Key</label>
+                  <div class="row compact-row">
+                    <input id="idempotencyKey" type="text" maxlength="64" required>
+                    <button type="button" id="gen-key" class="secondary-button">Generate Key</button>
+                  </div>
+                </div>
+
+                <div class="field-group">
+                  <label for="sourceAccount">Source Account</label>
+                  <input id="sourceAccount" type="text" placeholder="ACC10001" required>
+                </div>
+
+                <div class="field-group">
+                  <label for="destinationAccount">Destination Account</label>
+                  <input id="destinationAccount" type="text" placeholder="ACC20002" required>
+                </div>
+
+                <div class="field-group">
+                  <label for="amount">Amount</label>
+                  <input id="amount" type="number" min="0" step="0.01" placeholder="0.00" required>
+                </div>
+
+                <div class="field-group">
+                  <label for="currency">Currency</label>
+                  <select id="currency" required>
+                    <option>USD</option>
+                    <option>EUR</option>
+                    <option>GBP</option>
+                    <option>CNY</option>
+                  </select>
+                </div>
+
+                <div class="field-group field-wide">
+                  <label for="reference">Reference</label>
+                  <input id="reference" type="text" maxlength="255" placeholder="e.g. July service fee / Invoice 2026-001">
+                </div>
+              </div>
+              <button type="submit" class="primary-button">Submit Payment</button>
+            </form>
+
+            <div id="create-result" class="result-panel neutral">
+              <div class="result-empty">
+                <strong>Waiting for submission</strong>
+                <p>Payment response details will appear here.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section id="view-balance" class="view-panel">
+          <section class="card standalone-card compact-card balance-workspace">
+            <div class="section-heading">
+              <div>
+                <h2>Check Balance</h2>
+                <p>Quickly verify available funds before payment.</p>
+              </div>
+              <span class="section-badge section-badge-soft">Support Query</span>
+            </div>
+            <form id="balance-form">
+              <label for="accountNo">Account Number</label>
+              <div class="row compact-row balance-row">
+                <input id="accountNo" type="text" placeholder="ACC10001" required>
+                <button type="submit" class="secondary-button">Check</button>
+              </div>
+            </form>
+            <div id="balance-result" class="result-panel neutral">
+              <div class="result-empty">
+                <strong>No query yet</strong>
+                <p>Enter an account number to retrieve the balance.</p>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <section id="view-orders" class="view-panel">
+          <section class="card standalone-card orders-workspace">
+            <div class="section-heading">
+              <div>
+                <h2>Order List</h2>
+                <p>Browse complete order records in a desktop-friendly table.</p>
+              </div>
+              <form id="payment-list-form" class="toolbar-form">
+                <select id="userFilter" required>
+                  <option value="">Select user account (required for details)</option>
+                </select>
+                <select id="statusFilter">
+                  <option value="">All Statuses</option>
+                  <option value="CREATED">Created</option>
+                  <option value="VALIDATED">Validated</option>
+                  <option value="SENT">Processing</option>
+                  <option value="COMPLETED">Completed</option>
+                  <option value="FAILED">Failed</option>
+                </select>
+                <select id="orderSort">
+                  <option value="createdAtDesc">Sort by Time (Newest)</option>
+                  <option value="createdAtAsc">Sort by Time (Oldest)</option>
+                  <option value="idAsc">Sort by Order ID (A-Z)</option>
+                  <option value="idDesc">Sort by Order ID (Z-A)</option>
+                  <option value="keyAsc">Sort by Key (A-Z)</option>
+                  <option value="keyDesc">Sort by Key (Z-A)</option>
+                </select>
+                <button type="submit" class="secondary-button">Refresh</button>
+              </form>
+            </div>
+
+            <div class="table-wrap">
+              <table id="payment-table">
+                <thead>
+                <tr>
+                  <th>Order No.</th>
+                  <th>Route</th>
+                  <th>Reference</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                  <th>Created Time</th>
+                  <th>Action</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </section>
+        </section>
+
+        <section id="view-detail" class="view-panel">
+          <section class="card standalone-card detail-workspace">
+            <div class="section-heading">
+              <div>
+                <h2>Order Details</h2>
+                <p>This page opens only when an order row is selected from the Order List.</p>
+              </div>
+            </div>
+            <div id="order-detail" class="detail-shell is-empty"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+  </div>
+</div>
+
+<script src="/app.js"></script>
 </body>
 </html>
