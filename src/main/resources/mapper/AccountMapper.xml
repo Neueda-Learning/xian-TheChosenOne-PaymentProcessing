@@ -12,13 +12,13 @@
 
     <insert id="insert" parameterType="org.tco.safepay.model.entity.Account">
         INSERT INTO accounts (
-            account_no,
-            balance,
-            updated_at
+        account_no,
+        balance,
+        updated_at
         ) VALUES (
-            #{accountNo},
-            #{balance},
-            #{updatedAt}
+        #{accountNo},
+        #{balance},
+        #{updatedAt}
         )
     </insert>
 
@@ -31,7 +31,7 @@
     <update id="updateBalance">
         UPDATE accounts
         SET balance = #{balance},
-            updated_at = NOW()
+        updated_at = NOW()
         WHERE account_no = #{accountNo}
     </update>
 
@@ -39,15 +39,15 @@
     <update id="deductBalance">
         UPDATE accounts
         SET balance = balance - #{amount},
-            updated_at = NOW()
+        updated_at = NOW()
         WHERE account_no = #{accountNo}
-          AND balance >= #{amount}
+        AND balance >= #{amount}
     </update>
 
     <update id="increaseBalance">
         UPDATE accounts
         SET balance = balance + #{amount},
-            updated_at = NOW()
+        updated_at = NOW()
         WHERE account_no = #{accountNo}
     </update>
 

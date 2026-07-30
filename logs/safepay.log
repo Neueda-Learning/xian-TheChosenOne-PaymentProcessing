@@ -1,273 +1,249 @@
-2026-07-30 01:29:10.429 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 8836 (C:\Users\Administrator\Desktop\2\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\Desktop\2\xian-TheChosenOne-PaymentProcessing)
-2026-07-30 01:29:10.441 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
-2026-07-30 01:29:10.442 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
-2026-07-30 01:29:11.887 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
-2026-07-30 01:29:13.553 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-07-30 01:29:13.575 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-07-30 01:29:13.581 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-07-30 01:29:13.581 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-07-30 01:29:13.698 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2901 ms
-2026-07-30 01:29:14.889 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-2026-07-30 01:29:15.613 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2026-07-30 01:29:15.648 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-07-30 01:29:15.661 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 6.856 seconds (process running for 7.995)
-2026-07-30 01:29:20.717 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-30 01:29:20.717 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-07-30 01:29:20.721 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
-2026-07-30 01:29:21.062 [http-nio-8080-exec-4] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-07-30 01:29:21.993 [http-nio-8080-exec-4] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3efa2341
-2026-07-30 01:29:21.995 [http-nio-8080-exec-4] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-07-30 01:29:22.011 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:29:22.059 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:29:22.143 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 17
-2026-07-30 01:29:34.822 [http-nio-8080-exec-9] DEBUG o.t.s.m.PaymentMapper.selectById - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE id = ?
-2026-07-30 01:29:34.826 [http-nio-8080-exec-9] DEBUG o.t.s.m.PaymentMapper.selectById - ==> Parameters: 8e29ad3f-f76a-44b7-9e4f-be5726810770(String)
-2026-07-30 01:29:34.831 [http-nio-8080-exec-9] DEBUG o.t.s.m.PaymentMapper.selectById - <==      Total: 1
-2026-07-30 01:29:53.547 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:29:53.548 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:29:53.563 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 17
-2026-07-30 01:30:58.846 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-07-30 01:30:58.849 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-07-30 01:30:58.855 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-07-30 01:30:58.864 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-07-30 01:34:48.351 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 9024 (C:\Users\Administrator\Desktop\2\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\Desktop\2\xian-TheChosenOne-PaymentProcessing)
-2026-07-30 01:34:48.355 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
-2026-07-30 01:34:48.356 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
-2026-07-30 01:34:49.014 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
-2026-07-30 01:34:50.324 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-07-30 01:34:50.341 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-07-30 01:34:50.344 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-07-30 01:34:50.344 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-07-30 01:34:50.417 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1976 ms
-2026-07-30 01:34:51.044 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-2026-07-30 01:34:51.556 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2026-07-30 01:34:51.581 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-07-30 01:34:51.592 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 4.372 seconds (process running for 6.496)
-2026-07-30 01:35:27.747 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-30 01:35:27.747 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-07-30 01:35:27.750 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
-2026-07-30 01:35:27.838 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-07-30 01:35:28.286 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1f3ca8ab
-2026-07-30 01:35:28.289 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-07-30 01:35:28.300 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:35:28.331 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:35:28.368 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 17
-2026-07-30 01:35:42.282 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:35:42.282 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:35:42.287 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 17
-2026-07-30 01:37:08.274 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-07-30 01:37:08.279 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-07-30 01:37:08.288 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-07-30 01:37:08.302 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-07-30 01:41:04.846 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 1156 (C:\Users\Administrator\Desktop\2\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\Desktop\2\xian-TheChosenOne-PaymentProcessing)
-2026-07-30 01:41:04.850 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
-2026-07-30 01:41:04.851 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
-2026-07-30 01:41:05.505 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
-2026-07-30 01:41:06.693 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-07-30 01:41:06.712 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-07-30 01:41:06.714 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-07-30 01:41:06.715 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-07-30 01:41:06.795 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1869 ms
-2026-07-30 01:41:07.511 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-2026-07-30 01:41:08.048 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2026-07-30 01:41:08.072 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-07-30 01:41:08.081 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 4.25 seconds (process running for 5.38)
-2026-07-30 01:41:15.315 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-30 01:41:15.316 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-07-30 01:41:15.318 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2026-07-30 01:41:15.447 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-07-30 01:41:15.908 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@ae5384b
-2026-07-30 01:41:15.910 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-07-30 01:41:15.921 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:41:15.954 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:41:15.992 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 17
-2026-07-30 01:41:21.732 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-30 01:41:21.735 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785375680213(String)
-2026-07-30 01:41:21.739 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
-2026-07-30 01:41:21.741 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:41:21.745 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 1bda3c66-08c7-47d8-b359-0f269cfa74e9(String), order-1785375680213(String), ACC10001(String), ACC20002(String), 19(BigDecimal), USD(String), invoice3(String), CREATED(String), null, null, 2026-07-30T01:41:21.739776100(LocalDateTime), 2026-07-30T01:41:21.739776100(LocalDateTime)
-2026-07-30 01:41:21.760 [http-nio-8080-exec-3] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
-2026-07-30 01:41:21.780 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:41:21.781 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:41:21.788 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 17
-2026-07-30 01:41:24.533 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:41:24.534 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:41:24.541 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 17
-2026-07-30 01:45:12.653 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-07-30 01:45:12.658 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-07-30 01:45:12.666 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-07-30 01:45:12.689 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-07-30 01:45:31.652 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 10100 (C:\Users\Administrator\Desktop\2\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\Desktop\2\xian-TheChosenOne-PaymentProcessing)
-2026-07-30 01:45:31.656 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
-2026-07-30 01:45:31.657 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
-2026-07-30 01:45:32.297 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
-2026-07-30 01:45:33.416 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-07-30 01:45:33.433 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-07-30 01:45:33.435 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-07-30 01:45:33.436 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-07-30 01:45:33.501 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1774 ms
-2026-07-30 01:45:34.080 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-2026-07-30 01:45:34.540 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2026-07-30 01:45:34.562 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-07-30 01:45:34.570 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 3.869 seconds (process running for 4.998)
-2026-07-30 01:45:49.817 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-30 01:45:49.818 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-07-30 01:45:49.819 [http-nio-8080-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2026-07-30 01:45:49.950 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-07-30 01:45:50.476 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@47c3a3f2
-2026-07-30 01:45:50.479 [http-nio-8080-exec-1] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-07-30 01:45:50.493 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:45:50.525 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:45:50.562 [http-nio-8080-exec-1] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 17
-2026-07-30 01:45:56.560 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-30 01:45:56.562 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785375955021(String)
-2026-07-30 01:45:56.565 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
-2026-07-30 01:45:56.566 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:45:56.571 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 6c51cd78-a43f-420a-9ed0-53eb7119260e(String), order-1785375955021(String), ACC10001(String), ACC20002(String), 19(BigDecimal), USD(String), invoice3(String), CREATED(String), null, null, 2026-07-30T01:45:56.565538(LocalDateTime), 2026-07-30T01:45:56.565538(LocalDateTime)
-2026-07-30 01:45:56.576 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
-2026-07-30 01:45:56.589 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:45:56.589 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:45:56.595 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 17
-2026-07-30 01:48:20.190 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-07-30 01:48:20.199 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-07-30 01:48:20.206 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-07-30 01:48:20.231 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
-2026-07-30 01:50:29.785 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 6524 (C:\Users\Administrator\Desktop\2\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\Desktop\2\xian-TheChosenOne-PaymentProcessing)
-2026-07-30 01:50:29.789 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
-2026-07-30 01:50:29.790 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
-2026-07-30 01:50:30.450 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
-2026-07-30 01:50:31.547 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
-2026-07-30 01:50:31.565 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
-2026-07-30 01:50:31.568 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
-2026-07-30 01:50:31.568 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
-2026-07-30 01:50:31.634 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 1771 ms
-2026-07-30 01:50:32.194 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
-2026-07-30 01:50:32.653 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
-2026-07-30 01:50:32.677 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
-2026-07-30 01:50:32.684 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 3.876 seconds (process running for 5.05)
-2026-07-30 01:50:48.801 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-07-30 01:50:48.802 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-07-30 01:50:48.803 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2026-07-30 01:50:48.933 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-07-30 01:50:49.364 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2fe26e9f
-2026-07-30 01:50:49.367 [http-nio-8080-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-07-30 01:50:49.376 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:50:49.410 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:50:49.448 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 17
-2026-07-30 01:50:57.201 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-30 01:50:57.204 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785376255584(String)
-2026-07-30 01:50:57.207 [http-nio-8080-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
-2026-07-30 01:50:57.209 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:50:57.213 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 78b0cf59-ac98-431c-b82d-04594387221d(String), order-1785376255584(String), ACC10001(String), ACC20002(String), 19(BigDecimal), USD(String), invoice3(String), CREATED(String), null, null, 2026-07-30T01:50:57.207613700(LocalDateTime), 2026-07-30T01:50:57.207613700(LocalDateTime)
-2026-07-30 01:50:57.218 [http-nio-8080-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
-2026-07-30 01:50:57.219 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:50:57.220 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 827615f4-a1f8-4a04-bfd6-28f01383a5e9(String), 78b0cf59-ac98-431c-b82d-04594387221d(String), null, CREATED(String), null, null, 2026-07-30T01:50:57.218942500(LocalDateTime)
-2026-07-30 01:50:57.228 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-30 01:50:58.334 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
-2026-07-30 01:50:58.334 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC10001(String)
-2026-07-30 01:50:58.337 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
-2026-07-30 01:50:59.444 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
-2026-07-30 01:50:59.444 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC20002(String)
-2026-07-30 01:50:59.446 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
-2026-07-30 01:51:01.283 [http-nio-8080-exec-5] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-30 01:51:01.284 [http-nio-8080-exec-5] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785376255584(String)
-2026-07-30 01:51:01.286 [http-nio-8080-exec-5] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
-2026-07-30 01:51:01.286 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:51:01.288 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 92cd0d12-3c9c-4068-8187-5507694b86d7(String), order-1785376255584(String), ACC10001(String), ACC20002(String), 19(BigDecimal), USD(String), invoice3(String), CREATED(String), null, null, 2026-07-30T01:51:01.286897200(LocalDateTime), 2026-07-30T01:51:01.286897200(LocalDateTime)
-2026-07-30 01:51:01.667 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
-2026-07-30 01:51:01.668 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: VALIDATED(String), null, null, 78b0cf59-ac98-431c-b82d-04594387221d(String)
-2026-07-30 01:51:01.674 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
-2026-07-30 01:51:01.675 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:51:01.676 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 3c48403d-621e-4442-bc28-65afd5fc24d7(String), 78b0cf59-ac98-431c-b82d-04594387221d(String), CREATED(String), VALIDATED(String), null, null, 2026-07-30T01:51:01.675255500(LocalDateTime)
-2026-07-30 01:51:01.678 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-30 01:51:02.784 [http-nio-8080-exec-4] DEBUG o.t.s.m.AccountMapper.deductBalance - ==>  Preparing: UPDATE accounts SET balance = balance - ?, updated_at = NOW() WHERE account_no = ? AND balance >= ?
-2026-07-30 01:51:02.784 [http-nio-8080-exec-4] DEBUG o.t.s.m.AccountMapper.deductBalance - ==> Parameters: 19(BigDecimal), ACC10001(String), 19(BigDecimal)
-2026-07-30 01:51:02.790 [http-nio-8080-exec-4] DEBUG o.t.s.m.AccountMapper.deductBalance - <==    Updates: 1
-2026-07-30 01:51:02.790 [http-nio-8080-exec-4] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==>  Preparing: INSERT INTO balance_ledger ( id, account_no, payment_id, direction, amount, balance_before, balance_after, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:51:02.792 [http-nio-8080-exec-4] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==> Parameters: 32961047-addd-49b0-b46d-64adab2f9f9a(String), ACC10001(String), 78b0cf59-ac98-431c-b82d-04594387221d(String), RESERVE(String), 19(BigDecimal), 8556.80(BigDecimal), 8537.80(BigDecimal), 2026-07-30T01:51:02.790333300(LocalDateTime)
-2026-07-30 01:51:02.799 [http-nio-8080-exec-4] DEBUG o.t.s.m.BalanceLedgerMapper.insert - <==    Updates: 1
-2026-07-30 01:51:02.800 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
-2026-07-30 01:51:02.800 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: SENT(String), null, null, 78b0cf59-ac98-431c-b82d-04594387221d(String)
-2026-07-30 01:51:02.802 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
-2026-07-30 01:51:02.802 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:51:02.803 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 41996aaf-bdc1-4c1f-8156-5234de5cb6ce(String), 78b0cf59-ac98-431c-b82d-04594387221d(String), VALIDATED(String), SENT(String), null, null, 2026-07-30T01:51:02.802805200(LocalDateTime)
-2026-07-30 01:51:02.805 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-30 01:51:03.913 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
-2026-07-30 01:51:03.914 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: COMPLETED(String), null, null, 78b0cf59-ac98-431c-b82d-04594387221d(String)
-2026-07-30 01:51:03.915 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
-2026-07-30 01:51:03.916 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:51:03.917 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: f494d08e-0a5d-4856-8b95-54374b42e1b4(String), 78b0cf59-ac98-431c-b82d-04594387221d(String), SENT(String), COMPLETED(String), null, null, 2026-07-30T01:51:03.915953200(LocalDateTime)
-2026-07-30 01:51:03.918 [http-nio-8080-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-30 01:51:05.020 [http-nio-8080-exec-4] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==>  Preparing: INSERT INTO balance_ledger ( id, account_no, payment_id, direction, amount, balance_before, balance_after, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:51:05.021 [http-nio-8080-exec-4] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==> Parameters: 1caa5279-e485-44b9-8181-8bd4c0dcaa6f(String), ACC10001(String), 78b0cf59-ac98-431c-b82d-04594387221d(String), DEBIT(String), 19(BigDecimal), 8537.80(BigDecimal), 8537.80(BigDecimal), 2026-07-30T01:51:05.020194200(LocalDateTime)
-2026-07-30 01:51:05.024 [http-nio-8080-exec-4] DEBUG o.t.s.m.BalanceLedgerMapper.insert - <==    Updates: 1
-2026-07-30 01:51:05.024 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
-2026-07-30 01:51:05.024 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC20002(String)
-2026-07-30 01:51:05.026 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
-2026-07-30 01:51:05.026 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.increaseBalance - ==>  Preparing: UPDATE accounts SET balance = balance + ?, updated_at = NOW() WHERE account_no = ?
-2026-07-30 01:51:05.027 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.increaseBalance - ==> Parameters: 19(BigDecimal), ACC20002(String)
-2026-07-30 01:51:05.030 [http-nio-8080-exec-4] DEBUG o.t.s.m.A.increaseBalance - <==    Updates: 1
-2026-07-30 01:51:05.030 [http-nio-8080-exec-4] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==>  Preparing: INSERT INTO balance_ledger ( id, account_no, payment_id, direction, amount, balance_before, balance_after, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:51:05.032 [http-nio-8080-exec-4] DEBUG o.t.s.m.BalanceLedgerMapper.insert - ==> Parameters: 2fbd626f-5ec1-4420-8071-b62c20b4fe77(String), ACC20002(String), 78b0cf59-ac98-431c-b82d-04594387221d(String), CREDIT(String), 19(BigDecimal), 6443.20(BigDecimal), 6462.20(BigDecimal), 2026-07-30T01:51:05.030408300(LocalDateTime)
-2026-07-30 01:51:05.033 [http-nio-8080-exec-4] DEBUG o.t.s.m.BalanceLedgerMapper.insert - <==    Updates: 1
-2026-07-30 01:51:05.054 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:51:05.054 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:51:05.061 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 18
-2026-07-30 01:51:05.862 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:51:05.864 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:51:05.874 [http-nio-8080-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 18
-2026-07-30 01:51:06.095 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-30 01:51:06.097 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785376255584(String)
-2026-07-30 01:51:06.099 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 1
-2026-07-30 01:51:06.108 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:51:06.109 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:51:06.115 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 18
-2026-07-30 01:53:08.556 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-30 01:53:08.557 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785376255584(String)
-2026-07-30 01:53:08.558 [http-nio-8080-exec-3] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 1
-2026-07-30 01:53:08.566 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:53:08.566 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:53:08.571 [http-nio-8080-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 18
-2026-07-30 01:55:06.199 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:55:06.200 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:55:06.205 [http-nio-8080-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 18
-2026-07-30 01:55:56.469 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
-2026-07-30 01:55:56.469 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785376506190(String)
-2026-07-30 01:55:56.470 [http-nio-8080-exec-8] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
-2026-07-30 01:55:56.471 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:55:56.471 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 0d3130b4-d338-4a9e-b2a5-bd031754aa39(String), order-1785376506190(String), ACC10001(String), ACC20002(String), 0(BigDecimal), USD(String), invoice3(String), CREATED(String), null, null, 2026-07-30T01:55:56.471311(LocalDateTime), 2026-07-30T01:55:56.471311(LocalDateTime)
-2026-07-30 01:55:56.473 [http-nio-8080-exec-8] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
-2026-07-30 01:55:56.475 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:55:56.475 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: ea696736-d904-4554-922d-f928e9f448bf(String), 0d3130b4-d338-4a9e-b2a5-bd031754aa39(String), null, CREATED(String), null, null, 2026-07-30T01:55:56.474317600(LocalDateTime)
-2026-07-30 01:55:56.477 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-30 01:55:57.586 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
-2026-07-30 01:55:57.587 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_AMOUNT(String), Amount is zero, negative, or invalid(String), 0d3130b4-d338-4a9e-b2a5-bd031754aa39(String)
-2026-07-30 01:55:57.588 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
-2026-07-30 01:55:57.588 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
-2026-07-30 01:55:57.590 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: e7874407-f26f-4b18-bb09-f76735451629(String), 0d3130b4-d338-4a9e-b2a5-bd031754aa39(String), CREATED(String), FAILED(String), Amount is zero or negative(String), INVALID_AMOUNT(String), 2026-07-30T01:55:57.588835700(LocalDateTime)
-2026-07-30 01:55:57.592 [http-nio-8080-exec-8] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
-2026-07-30 01:55:57.603 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
-2026-07-30 01:55:57.604 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
-2026-07-30 01:55:57.613 [http-nio-8080-exec-9] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 19
-2026-07-30 01:58:01.792 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentMapper.selectById - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE id = ?
-2026-07-30 01:58:01.792 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentMapper.selectById - ==> Parameters: 0d3130b4-d338-4a9e-b2a5-bd031754aa39(String)
-2026-07-30 01:58:01.795 [http-nio-8080-exec-7] DEBUG o.t.s.m.PaymentMapper.selectById - <==      Total: 1
-2026-07-30 02:01:21.092 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentMapper.selectById - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE id = ?
-2026-07-30 02:01:21.094 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentMapper.selectById - ==> Parameters: 0d3130b4-d338-4a9e-b2a5-bd031754aa39(String)
-2026-07-30 02:01:21.096 [http-nio-8080-exec-2] DEBUG o.t.s.m.PaymentMapper.selectById - <==      Total: 1
-2026-07-30 02:01:21.096 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByPaymentId - ==>  Preparing: SELECT id, payment_id, from_status, to_status, note, error_code, created_at FROM payment_history WHERE payment_id = ? ORDER BY created_at ASC
-2026-07-30 02:01:21.097 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByPaymentId - ==> Parameters: 0d3130b4-d338-4a9e-b2a5-bd031754aa39(String)
-2026-07-30 02:01:21.098 [http-nio-8080-exec-2] DEBUG o.t.s.m.P.selectByPaymentId - <==      Total: 2
-2026-07-30 02:01:57.004 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentMapper.selectById - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE id = ?
-2026-07-30 02:01:57.004 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentMapper.selectById - ==> Parameters: 78b0cf59-ac98-431c-b82d-04594387221d(String)
-2026-07-30 02:01:57.006 [http-nio-8080-exec-5] DEBUG o.t.s.m.PaymentMapper.selectById - <==      Total: 1
-2026-07-30 02:01:57.007 [http-nio-8080-exec-5] DEBUG o.t.s.m.P.selectByPaymentId - ==>  Preparing: SELECT id, payment_id, from_status, to_status, note, error_code, created_at FROM payment_history WHERE payment_id = ? ORDER BY created_at ASC
-2026-07-30 02:01:57.007 [http-nio-8080-exec-5] DEBUG o.t.s.m.P.selectByPaymentId - ==> Parameters: 78b0cf59-ac98-431c-b82d-04594387221d(String)
-2026-07-30 02:01:57.009 [http-nio-8080-exec-5] DEBUG o.t.s.m.P.selectByPaymentId - <==      Total: 4
-2026-07-30 02:02:34.634 [http-nio-8080-exec-8] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
-2026-07-30 02:02:34.636 [http-nio-8080-exec-8] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC10001(String)
-2026-07-30 02:02:34.637 [http-nio-8080-exec-8] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 1
-2026-07-30 02:22:22.998 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
-2026-07-30 02:22:23.004 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
-2026-07-30 02:22:23.009 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-07-30 02:22:23.013 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-07-30 01:21:04.761 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 1780 (C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-30 01:21:04.774 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-30 01:21:04.777 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-30 01:21:06.092 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-30 01:21:09.917 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-30 01:21:09.964 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:21:09.970 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-30 01:21:09.973 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-30 01:21:10.155 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 5086 ms
+2026-07-30 01:21:12.161 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-30 01:21:12.929 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:21:12.981 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8080 (http) with context path '/'
+2026-07-30 01:21:12.994 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 10.659 seconds (process running for 12.106)
+2026-07-30 01:25:19.702 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 1520 (C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-30 01:25:19.707 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-30 01:25:19.708 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-30 01:25:21.562 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-30 01:25:25.019 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-30 01:25:25.043 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:25:25.047 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-30 01:25:25.047 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-30 01:25:25.164 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 5026 ms
+2026-07-30 01:25:26.087 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-30 01:25:28.027 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:25:28.045 [main] WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-07-30 01:25:28.081 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-30 01:25:28.105 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-07-30 01:25:38.537 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-30 01:25:38.541 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-30 01:25:38.552 [http-nio-8080-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 10 ms
+2026-07-30 01:25:45.234 [http-nio-8080-exec-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-30 01:25:46.117 [http-nio-8080-exec-6] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7edd3790
+2026-07-30 01:25:46.119 [http-nio-8080-exec-6] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-30 01:25:46.137 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
+2026-07-30 01:25:46.208 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
+2026-07-30 01:25:46.305 [http-nio-8080-exec-6] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 0
+2026-07-30 01:25:56.012 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 8696 (C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-30 01:25:56.018 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-30 01:25:56.019 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-30 01:25:57.078 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-30 01:25:59.166 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-30 01:25:59.194 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:25:59.198 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-30 01:25:59.199 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-30 01:25:59.323 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 3062 ms
+2026-07-30 01:26:00.383 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-30 01:26:01.189 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:26:01.199 [main] WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-07-30 01:26:01.226 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-30 01:26:01.251 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-07-30 01:26:19.547 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 5776 (C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-30 01:26:19.551 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-30 01:26:19.553 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-30 01:26:20.629 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-30 01:26:22.351 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-30 01:26:22.376 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:26:22.380 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-30 01:26:22.381 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-30 01:26:22.501 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2707 ms
+2026-07-30 01:26:23.402 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-30 01:26:24.088 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:26:24.099 [main] WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-07-30 01:26:24.130 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-30 01:26:24.158 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-07-30 01:26:41.900 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 3588 (C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-30 01:26:41.908 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-30 01:26:41.909 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-30 01:26:42.850 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-30 01:26:44.568 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-07-30 01:26:44.593 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2026-07-30 01:26:44.597 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-30 01:26:44.597 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-30 01:26:44.702 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2638 ms
+2026-07-30 01:26:45.560 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-30 01:26:46.215 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2026-07-30 01:26:46.247 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-07-30 01:26:46.261 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 5.652 seconds (process running for 6.587)
+2026-07-30 01:27:13.085 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-30 01:27:13.086 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-30 01:27:13.089 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 3 ms
+2026-07-30 01:27:13.685 [http-nio-8081-exec-4] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-30 01:27:14.787 [http-nio-8081-exec-4] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@69786890
+2026-07-30 01:27:14.792 [http-nio-8081-exec-4] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-30 01:27:14.809 [http-nio-8081-exec-4] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
+2026-07-30 01:27:14.878 [http-nio-8081-exec-4] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
+2026-07-30 01:27:14.956 [http-nio-8081-exec-4] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 0
+2026-07-30 01:27:24.190 [http-nio-8081-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
+2026-07-30 01:27:24.191 [http-nio-8081-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
+2026-07-30 01:27:24.193 [http-nio-8081-exec-7] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 0
+2026-07-30 01:42:14.391 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-30 01:42:14.399 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-07-30 01:42:14.405 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-07-30 01:42:14.423 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-07-30 01:44:54.841 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 7896 (C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-30 01:44:54.845 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-30 01:44:54.847 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-30 01:44:55.989 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-30 01:44:57.692 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-30 01:44:57.715 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:44:57.718 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-30 01:44:57.718 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-30 01:44:57.816 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2609 ms
+2026-07-30 01:44:58.626 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-30 01:44:59.267 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:44:59.278 [main] WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-07-30 01:44:59.306 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-30 01:44:59.329 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-07-30 01:51:18.419 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 7368 (C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-30 01:51:18.422 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-30 01:51:18.424 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-30 01:51:19.434 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-30 01:51:21.287 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8080 (http)
+2026-07-30 01:51:21.310 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:51:21.314 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-30 01:51:21.315 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-30 01:51:21.430 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2907 ms
+2026-07-30 01:51:22.478 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-30 01:51:23.115 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-07-30 01:51:23.125 [main] WARN  o.s.b.w.s.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'
+2026-07-30 01:51:23.158 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2026-07-30 01:51:23.186 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2026-07-30 01:51:38.051 [main] INFO  org.tco.safepay.SafepayApplication - Starting SafepayApplication using Java 22.0.2 with PID 8228 (C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing\target\classes started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-30 01:51:38.055 [main] DEBUG org.tco.safepay.SafepayApplication - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-30 01:51:38.056 [main] INFO  org.tco.safepay.SafepayApplication - No active profile set, falling back to 1 default profile: "default"
+2026-07-30 01:51:38.980 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-30 01:51:40.804 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat initialized with port 8081 (http)
+2026-07-30 01:51:40.838 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8081"]
+2026-07-30 01:51:40.842 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-07-30 01:51:40.843 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/11.0.22]
+2026-07-30 01:51:40.972 [main] INFO  o.s.b.w.c.s.WebApplicationContextInitializer - Root WebApplicationContext: initialization completed in 2792 ms
+2026-07-30 01:51:41.956 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-30 01:51:42.679 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8081"]
+2026-07-30 01:51:42.713 [main] INFO  o.s.boot.tomcat.TomcatWebServer - Tomcat started on port 8081 (http) with context path '/'
+2026-07-30 01:51:42.727 [main] INFO  org.tco.safepay.SafepayApplication - Started SafepayApplication in 5.977 seconds (process running for 6.888)
+2026-07-30 01:51:57.450 [http-nio-8081-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-07-30 01:51:57.451 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-07-30 01:51:57.453 [http-nio-8081-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2026-07-30 01:51:57.724 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-07-30 01:51:58.465 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@63e3c594
+2026-07-30 01:51:58.469 [http-nio-8081-exec-2] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-07-30 01:51:58.487 [http-nio-8081-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
+2026-07-30 01:51:58.535 [http-nio-8081-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
+2026-07-30 01:51:58.589 [http-nio-8081-exec-2] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 0
+2026-07-30 01:52:06.182 [http-nio-8081-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments WHERE idempotency_key = ?
+2026-07-30 01:52:06.185 [http-nio-8081-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - ==> Parameters: order-1785376324339(String)
+2026-07-30 01:52:06.193 [http-nio-8081-exec-4] DEBUG o.t.s.m.P.selectByIdempotencyKey - <==      Total: 0
+2026-07-30 01:52:06.197 [http-nio-8081-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - ==>  Preparing: INSERT INTO payments ( id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at ) VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+2026-07-30 01:52:06.205 [http-nio-8081-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - ==> Parameters: 975226c6-233b-4fec-b560-302b4bd700be(String), order-1785376324339(String), ACC1111(String), ACC1112(String), 1000(BigDecimal), USD(String), null, CREATED(String), null, null, 2026-07-30T01:52:06.194527600(LocalDateTime), 2026-07-30T01:52:06.194527600(LocalDateTime)
+2026-07-30 01:52:06.219 [http-nio-8081-exec-4] DEBUG o.t.s.mapper.PaymentMapper.insert - <==    Updates: 1
+2026-07-30 01:52:06.219 [http-nio-8081-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-30 01:52:06.221 [http-nio-8081-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 72b90cd1-45e6-4b52-954a-fb1fe459abfc(String), 975226c6-233b-4fec-b560-302b4bd700be(String), null, CREATED(String), null, null, 2026-07-30T01:52:06.219675300(LocalDateTime)
+2026-07-30 01:52:06.229 [http-nio-8081-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-30 01:52:07.336 [http-nio-8081-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - ==>  Preparing: SELECT account_no, balance, updated_at FROM accounts WHERE account_no = ?
+2026-07-30 01:52:07.337 [http-nio-8081-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - ==> Parameters: ACC1111(String)
+2026-07-30 01:52:07.344 [http-nio-8081-exec-4] DEBUG o.t.s.m.A.selectByAccountNo - <==      Total: 0
+2026-07-30 01:52:07.345 [http-nio-8081-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==>  Preparing: UPDATE payments SET status = ?, error_code = ?, error_message = ?, updated_at = NOW() WHERE id = ?
+2026-07-30 01:52:07.346 [http-nio-8081-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - ==> Parameters: FAILED(String), INVALID_ACCOUNT(String), Account number is invalid or doesn't exist(String), 975226c6-233b-4fec-b560-302b4bd700be(String)
+2026-07-30 01:52:07.353 [http-nio-8081-exec-4] DEBUG o.t.s.m.PaymentMapper.updateStatus - <==    Updates: 1
+2026-07-30 01:52:07.353 [http-nio-8081-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==>  Preparing: INSERT INTO payment_history ( id, payment_id, from_status, to_status, note, error_code, created_at ) VALUES ( ?, ?, ?, ?, ?, ?, ? )
+2026-07-30 01:52:07.354 [http-nio-8081-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - ==> Parameters: 002d0fa3-c8b0-40c7-a92e-219d6efac76f(String), 975226c6-233b-4fec-b560-302b4bd700be(String), CREATED(String), FAILED(String), Source account not found(String), INVALID_ACCOUNT(String), 2026-07-30T01:52:07.353896600(LocalDateTime)
+2026-07-30 01:52:07.357 [http-nio-8081-exec-4] DEBUG o.t.s.m.PaymentHistoryMapper.insert - <==    Updates: 1
+2026-07-30 01:52:07.381 [http-nio-8081-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==>  Preparing: SELECT id, idempotency_key, source_account, destination_account, amount, currency, reference, status, error_code, error_message, created_at, updated_at FROM payments ORDER BY created_at DESC
+2026-07-30 01:52:07.382 [http-nio-8081-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - ==> Parameters: 
+2026-07-30 01:52:07.394 [http-nio-8081-exec-5] DEBUG o.t.s.mapper.PaymentMapper.selectAll - <==      Total: 1
+2026-07-30 02:11:01.221 [SpringApplicationShutdownHook] INFO  o.s.boot.tomcat.GracefulShutdown - Commencing graceful shutdown. Waiting for active requests to complete
+2026-07-30 02:11:01.226 [tomcat-shutdown] INFO  o.s.boot.tomcat.GracefulShutdown - Graceful shutdown complete
+2026-07-30 02:11:01.231 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-07-30 02:11:01.242 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-07-30 02:47:23.238 [main] INFO  o.t.safepay.SafepayApplicationTests - Starting SafepayApplicationTests using Java 17.0.14 with PID 5832 (started by Administrator in C:\Users\Administrator\IdeaProjects\xian-TheChosenOne-PaymentProcessing)
+2026-07-30 02:47:23.242 [main] DEBUG o.t.safepay.SafepayApplicationTests - Running with Spring Boot v4.1.0, Spring v7.0.8
+2026-07-30 02:47:23.243 [main] INFO  o.t.safepay.SafepayApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2026-07-30 02:47:24.327 [background-preinit] INFO  o.h.validator.internal.util.Version - HV000001: Hibernate Validator 9.1.0.Final
+2026-07-30 02:47:26.785 [main] INFO  o.s.b.w.a.WelcomePageHandlerMapping - Adding welcome page: class path resource [static/index.html]
+2026-07-30 02:47:27.716 [main] INFO  o.t.safepay.SafepayApplicationTests - Started SafepayApplicationTests in 5.543 seconds (process running for 7.988)

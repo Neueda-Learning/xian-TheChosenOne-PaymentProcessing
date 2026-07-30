@@ -16,21 +16,21 @@
 
     <insert id="insert" parameterType="org.tco.safepay.model.entity.PaymentHistory">
         INSERT INTO payment_history (
-            id,
-            payment_id,
-            from_status,
-            to_status,
-            note,
-            error_code,
-            created_at
+        id,
+        payment_id,
+        from_status,
+        to_status,
+        note,
+        error_code,
+        created_at
         ) VALUES (
-            #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
-            #{paymentId,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
-            #{fromStatus},
-            #{toStatus},
-            #{note},
-            #{errorCode},
-            #{createdAt}
+        #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
+        #{paymentId,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
+        #{fromStatus},
+        #{toStatus},
+        #{note},
+        #{errorCode},
+        #{createdAt}
         )
     </insert>
 

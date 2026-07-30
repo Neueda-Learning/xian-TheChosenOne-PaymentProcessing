@@ -17,23 +17,23 @@
 
     <insert id="insert" parameterType="org.tco.safepay.model.entity.BalanceLedger">
         INSERT INTO balance_ledger (
-            id,
-            account_no,
-            payment_id,
-            direction,
-            amount,
-            balance_before,
-            balance_after,
-            created_at
+        id,
+        account_no,
+        payment_id,
+        direction,
+        amount,
+        balance_before,
+        balance_after,
+        created_at
         ) VALUES (
-            #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
-            #{accountNo},
-            #{paymentId,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
-            #{direction},
-            #{amount},
-            #{balanceBefore},
-            #{balanceAfter},
-            #{createdAt}
+        #{id,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
+        #{accountNo},
+        #{paymentId,jdbcType=VARCHAR,typeHandler=org.tco.safepay.config.typehandler.UuidTypeHandler},
+        #{direction},
+        #{amount},
+        #{balanceBefore},
+        #{balanceAfter},
+        #{createdAt}
         )
     </insert>
 
