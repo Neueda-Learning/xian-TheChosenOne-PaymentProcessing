@@ -8,6 +8,7 @@ import org.tco.safepay.common.Result;
 import org.tco.safepay.model.dto.PaymentRequest;
 import org.tco.safepay.model.entity.Payment;
 import org.tco.safepay.model.entity.PaymentHistory;
+import org.tco.safepay.model.enums.PaymentStatus;
 import org.tco.safepay.service.PaymentQueryService;
 import org.tco.safepay.service.PaymentService;
 
@@ -32,7 +33,7 @@ public class PaymentController {
     @PostMapping
     public Result<Payment> createPayment(@RequestBody PaymentRequest request) {
         Payment payment = paymentService.createPayment(request);
-        if ("FAILED".equals(payment.getStatus()) && payment.getErrorCode() != null) {
+        if (PaymentStatus.FAILED.name().equals(payment.getStatus()) && payment.getErrorCode() != null) {
             try {
                 ErrorCode errorCode = ErrorCode.valueOf(payment.getErrorCode());
                 return Result.error(errorCode.getHttpStatus(), errorCode.getDefaultMessage());
@@ -55,6 +56,12 @@ public class PaymentController {
     public Result<List<Payment>> getPayments(
             @RequestParam(required = false) String status) {
         return Result.success(paymentQueryService.getPayments(status));
+    }
+
+    @Operation(summary = "List payments, optionally filtered by account")
+    @GetMapping("/by-account")
+    public Result<List<Payment>> getPaymentsByAccount(@RequestParam String accountNo) {
+        return Result.success(paymentQueryService.getPaymentsByAccount(accountNo));
     }
 
     @Operation(summary = "Get payment status history")

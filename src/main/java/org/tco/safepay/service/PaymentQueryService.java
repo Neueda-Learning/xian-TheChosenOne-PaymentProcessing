@@ -59,6 +59,20 @@ public class PaymentQueryService {
     }
 
     /**
+     * List payments by account number (as source or destination).
+     */
+    public List<Payment> getPaymentsByAccount(String accountNo) {
+        if (accountNo == null || accountNo.isBlank()) {
+            throw new BusinessException(ErrorCode.INVALID_ACCOUNT);
+        }
+        Account account = accountMapper.selectByAccountNo(accountNo);
+        if (account == null) {
+            throw new BusinessException(ErrorCode.INVALID_ACCOUNT);
+        }
+        return paymentMapper.selectByAccountNo(accountNo);
+    }
+
+    /**
      * Get account balance by account number. Throws INVALID_ACCOUNT if not found.
      */
     public BigDecimal getAccountBalance(String accountNo) {

@@ -21,5 +21,7 @@ public interface PaymentMapper {
 
     List<Payment> selectByStatus(@Param("status") String status);
 
+    List<Payment> selectByAccountNo(@Param("accountNo") String accountNo);
+
     List<Payment> selectAll();
 }

@@ -12,6 +12,8 @@ import org.tco.safepay.model.entity.Account;
 import org.tco.safepay.model.entity.BalanceLedger;
 import org.tco.safepay.model.entity.Payment;
 import org.tco.safepay.model.entity.PaymentHistory;
+import org.tco.safepay.model.enums.BalanceDirection;
+import org.tco.safepay.model.enums.PaymentStatus;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -84,11 +86,11 @@ public class PaymentService {
         payment.setAmount(request.getAmount() == null ? BigDecimal.ZERO : request.getAmount());
         payment.setCurrency(normalizeCurrency(request.getCurrency()));
         payment.setReference(request.getReference());
-        payment.setStatus("CREATED");
+        payment.setStatus(PaymentStatus.CREATED.name());
         payment.setCreatedAt(now);
         payment.setUpdatedAt(now);
         paymentMapper.insert(payment);
-        writeHistory(payment.getId(), null, "CREATED", null, null);
+        writeHistory(payment.getId(), null, PaymentStatus.CREATED.name(), null, null);
         pauseForHistoryVisibility();
 
         // ── Steps 4-5: all validations (field + account + balance) ───────────
@@ -99,49 +101,46 @@ public class PaymentService {
         pauseForHistoryVisibility();
 
         // ── Step 6: CREATED → VALIDATED ──────────────────────────────────────
-        updateStatus(payment, "VALIDATED", null, null);
-        writeHistory(payment.getId(), "CREATED", "VALIDATED", null, null);
+        updateStatus(payment, PaymentStatus.VALIDATED.name(), null, null);
+        writeHistory(payment.getId(), PaymentStatus.CREATED.name(), PaymentStatus.VALIDATED.name(), null, null);
         pauseForHistoryVisibility();
 
         // ── Step 7: reserve balance ───────────────────────────────────────────
-        // Deduct source account balance; the WHERE balance >= amount guard
-        // protects against concurrent over-spend.
         BigDecimal sourceBefore = sourceAccount.getBalance();
         BigDecimal sourceAfterReserve = sourceBefore.subtract(request.getAmount());
         int affected = accountMapper.deductBalance(request.getSourceAccount(), request.getAmount());
         if (affected == 0) {
-            // Concurrent insufficient funds – mark FAILED and commit
-            updateStatus(payment, "FAILED",
+            updateStatus(payment, PaymentStatus.FAILED.name(),
                     ErrorCode.INSUFFICIENT_FUNDS.name(),
                     ErrorCode.INSUFFICIENT_FUNDS.getDefaultMessage());
-            writeHistory(payment.getId(), "VALIDATED", "FAILED",
+            writeHistory(payment.getId(), PaymentStatus.VALIDATED.name(), PaymentStatus.FAILED.name(),
                     "Balance deduction failed (concurrent)", ErrorCode.INSUFFICIENT_FUNDS.name());
             return payment;
         }
-        writeLedger(payment.getId(), request.getSourceAccount(), "RESERVE",
+        writeLedger(payment.getId(), request.getSourceAccount(), BalanceDirection.RESERVE.name(),
                 request.getAmount(), sourceBefore, sourceAfterReserve);
 
         // ── Step 8: VALIDATED → SENT ──────────────────────────────────────────
-        updateStatus(payment, "SENT", null, null);
-        writeHistory(payment.getId(), "VALIDATED", "SENT", null, null);
+        updateStatus(payment, PaymentStatus.SENT.name(), null, null);
+        writeHistory(payment.getId(), PaymentStatus.VALIDATED.name(), PaymentStatus.SENT.name(), null, null);
         pauseForHistoryVisibility();
 
         // ── Step 9: SENT → COMPLETED ──────────────────────────────────────────
-        updateStatus(payment, "COMPLETED", null, null);
-        writeHistory(payment.getId(), "SENT", "COMPLETED", null, null);
+        updateStatus(payment, PaymentStatus.COMPLETED.name(), null, null);
+        writeHistory(payment.getId(), PaymentStatus.SENT.name(), PaymentStatus.COMPLETED.name(), null, null);
         pauseForHistoryVisibility();
 
         // DEBIT ledger entry for source (balance already deducted at RESERVE)
-        writeLedger(payment.getId(), request.getSourceAccount(), "DEBIT",
+        writeLedger(payment.getId(), request.getSourceAccount(), BalanceDirection.DEBIT.name(),
                 request.getAmount(), sourceAfterReserve, sourceAfterReserve);
 
         // CREDIT ledger entry for destination + increase destination balance
         Account destFresh = accountMapper.selectByAccountNo(request.getDestinationAccount());
         if (destFresh == null) {
-            updateStatus(payment, "FAILED",
+            updateStatus(payment, PaymentStatus.FAILED.name(),
                     ErrorCode.INVALID_ACCOUNT.name(),
                     ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
-            writeHistory(payment.getId(), "COMPLETED", "FAILED",
+            writeHistory(payment.getId(), PaymentStatus.COMPLETED.name(), PaymentStatus.FAILED.name(),
                     "Destination account missing before credit", ErrorCode.INVALID_ACCOUNT.name());
             return payment;
         }
@@ -149,14 +148,14 @@ public class PaymentService {
         BigDecimal destAfter = destBefore.add(request.getAmount());
         int creditAffected = accountMapper.increaseBalance(request.getDestinationAccount(), request.getAmount());
         if (creditAffected == 0) {
-            updateStatus(payment, "FAILED",
+            updateStatus(payment, PaymentStatus.FAILED.name(),
                     ErrorCode.INVALID_ACCOUNT.name(),
                     ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
-            writeHistory(payment.getId(), "COMPLETED", "FAILED",
+            writeHistory(payment.getId(), PaymentStatus.COMPLETED.name(), PaymentStatus.FAILED.name(),
                     "Credit update affected 0 rows", ErrorCode.INVALID_ACCOUNT.name());
             return payment;
         }
-        writeLedger(payment.getId(), request.getDestinationAccount(), "CREDIT",
+        writeLedger(payment.getId(), request.getDestinationAccount(), BalanceDirection.CREDIT.name(),
                 request.getAmount(), destBefore, destAfter);
 
         return payment;
@@ -173,10 +172,10 @@ public class PaymentService {
                                       ValidationFailure fieldValidation) {
         // 1. 字段校验失败
         if (fieldValidation != null) {
-            updateStatus(payment, "FAILED",
+            updateStatus(payment, PaymentStatus.FAILED.name(),
                     fieldValidation.errorCode().name(),
                     fieldValidation.errorCode().getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
+            writeHistory(payment.getId(), PaymentStatus.CREATED.name(), PaymentStatus.FAILED.name(),
                     fieldValidation.note(), fieldValidation.errorCode().name());
             return null;
         }
@@ -184,10 +183,10 @@ public class PaymentService {
         // 2. 源账户存在性
         Account sourceAccount = accountMapper.selectByAccountNo(request.getSourceAccount());
         if (sourceAccount == null) {
-            updateStatus(payment, "FAILED",
+            updateStatus(payment, PaymentStatus.FAILED.name(),
                     ErrorCode.INVALID_ACCOUNT.name(),
                     ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
+            writeHistory(payment.getId(), PaymentStatus.CREATED.name(), PaymentStatus.FAILED.name(),
                     "Source account not found", ErrorCode.INVALID_ACCOUNT.name());
             return null;
         }
@@ -195,10 +194,10 @@ public class PaymentService {
 
         // 3. 目标账户存在性
         if (accountMapper.selectByAccountNo(request.getDestinationAccount()) == null) {
-            updateStatus(payment, "FAILED",
+            updateStatus(payment, PaymentStatus.FAILED.name(),
                     ErrorCode.INVALID_ACCOUNT.name(),
                     ErrorCode.INVALID_ACCOUNT.getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
+            writeHistory(payment.getId(), PaymentStatus.CREATED.name(), PaymentStatus.FAILED.name(),
                     "Destination account not found", ErrorCode.INVALID_ACCOUNT.name());
             return null;
         }
@@ -206,10 +205,10 @@ public class PaymentService {
 
         // 4. 余额充足性
         if (sourceAccount.getBalance().compareTo(request.getAmount()) < 0) {
-            updateStatus(payment, "FAILED",
+            updateStatus(payment, PaymentStatus.FAILED.name(),
                     ErrorCode.INSUFFICIENT_FUNDS.name(),
                     ErrorCode.INSUFFICIENT_FUNDS.getDefaultMessage());
-            writeHistory(payment.getId(), "CREATED", "FAILED",
+            writeHistory(payment.getId(), PaymentStatus.CREATED.name(), PaymentStatus.FAILED.name(),
                     "Insufficient balance at pre-check", ErrorCode.INSUFFICIENT_FUNDS.name());
             return null;
         }
