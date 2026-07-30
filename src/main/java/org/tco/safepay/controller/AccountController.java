@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 import org.tco.safepay.common.Result;
+import org.tco.safepay.model.entity.Account;
 import org.tco.safepay.service.PaymentQueryService;
 
 import java.math.BigDecimal;
@@ -17,6 +18,12 @@ public class AccountController {
 
     public AccountController(PaymentQueryService paymentQueryService) {
         this.paymentQueryService = paymentQueryService;
+    }
+
+    @Operation(summary = "Get account detail by account number")
+    @GetMapping("/{accountNo}")
+    public Result<Account> getAccount(@PathVariable String accountNo) {
+        return Result.success(paymentQueryService.getAccountByAccountNo(accountNo));
     }
 
     @Operation(summary = "Get account balance by account number")

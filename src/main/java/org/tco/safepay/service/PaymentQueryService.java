@@ -82,4 +82,18 @@ public class PaymentQueryService {
         }
         return account.getBalance();
     }
+
+    /**
+     * Get account detail by account number. Throws INVALID_ACCOUNT if not found.
+     */
+    public Account getAccountByAccountNo(String accountNo) {
+        if (accountNo == null || accountNo.isBlank()) {
+            throw new BusinessException(ErrorCode.INVALID_ACCOUNT);
+        }
+        Account account = accountMapper.selectByAccountNo(accountNo);
+        if (account == null) {
+            throw new BusinessException(ErrorCode.INVALID_ACCOUNT);
+        }
+        return account;
+    }
 }

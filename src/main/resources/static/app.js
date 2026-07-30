@@ -52,7 +52,7 @@ const viewMeta = {
     description: "Track platform activity and navigate quickly to key workflows."
   },
   create: {
-    title: "Create Payment",
+    title: "Make Payment",
     description: "Enter payment details and submit a new order in seconds."
   },
   balance: {
@@ -152,7 +152,7 @@ function renderOverviewHealth(list) {
     {
       title: "Orders in Progress",
       tone: processing ? "progress" : "info",
-      text: processing ? processing + " orders are still processing. Keep monitoring from the Order List." : "No orders are currently processing. You can create new payments."
+      text: processing ? processing + " orders are still processing. Keep monitoring from the Order List." : "No orders are currently processing. You can make payments."
     },
     {
       title: "Completion",
@@ -653,9 +653,12 @@ function renderTimeline(history) {
   }).join("") + '</ol>';
 }
 
-function renderDetail(payment, history) {
+function renderDetail(payment, history, sourceAccountFromDb) {
   const detail = document.getElementById("order-detail");
   const status = getStatusMeta(payment.status);
+  const sourceUserId = sourceAccountFromDb && sourceAccountFromDb.accountNo
+    ? sourceAccountFromDb.accountNo
+    : payment.sourceAccount;
   const issueText = payment.status === "FAILED"
     ? translateErrorCode(payment.errorCode, payment.errorMessage)
     : status.description;
@@ -682,7 +685,7 @@ function renderDetail(payment, history) {
     + '  </div>'
     + '</div>'
     + '<div class="detail-grid">'
-    + '  <div class="detail-item"><span>Source Account</span><strong>' + escapeHtml(payment.sourceAccount || "—") + '</strong></div>'
+    + '  <div class="detail-item"><span>User ID</span><strong>' + escapeHtml(sourceUserId || "—") + '</strong></div>'
     + '  <div class="detail-item"><span>Destination Account</span><strong>' + escapeHtml(payment.destinationAccount || "—") + '</strong></div>'
     + '  <div class="detail-item"><span>Created At</span><strong>' + escapeHtml(formatDate(payment.createdAt)) + '</strong></div>'
     + '  <div class="detail-item"><span>Updated At</span><strong>' + escapeHtml(formatDate(payment.updatedAt)) + '</strong></div>'
@@ -725,7 +728,21 @@ async function loadPaymentDetail(paymentId, options = {}) {
       return;
     }
 
-    renderDetail(paymentResp.data || {}, Array.isArray(historyResp.data) ? historyResp.data : []);
+    const paymentData = paymentResp.data || {};
+    let sourceAccountFromDb = null;
+
+    if (paymentData.sourceAccount) {
+      try {
+        const sourceAccountResp = await api("/api/accounts/" + encodeURIComponent(paymentData.sourceAccount));
+        if (sourceAccountResp.code === 200) {
+          sourceAccountFromDb = sourceAccountResp.data || null;
+        }
+      } catch (accountErr) {
+        console.warn("Failed to load source account from account table.", accountErr);
+      }
+    }
+
+    renderDetail(paymentData, Array.isArray(historyResp.data) ? historyResp.data : [], sourceAccountFromDb);
     renderPayments(paymentCache);
     if (options.openView) {
       setActiveView("detail");
